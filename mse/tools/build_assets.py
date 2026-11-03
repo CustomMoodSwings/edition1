@@ -140,12 +140,14 @@ def main():
     Image.new("RGBA", (4, 4), (0, 0, 0, 0)).save(os.path.join(STYLE_IMG, "blank.png"))
 
     # 3. art masks, one per color. The art frame is tilted differently on the colors (white and blue are
-    # nearly the same, black is tilted a little, red and green a lot), so every color gets its own box and
-    # mask. The mask is read from the sliced frame itself: the art area is the flat gray (#999999)
-    # placeholder, and the edge pixels are blended against the dark border around it. That makes the art
-    # fit the frame image that is used, even if the slice differs slightly from the SVG.
-    layout["art"] = {}
+    # nearly the same, black is tilted a little, red and green a lot). The mask is read from the sliced frame
+    # itself: the art area is the flat gray (#999999) placeholder, and the edge pixels are blended against the
+    # dark border around it, so the art fits the frame image that is used.
+    # All colors share ONE art box size (the largest width and height of the five openings), so art can be
+    # made at a single size. Each color's box is positioned so that the centre of the box is the centre of
+    # that color's opening, and each mask image is the full box size with the opening placed inside it.
     GRAY = (153, 153, 153)
+    openings = {}
     for color, code in (("white", "w"), ("blue", "u"), ("black", "b"), ("red", "r"), ("green", "g")):
         base = Image.open(os.path.join(SLICED, f"base-{code}.png")).convert("RGB")
         w, h = base.size
@@ -176,10 +178,27 @@ def main():
                     t = sum((px[x, y][i] - dark[i]) * vx[i] for i in range(3)) / norm
                     mp[x, y] = int(round(255 * min(1.0, max(0.0, t))))
         bbox = mask.point(lambda v: 255 if v > 0 else 0).getbbox()
-        left, top, right, bottom = bbox
-        print("art region for", color, bbox, "border colour", dark)
-        mask.crop(bbox).save(os.path.join(STYLE_IMG, f"art-mask-{color}.png"))
-        layout["art"][color] = {"left": left, "top": top, "width": right - left, "height": bottom - top}
+        # centre of the opening: the centroid of the mask
+        data = mask.tobytes()
+        total = sum(data)
+        cx = sum(i % w * v for i, v in enumerate(data)) / total
+        cy = sum(i // w * v for i, v in enumerate(data)) / total
+        openings[color] = {"mask": mask, "bbox": bbox, "cx": cx, "cy": cy}
+        print("art opening for", color, bbox, "centre (%.1f, %.1f)" % (cx, cy), "border colour", dark)
+    ART_W = max(o["bbox"][2] - o["bbox"][0] for o in openings.values())
+    ART_H = max(o["bbox"][3] - o["bbox"][1] for o in openings.values())
+    layout["art"] = {"width": ART_W, "height": ART_H, "boxes": {}}
+    for color, o in openings.items():
+        x0, y0, x1, y1 = o["bbox"]
+        # centre the box on the opening, but never let the box cut into the opening
+        left = min(x0, max(x1 - ART_W, round(o["cx"] - ART_W / 2)))
+        top = min(y0, max(y1 - ART_H, round(o["cy"] - ART_H / 2)))
+        canvas = Image.new("L", (ART_W, ART_H), 0)
+        canvas.paste(o["mask"].crop(o["bbox"]), (x0 - left, y0 - top))
+        canvas.save(os.path.join(STYLE_IMG, f"art-mask-{color}.png"))
+        layout["art"]["boxes"][color] = {"left": left, "top": top}
+        print("art box for", color, "left", left, "top", top, "size", (ART_W, ART_H),
+              "opening inside the box at", (x0 - left, y0 - top))
 
     # 4. rules text masks from the spacer rectangles (relative to textbox-main)
     root = load_root()

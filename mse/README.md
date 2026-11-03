@@ -47,7 +47,7 @@ Each card has these fields:
 | lower die color | White or black dice. |
 | rarity | Common, uncommon, rare or mythic. |
 | rules text | Centered, vertically centered. Use bold and italic for the ability name and reminder text. For a die inside the text, use the Insert Symbol menu and pick a die. |
-| art | Click the art box and choose an image; the art is clipped to the slanted frame. The frames are tilted differently (white and blue about the same, black a little, red and green a lot), so the art box and mask change with the frame color. |
+| art | Click the art box and choose an image; the art is clipped to the slanted frame. The art box is the same size for every color, **585 x 452**, so you can make art at one size. The frames are tilted differently (white and blue about the same, black a little, red and green a lot), so the box moves a few pixels with the frame color to stay centered on each opening, and the mask changes with it. A few pixels of the picture, mostly at the corners, are cut off by the opening on the more tilted frames. |
 | collector number | Bottom left, for example `0020`. |
 | artist | Bottom left, after the brush icon. |
 
@@ -61,7 +61,7 @@ I could not run MSE, so these are the likeliest places to need a small fix:
 
 1. **Font sizes and vertical placement** of the name, collector number and artist boxes. They are positioned from the SVG's text baselines. If a line sits a few pixels off, change `top` or `height` in `mood-swings-edition1.mse-style/style` (or in `tools/write_files.py`).
 2. **Inline dice scale.** The dice glyphs are drawn at about 30 px tall (symbol font `size: 28` over `image font size: 90`). Change `size` in the stylesheet's `symbol font` block to make them larger or smaller.
-3. **Per-color art box.** The art box's `left`, `top`, `width` and `height` are scripted from the frame color (`case card.frame_color of ...`). If MSE complains about those lines, the five boxes are listed in `tools/layout.json` and can be written out as separate styles instead.
+3. **Per-color art position.** The art box's `left` and `top` are scripted from the frame color (`case card.frame_color of ...`); the width and height are plain numbers. If MSE complains about those lines, the five positions are listed in `tools/layout.json` and can be written out as separate styles instead.
 4. **Rules text masks.** The text flows around the lower dice and the set symbol using the three `text-mask-*.png` images. If text is clipped or overlaps the dice, look at those images (black is blocked) and the `mask:` line on `rules text`.
 5. **Image paths in subfolders.** The stylesheet refers to `img/...`. If your version of MSE does not accept a folder in an image name, move the images up one level and drop the `img/` prefix.
 6. **No letter spacing.** MSE has no letter-spacing setting, so the name and collector number are a little tighter or looser than the Inkscape versions.

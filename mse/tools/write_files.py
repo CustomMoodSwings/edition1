@@ -152,14 +152,15 @@ LOWER_DIE_IMAGE = ('{ if input == "none" then "img/blank.png" else '
                    '"img/ld" + (if card.lower_die_color == "black" then "b" else "w") + "-" + '
                    '(if to_int(input) < 10 then "0" else "") + input + ".png" }')
 def art_prop(key):
-    """A scripted style value that depends on the frame color (the art frame is tilted differently)."""
+    """A scripted style value that depends on the frame color (each opening sits in a different place)."""
     colors = ("white", "blue", "black", "red", "green")
-    cases = ", ".join(f"{c}: {LAYOUT['art'][c][key]}" for c in colors)
-    return "{ case card.frame_color of " + cases + ", else: " + str(LAYOUT["art"]["white"][key]) + " }"
+    boxes = LAYOUT["art"]["boxes"]
+    cases = ", ".join(f"{c}: {boxes[c][key]}" for c in colors)
+    return "{ case card.frame_color of " + cases + ", else: " + str(boxes["white"][key]) + " }"
 
 
-ART_BLOCK = (f"    left: {art_prop('left')}\n    top: {art_prop('top')}\n    width: {art_prop('width')}\n"
-             f"    height: {art_prop('height')}\n    z index: 20\n"
+ART_BLOCK = (f"    left: {art_prop('left')}\n    top: {art_prop('top')}\n"
+             f"    width: {LAYOUT['art']['width']}\n    height: {LAYOUT['art']['height']}\n    z index: 20\n"
              '    mask: { "img/art-mask-" + card.frame_color + ".png" }')
 TEXT_MASK = ('{ if card.lower_die == "none" then "img/text-mask-none.png" '
              'else if to_int(card.lower_die) <= 6 then "img/text-mask-single.png" '

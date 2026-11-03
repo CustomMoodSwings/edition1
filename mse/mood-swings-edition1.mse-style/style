@@ -4,7 +4,7 @@ short name: Edition 1
 full name: Mood Swings Edition 1 card frame
 position hint: 1
 card width: 744
-card height: 1039
+card height: 1040
 card dpi: 300
 card background: rgb(255,255,255)
 
@@ -13,7 +13,7 @@ card style:
 		left: 0
 		top: 0
 		width: 744
-		height: 1039
+		height: 1040
 		z index: 10
 		render style: image
 		choice images:

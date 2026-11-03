@@ -162,8 +162,8 @@ game: mood-swings
 short name: Edition 1
 full name: Mood Swings Edition 1 card frame
 position hint: 1
-card width: 744
-card height: 1039
+card width: {LAYOUT['card']['width']}
+card height: {LAYOUT['card']['height']}
 card dpi: 300
 card background: rgb(255,255,255)
 
@@ -171,8 +171,8 @@ card style:
   frame color:
     left: 0
     top: 0
-    width: 744
-    height: 1039
+    width: {LAYOUT['card']['width']}
+    height: {LAYOUT['card']['height']}
     z index: 10
     render style: image
     choice images:

@@ -9,7 +9,7 @@ A [Magic Set Editor 2](https://github.com/twanvl/MagicSetEditor2) (MSE) version 
 | Package | What it is |
 |---|---|
 | `mood-swings.mse-game/` | The game: the fields of a card (name, frame color, dice, rarity, rules text, art, ...). |
-| `mood-swings-edition1.mse-style/` | The stylesheet: where each field goes on the 744 x 1039 card, plus the images (`img/`). |
+| `mood-swings-edition1.mse-style/` | The stylesheet: where each field goes on the 744 x 1040 card, plus the images (`img/`). |
 | `mood-swings-dice.mse-symbol-font/` | A symbol font for the six dice that appear inside rules text. |
 | `examples/edition1-sample.mse-set/` | A small sample set (Pacifism, Fear, Determination and a two-dice test card). |
 | `tools/` | The scripts that generate everything above (see "Regenerating"). |
@@ -69,7 +69,7 @@ I could not run MSE, so these are the likeliest places to need a small fix:
 
 - No colorless frame (the Inkscape templates have five colors).
 - No `themed/steampunk` variant.
-- Printing and bleed are not set up. The card size is 744 x 1039 pixels at 300 dpi.
+- Printing and bleed are not set up. The card size is 744 x 1040 pixels at 300 dpi. The Inkscape template and the slices are 744 x 1039; the frame images here have one extra row at the bottom (a copy of the white margin) so both dimensions are multiples of 4, as the Unity client needs. Nothing else moves, because everything is positioned from the top left.
 
 ## Regenerating
 

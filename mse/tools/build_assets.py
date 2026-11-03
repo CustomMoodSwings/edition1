@@ -29,6 +29,8 @@ SVG = os.path.join(REPO, "src", "00_w_blank.svg")
 SLICED = os.path.join(REPO, "sliced")
 STYLE_IMG = os.path.join(MSE, "mood-swings-edition1.mse-style", "img")
 FONT_DIR = os.path.join(MSE, "mood-swings-dice.mse-symbol-font")
+CARD_WIDTH = 744
+CARD_HEIGHT = 1040   # the SVG and slices are 1039 high; 1040 is a multiple of 4
 
 NS = {
     "svg": "http://www.w3.org/2000/svg",
@@ -96,9 +98,18 @@ def main():
 
     # 1. slices -> stylesheet images. The bases stay full-card; the overlays (dice, rarity, reminder)
     # are cropped to the union of their boxes, so each MSE field only covers its own small area.
-    layout = {}
+    layout = {"card": {"width": CARD_WIDTH, "height": CARD_HEIGHT}}
+    # The slices are 744 x 1039. The Unity client needs sizes that are a multiple of 4, so each base gets one
+    # extra row at the bottom (a copy of the last row, which is the white margin around the card). Every
+    # overlay is positioned from the top left, so nothing else moves.
     for c in "wubrg":
-        shutil.copy(os.path.join(SLICED, f"base-{c}.png"), os.path.join(STYLE_IMG, f"base-{c}.png"))
+        base = Image.open(os.path.join(SLICED, f"base-{c}.png")).convert("RGBA")
+        w, h = base.size
+        padded = Image.new("RGBA", (w, CARD_HEIGHT), (0, 0, 0, 0))
+        padded.paste(base, (0, 0))
+        for extra in range(h, CARD_HEIGHT):
+            padded.paste(base.crop((0, h - 1, w, h)), (0, extra))
+        padded.save(os.path.join(STYLE_IMG, f"base-{c}.png"))
 
     def crop_group(sources, box_name):
         """sources: list of (source path, output name). Crop all to the union alpha box."""

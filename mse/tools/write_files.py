@@ -49,6 +49,23 @@ short name: Mood Swings
 full name: Mood Swings
 position hint: 100
 
+set field:
+  type: text
+  name: set code
+  description: The set code printed at the bottom left of every card, for example MSW
+  default: "MSW"
+default set style:
+  set code:
+    left: 10
+    top: 10
+    width: 120
+    height: 24
+    alignment: middle left
+    font:
+      name: Arial
+      size: 12
+      color: rgb(0,0,0)
+
 card field:
   type: text
   name: name
@@ -132,6 +149,12 @@ card field:
   type: image
   name: art
   description: The card art
+  show statistics: false
+card field:
+  type: text
+  name: set code
+  description: The set code at the bottom left. It follows the Set Info value unless you type something here.
+  default: set.set_code
   show statistics: false
 card field:
   type: text
@@ -241,6 +264,17 @@ card style:
       size: 28
       alignment: middle center
     mask: {TEXT_MASK}
+  set code:
+    left: 48.4
+    top: 989
+    width: 90
+    height: 20
+    z index: 40
+    alignment: middle left
+    font:
+      name: Gotham
+      size: 12
+      color: rgb(255,253,252)
   collector number:
     left: 47.7
     top: 968
@@ -319,6 +353,6 @@ cards = [
          "If you do, this mood's value becomes 9.",
          "0000", "Nobody"),
 ]
-sample = "mse version: 2.0.0\ngame: mood-swings\nstylesheet: edition1\n" + "\n".join(cards) + "\n"
+sample = "mse version: 2.0.0\ngame: mood-swings\nstylesheet: edition1\nset info:\n\tset code: MSW\n" + "\n".join(cards) + "\n"
 write(os.path.join(SAMPLE_DIR, "set"), sample)
 print("wrote game, style, symbol-font and sample set")

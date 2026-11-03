@@ -3,6 +3,23 @@ short name: Mood Swings
 full name: Mood Swings
 position hint: 100
 
+set field:
+	type: text
+	name: set code
+	description: The set code printed at the bottom left of every card, for example MSW
+	default: "MSW"
+default set style:
+	set code:
+		left: 10
+		top: 10
+		width: 120
+		height: 24
+		alignment: middle left
+		font:
+			name: Arial
+			size: 12
+			color: rgb(0,0,0)
+
 card field:
 	type: text
 	name: name
@@ -108,6 +125,12 @@ card field:
 	type: image
 	name: art
 	description: The card art
+	show statistics: false
+card field:
+	type: text
+	name: set code
+	description: The set code at the bottom left. It follows the Set Info value unless you type something here.
+	default: set.set_code
 	show statistics: false
 card field:
 	type: text

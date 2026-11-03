@@ -90,6 +90,22 @@ def find(root, name):
     raise KeyError(name)
 
 
+# The slices have the set code ("MSW") painted into the footer. It is an editable field in MSE, so it is
+# painted out of the frame images: the rectangle below covers just the three letters on the flat footer
+# color, and stays clear of the rounded corner at the left and of the color word and brush icon at the right.
+SET_CODE_BOX = (46, 990, 96, 1007)
+
+
+def erase_set_code(img):
+    x0, y0, x1, y1 = SET_CODE_BOX
+    region = img.crop((x0, y0, x1 + 1, y1 + 1))
+    counts = {}
+    for p in region.getdata():
+        counts[p] = counts.get(p, 0) + 1
+    bg = max(counts, key=counts.get)
+    img.paste(Image.new("RGBA", region.size, bg), (x0, y0))
+
+
 def main():
     for tool in ("rsvg-convert",):
         if shutil.which(tool) is None:
@@ -106,6 +122,7 @@ def main():
     # overlay is positioned from the top left, so nothing else moves.
     for c in "wubrg":
         base = Image.open(os.path.join(SLICED, f"base-{c}.png")).convert("RGBA")
+        erase_set_code(base)
         w, h = base.size
         padded = Image.new("RGBA", (w, CARD_HEIGHT), (0, 0, 0, 0))
         padded.paste(base, (0, 0))

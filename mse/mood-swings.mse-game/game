@@ -1,0 +1,121 @@
+mse version: 2.0.0
+short name: Mood Swings
+full name: Mood Swings
+position hint: 100
+
+card field:
+	type: text
+	name: name
+	description: The name of the card
+	identifying: true
+	card list visible: true
+	card list column: 1
+	card list width: 220
+	show statistics: false
+card field:
+	type: choice
+	name: frame color
+	description: The color of the card frame
+	choice: white
+	choice: blue
+	choice: black
+	choice: red
+	choice: green
+	initial: white
+	card list visible: true
+	card list column: 2
+	card list width: 70
+	choice colors cardlist:
+		white: rgb(235,233,222)
+		blue: rgb(160,200,235)
+		black: rgb(150,140,160)
+		red: rgb(235,170,160)
+		green: rgb(165,215,170)
+card field:
+	type: choice
+	name: top die
+	description: The die in the top right corner, 0 shows a numeral and 1 to 6 show pips
+	choice: 0
+	choice: 1
+	choice: 2
+	choice: 3
+	choice: 4
+	choice: 5
+	choice: 6
+	initial: 1
+	card list visible: true
+	card list column: 3
+	card list width: 50
+card field:
+	type: choice
+	name: top die color
+	description: Whether the top right die is white or black
+	choice: white
+	choice: black
+	initial: white
+	show statistics: false
+card field:
+	type: boolean
+	name: reminder icon
+	description: The "!" reminder icon next to the top die
+	show statistics: false
+card field:
+	type: choice
+	name: lower die
+	description: The alternate value shown by the lower left dice, 1 to 6 is one die and 7 to 12 is two dice
+	choice: none
+	choice: 1
+	choice: 2
+	choice: 3
+	choice: 4
+	choice: 5
+	choice: 6
+	choice: 7
+	choice: 8
+	choice: 9
+	choice: 10
+	choice: 11
+	choice: 12
+	initial: none
+	show statistics: false
+card field:
+	type: choice
+	name: lower die color
+	description: Whether the lower left dice are white or black
+	choice: white
+	choice: black
+	initial: white
+	show statistics: false
+card field:
+	type: choice
+	name: rarity
+	description: The rarity word at the bottom right
+	choice: common
+	choice: uncommon
+	choice: rare
+	choice: mythic
+	initial: common
+	card list visible: true
+	card list column: 4
+	card list width: 80
+card field:
+	type: text
+	name: rules text
+	description: The rules text. Use the Insert Symbol menu for dice inside the text.
+	multi line: true
+	show statistics: false
+card field:
+	type: image
+	name: art
+	description: The card art
+	show statistics: false
+card field:
+	type: text
+	name: collector number
+	description: The collector number at the bottom left, for example 0020
+	show statistics: false
+card field:
+	type: text
+	name: artist
+	description: The artist name at the bottom left
+	show statistics: false

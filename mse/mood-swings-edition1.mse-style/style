@@ -1,0 +1,122 @@
+mse version: 2.0.0
+game: mood-swings
+short name: Edition 1
+full name: Mood Swings Edition 1 card frame
+position hint: 1
+card width: 744
+card height: 1039
+card dpi: 300
+card background: rgb(255,255,255)
+
+card style:
+	frame color:
+		left: 0
+		top: 0
+		width: 744
+		height: 1039
+		z index: 10
+		render style: image
+		choice images:
+			white: img/base-w.png
+			blue: img/base-u.png
+			black: img/base-b.png
+			red: img/base-r.png
+			green: img/base-g.png
+	art:
+		left: 80
+		top: 129
+		width: 585
+		height: 451
+		z index: 20
+		mask: img/art-mask.png
+	top die:
+		left: 575
+		top: 50
+		width: 115
+		height: 116
+		z index: 30
+		render style: image
+		image: { "img/ud" + (if card.top_die_color == "black" then "b" else "w") + "-" + input + ".png" }
+	reminder icon:
+		left: 530
+		top: 39
+		width: 54
+		height: 74
+		z index: 30
+		render style: image
+		choice images:
+			yes: img/reminder.png
+			no: img/blank.png
+	lower die:
+		left: 47
+		top: 844
+		width: 194
+		height: 117
+		z index: 30
+		render style: image
+		image: { if input == "none" then "img/blank.png" else "img/ld" + (if card.lower_die_color == "black" then "b" else "w") + "-" + (if to_int(input) < 10 then "0" else "") + input + ".png" }
+	rarity:
+		left: 536
+		top: 967
+		width: 157
+		height: 18
+		z index: 30
+		render style: image
+		choice images:
+			common: img/rarity-common.png
+			uncommon: img/rarity-uncommon.png
+			rare: img/rarity-rare.png
+			mythic: img/rarity-mythic.png
+	name:
+		left: 57
+		top: 44
+		width: 468
+		height: 80
+		z index: 40
+		alignment: middle left
+		font:
+			name: Beleren Small Caps
+			size: 50
+			weight: bold
+			color: rgb(255,253,252)
+			scale down to: 30
+	rules text:
+		left: 48.65
+		top: 581.95
+		width: 648
+		height: 365
+		z index: 40
+		alignment: middle center
+		font:
+			name: Plantin MT Pro
+			size: 21
+			color: rgb(45,45,45)
+			scale down to: 14
+		symbol font:
+			name: mood-swings-dice
+			size: 28
+			alignment: middle center
+		mask: { if card.lower_die == "none" then "img/text-mask-none.png" else if to_int(card.lower_die) <= 6 then "img/text-mask-single.png" else "img/text-mask-double.png" }
+	collector number:
+		left: 47.7
+		top: 968
+		width: 90
+		height: 22
+		z index: 40
+		alignment: middle left
+		font:
+			name: Gotham
+			size: 12
+			color: rgb(255,253,252)
+	artist:
+		left: 164.85
+		top: 985
+		width: 280
+		height: 24
+		z index: 40
+		alignment: middle left
+		font:
+			name: Beleren Small Caps
+			size: 14
+			weight: bold
+			color: rgb(255,253,252)

@@ -85,7 +85,7 @@ card field:
 card field:
   type: choice
   name: top die color
-  description: Whether the top right die is white or black
+  description: White or black die. Printed cards use the same color for the top and lower dice - black for a value that applies while in play, white for one that changes after playing
   choice: white
   choice: black
   initial: white
@@ -105,7 +105,7 @@ card field:
 card field:
   type: choice
   name: lower die color
-  description: Whether the lower left dice are white or black
+  description: White or black dice. Use the same color as the top die
   choice: white
   choice: black
   initial: white
@@ -151,7 +151,17 @@ TOP_DIE_IMAGE = ('{ "img/ud" + (if card.top_die_color == "black" then "b" else "
 LOWER_DIE_IMAGE = ('{ if input == "none" then "img/blank.png" else '
                    '"img/ld" + (if card.lower_die_color == "black" then "b" else "w") + "-" + '
                    '(if to_int(input) < 10 then "0" else "") + input + ".png" }')
-ART_BLOCK = box('art', 20, "    mask: img/art-mask.png\n").rstrip("\n")
+def art_prop(key):
+    """A scripted style value that depends on the frame color (each opening sits in a different place)."""
+    colors = ("white", "blue", "black", "red", "green")
+    boxes = LAYOUT["art"]["boxes"]
+    cases = ", ".join(f"{c}: {boxes[c][key]}" for c in colors)
+    return "{ case card.frame_color of " + cases + ", else: " + str(boxes["white"][key]) + " }"
+
+
+ART_BLOCK = (f"    left: {art_prop('left')}\n    top: {art_prop('top')}\n"
+             f"    width: {LAYOUT['art']['width']}\n    height: {LAYOUT['art']['height']}\n    z index: 20\n"
+             '    mask: { "img/art-mask-" + card.frame_color + ".png" }')
 TEXT_MASK = ('{ if card.lower_die == "none" then "img/text-mask-none.png" '
              'else if to_int(card.lower_die) <= 6 then "img/text-mask-single.png" '
              'else "img/text-mask-double.png" }')
@@ -300,11 +310,11 @@ cards = [
          "<b>After playing this mood</b> — You may put another one of your moods into your hand. "
          "You may play an additional mood this turn.",
          "0038", "Jesper Ejsing"),
-    card("Determination", "green", 3, "white", "no", 6, "black", "common",
+    card("Determination", "green", 3, "black", "no", 6, "black", "common",
          "<b>While in play</b> — This mood's value is " + DIE6 + " if there are three or more moods that share a color. "
          "<i>(Moods are cards in play.)</i>",
          "0112", "Arif Wijaya"),
-    card("Test Card With Two Dice", "red", 3, "black", "no", 9, "white", "mythic",
+    card("Test Card With Two Dice", "red", 3, "white", "no", 9, "white", "mythic",
          "<b>After playing this mood</b> — You may put two of your other moods into the discard pile. "
          "If you do, this mood's value becomes 9.",
          "0000", "Nobody"),

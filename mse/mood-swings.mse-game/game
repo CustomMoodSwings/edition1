@@ -49,7 +49,7 @@ card field:
 card field:
 	type: choice
 	name: top die color
-	description: Whether the top right die is white or black
+	description: White or black die. Printed cards use the same color for the top and lower dice - black for a value that applies while in play, white for one that changes after playing
 	choice: white
 	choice: black
 	initial: white
@@ -81,7 +81,7 @@ card field:
 card field:
 	type: choice
 	name: lower die color
-	description: Whether the lower left dice are white or black
+	description: White or black dice. Use the same color as the top die
 	choice: white
 	choice: black
 	initial: white

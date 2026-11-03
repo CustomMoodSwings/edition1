@@ -41,13 +41,13 @@ Each card has these fields:
 | name | Card name (Beleren Small Caps Bold, shrinks if it is long). |
 | frame color | White, blue, black, red or green frame. |
 | top die | The value die at the top right: 0 shows a numeral, 1 to 6 show pips. |
-| top die color | White or black die. |
+| top die color | White or black die. On the printed cards the top and lower dice are always the same color, and the color follows the kind of value: **black** for a value that applies while in play (Determination, Triumph, Serenity), **white** for one that changes after playing (Altruism, Cheer, Infatuation) and for ordinary cards with no lower die (almost all of them). |
 | reminder icon | Ticks on the "!" icon next to the top die. |
 | lower die | The alternate value in the lower left: 1 to 6 is one die, 7 to 12 is two dice (a 6 and the rest), or none. The rules text flows around the dice. |
-| lower die color | White or black dice. |
+| lower die color | White or black dice. Use the same color as the top die. |
 | rarity | Common, uncommon, rare or mythic. |
 | rules text | Centered, vertically centered. Use bold and italic for the ability name and reminder text. For a die inside the text, use the Insert Symbol menu and pick a die. |
-| art | Click the art box and choose an image; the art is clipped to the slanted frame. |
+| art | Click the art box and choose an image; the art is clipped to the slanted frame. The art box is the same size for every color, **585 x 452**, so you can make art at one size. The frames are tilted differently (white and blue about the same, black a little, red and green a lot), so the box moves a few pixels with the frame color to stay centered on each opening, and the mask changes with it. A few pixels of the picture, mostly at the corners, are cut off by the opening on the more tilted frames. |
 | collector number | Bottom left, for example `0020`. |
 | artist | Bottom left, after the brush icon. |
 
@@ -61,9 +61,10 @@ I could not run MSE, so these are the likeliest places to need a small fix:
 
 1. **Font sizes and vertical placement** of the name, collector number and artist boxes. They are positioned from the SVG's text baselines. If a line sits a few pixels off, change `top` or `height` in `mood-swings-edition1.mse-style/style` (or in `tools/write_files.py`).
 2. **Inline dice scale.** The dice glyphs are drawn at about 30 px tall (symbol font `size: 28` over `image font size: 90`). Change `size` in the stylesheet's `symbol font` block to make them larger or smaller.
-3. **Rules text masks.** The text flows around the lower dice and the set symbol using the three `text-mask-*.png` images. If text is clipped or overlaps the dice, look at those images (black is blocked) and the `mask:` line on `rules text`.
-4. **Image paths in subfolders.** The stylesheet refers to `img/...`. If your version of MSE does not accept a folder in an image name, move the images up one level and drop the `img/` prefix.
-5. **No letter spacing.** MSE has no letter-spacing setting, so the name and collector number are a little tighter or looser than the Inkscape versions.
+3. **Per-color art position.** The art box's `left` and `top` are scripted from the frame color (`case card.frame_color of ...`); the width and height are plain numbers. If MSE complains about those lines, the five positions are listed in `tools/layout.json` and can be written out as separate styles instead.
+4. **Rules text masks.** The text flows around the lower dice and the set symbol using the three `text-mask-*.png` images. If text is clipped or overlaps the dice, look at those images (black is blocked) and the `mask:` line on `rules text`.
+5. **Image paths in subfolders.** The stylesheet refers to `img/...`. If your version of MSE does not accept a folder in an image name, move the images up one level and drop the `img/` prefix.
+6. **No letter spacing.** MSE has no letter-spacing setting, so the name and collector number are a little tighter or looser than the Inkscape versions.
 
 ## Not included
 

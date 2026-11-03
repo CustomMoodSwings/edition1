@@ -1,8 +1,28 @@
 {
   "art": {
-    "height": 451,
-    "left": 80,
-    "top": 129,
+    "boxes": {
+      "black": {
+        "left": 81,
+        "top": 135
+      },
+      "blue": {
+        "left": 78,
+        "top": 129
+      },
+      "green": {
+        "left": 80,
+        "top": 136
+      },
+      "red": {
+        "left": 78,
+        "top": 129
+      },
+      "white": {
+        "left": 80,
+        "top": 129
+      }
+    },
+    "height": 452,
     "width": 585
   },
   "card": {

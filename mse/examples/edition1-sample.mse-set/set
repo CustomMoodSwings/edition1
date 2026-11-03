@@ -31,7 +31,7 @@ card:
 	name: Determination
 	frame color: green
 	top die: 3
-	top die color: white
+	top die color: black
 	reminder icon: no
 	lower die: 6
 	lower die color: black
@@ -44,7 +44,7 @@ card:
 	name: Test Card With Two Dice
 	frame color: red
 	top die: 3
-	top die color: black
+	top die color: white
 	reminder icon: no
 	lower die: 9
 	lower die color: white

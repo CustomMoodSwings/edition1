@@ -97,6 +97,17 @@ card style:
 			size: 28
 			alignment: middle center
 		mask: { if card.lower_die == "none" then "img/text-mask-none.png" else if to_int(card.lower_die) <= 6 then "img/text-mask-single.png" else "img/text-mask-double.png" }
+	set code:
+		left: 48.4
+		top: 989
+		width: 90
+		height: 20
+		z index: 40
+		alignment: middle left
+		font:
+			name: Gotham
+			size: 12
+			color: rgb(255,253,252)
 	collector number:
 		left: 47.7
 		top: 968

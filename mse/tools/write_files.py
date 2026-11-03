@@ -85,7 +85,7 @@ card field:
 card field:
   type: choice
   name: top die color
-  description: Whether the top right die is white or black
+  description: White or black die. Printed cards use the same color for the top and lower dice - black for a value that applies while in play, white for one that changes after playing
   choice: white
   choice: black
   initial: white
@@ -105,7 +105,7 @@ card field:
 card field:
   type: choice
   name: lower die color
-  description: Whether the lower left dice are white or black
+  description: White or black dice. Use the same color as the top die
   choice: white
   choice: black
   initial: white
@@ -310,11 +310,11 @@ cards = [
          "<b>After playing this mood</b> — You may put another one of your moods into your hand. "
          "You may play an additional mood this turn.",
          "0038", "Jesper Ejsing"),
-    card("Determination", "green", 3, "white", "no", 6, "black", "common",
+    card("Determination", "green", 3, "black", "no", 6, "black", "common",
          "<b>While in play</b> — This mood's value is " + DIE6 + " if there are three or more moods that share a color. "
          "<i>(Moods are cards in play.)</i>",
          "0112", "Arif Wijaya"),
-    card("Test Card With Two Dice", "red", 3, "black", "no", 9, "white", "mythic",
+    card("Test Card With Two Dice", "red", 3, "white", "no", 9, "white", "mythic",
          "<b>After playing this mood</b> — You may put two of your other moods into the discard pile. "
          "If you do, this mood's value becomes 9.",
          "0000", "Nobody"),

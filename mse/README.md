@@ -41,10 +41,10 @@ Each card has these fields:
 | name | Card name (Beleren Small Caps Bold, shrinks if it is long). |
 | frame color | White, blue, black, red or green frame. |
 | top die | The value die at the top right: 0 shows a numeral, 1 to 6 show pips. |
-| top die color | White or black die. |
+| top die color | White or black die. On the printed cards the top and lower dice are always the same color, and the color follows the kind of value: **black** for a value that applies while in play (Determination, Triumph, Serenity), **white** for one that changes after playing (Altruism, Cheer, Infatuation) and for ordinary cards with no lower die (almost all of them). |
 | reminder icon | Ticks on the "!" icon next to the top die. |
 | lower die | The alternate value in the lower left: 1 to 6 is one die, 7 to 12 is two dice (a 6 and the rest), or none. The rules text flows around the dice. |
-| lower die color | White or black dice. |
+| lower die color | White or black dice. Use the same color as the top die. |
 | rarity | Common, uncommon, rare or mythic. |
 | rules text | Centered, vertically centered. Use bold and italic for the ability name and reminder text. For a die inside the text, use the Insert Symbol menu and pick a die. |
 | art | Click the art box and choose an image; the art is clipped to the slanted frame. The art box is the same size for every color, **585 x 452**, so you can make art at one size. The frames are tilted differently (white and blue about the same, black a little, red and green a lot), so the box moves a few pixels with the frame color to stay centered on each opening, and the mask changes with it. A few pixels of the picture, mostly at the corners, are cut off by the opening on the more tilted frames. |

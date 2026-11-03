@@ -1,9 +1,35 @@
 {
   "art": {
-    "height": 451,
-    "left": 80,
-    "top": 129,
-    "width": 585
+    "black": {
+      "height": 439,
+      "left": 87,
+      "top": 142,
+      "width": 575
+    },
+    "blue": {
+      "height": 452,
+      "left": 78,
+      "top": 129,
+      "width": 585
+    },
+    "green": {
+      "height": 438,
+      "left": 85,
+      "top": 143,
+      "width": 575
+    },
+    "red": {
+      "height": 444,
+      "left": 81,
+      "top": 133,
+      "width": 580
+    },
+    "white": {
+      "height": 451,
+      "left": 80,
+      "top": 129,
+      "width": 585
+    }
   },
   "card": {
     "height": 1040,

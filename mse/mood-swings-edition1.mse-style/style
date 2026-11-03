@@ -23,12 +23,12 @@ card style:
 			red: img/base-r.png
 			green: img/base-g.png
 	art:
-		left: 80
-		top: 129
-		width: 585
-		height: 451
+		left: { case card.frame_color of white: 80, blue: 78, black: 87, red: 81, green: 85, else: 80 }
+		top: { case card.frame_color of white: 129, blue: 129, black: 142, red: 133, green: 143, else: 129 }
+		width: { case card.frame_color of white: 585, blue: 585, black: 575, red: 580, green: 575, else: 585 }
+		height: { case card.frame_color of white: 451, blue: 452, black: 439, red: 444, green: 438, else: 451 }
 		z index: 20
-		mask: img/art-mask.png
+		mask: { "img/art-mask-" + card.frame_color + ".png" }
 	top die:
 		left: 575
 		top: 50

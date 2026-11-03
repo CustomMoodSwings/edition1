@@ -20,12 +20,14 @@ import sys
 import tempfile
 import xml.etree.ElementTree as ET
 
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFilter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 MSE = os.path.dirname(HERE)
 REPO = os.path.dirname(MSE)
 SVG = os.path.join(REPO, "src", "00_w_blank.svg")
+COLOR_SVGS = {"white": "00_w_blank.svg", "blue": "01_u_blank.svg", "black": "02_b_blank.svg",
+              "red": "03_r_blank.svg", "green": "04_g_blank.svg"}
 SLICED = os.path.join(REPO, "sliced")
 STYLE_IMG = os.path.join(MSE, "mood-swings-edition1.mse-style", "img")
 FONT_DIR = os.path.join(MSE, "mood-swings-dice.mse-symbol-font")
@@ -77,8 +79,8 @@ def render(root, path, only_layers=None, show_children=None, zoom=1):
         os.unlink(tmp)
 
 
-def load_root():
-    return ET.parse(SVG).getroot()
+def load_root(path=None):
+    return ET.parse(path or SVG).getroot()
 
 
 def find(root, name):
@@ -137,28 +139,47 @@ def main():
     # 2. blank transparent image
     Image.new("RGBA", (4, 4), (0, 0, 0, 0)).save(os.path.join(STYLE_IMG, "blank.png"))
 
-    # 3. art mask from the art-placeholder path (white = art shows, black = hidden)
-    root = load_root()
-    ph = find(root, "art-placeholder")
-    for e in root.iter():          # make the placeholder plain white, everything else hidden
-        if e is ph:
-            ph.set("style", "fill:#ffffff;fill-opacity:1;stroke:none")
-    only = os.path.join(tmp, "art-only.png")
-    # keep only the artbox layer, and only the placeholder inside it
-    artbox = find(root, "artbox")
-    for child in list(artbox):
-        if label(child) != "art-placeholder":
-            artbox.remove(child)
-    render(root, only, only_layers={"artbox"})
-    full = Image.open(only).convert("RGBA")
-    bbox = full.split()[3].getbbox()
-    print("art region bbox on the card:", bbox)
-    left, top, right, bottom = bbox
-    mask = Image.new("L", (right - left, bottom - top), 0)
-    alpha = full.split()[3].crop(bbox)
-    mask.paste(alpha, (0, 0))
-    mask.save(os.path.join(STYLE_IMG, "art-mask.png"))
-    layout["art"] = {"left": left, "top": top, "width": right - left, "height": bottom - top}
+    # 3. art masks, one per color. The art frame is tilted differently on the colors (white and blue are
+    # nearly the same, black is tilted a little, red and green a lot), so every color gets its own box and
+    # mask. The mask is read from the sliced frame itself: the art area is the flat gray (#999999)
+    # placeholder, and the edge pixels are blended against the dark border around it. That makes the art
+    # fit the frame image that is used, even if the slice differs slightly from the SVG.
+    layout["art"] = {}
+    GRAY = (153, 153, 153)
+    for color, code in (("white", "w"), ("blue", "u"), ("black", "b"), ("red", "r"), ("green", "g")):
+        base = Image.open(os.path.join(SLICED, f"base-{code}.png")).convert("RGB")
+        w, h = base.size
+        px = base.load()
+        seed = Image.new("L", (w, h), 0)
+        sp = seed.load()
+        for y in range(h):
+            for x in range(w):
+                if px[x, y] == GRAY:
+                    sp[x, y] = 255
+        zone = seed.filter(ImageFilter.MaxFilter(5))          # the seed grown by 2 px
+        zp = zone.load()
+        ring = {}
+        for y in range(h):
+            for x in range(w):
+                if zp[x, y] and not sp[x, y]:
+                    ring[px[x, y]] = ring.get(px[x, y], 0) + 1
+        dark = max(ring, key=ring.get)                          # the border colour just outside the art
+        vx = [GRAY[i] - dark[i] for i in range(3)]
+        norm = sum(v * v for v in vx)
+        mask = Image.new("L", (w, h), 0)
+        mp = mask.load()
+        for y in range(h):
+            for x in range(w):
+                if sp[x, y]:
+                    mp[x, y] = 255
+                elif zp[x, y]:
+                    t = sum((px[x, y][i] - dark[i]) * vx[i] for i in range(3)) / norm
+                    mp[x, y] = int(round(255 * min(1.0, max(0.0, t))))
+        bbox = mask.point(lambda v: 255 if v > 0 else 0).getbbox()
+        left, top, right, bottom = bbox
+        print("art region for", color, bbox, "border colour", dark)
+        mask.crop(bbox).save(os.path.join(STYLE_IMG, f"art-mask-{color}.png"))
+        layout["art"][color] = {"left": left, "top": top, "width": right - left, "height": bottom - top}
 
     # 4. rules text masks from the spacer rectangles (relative to textbox-main)
     root = load_root()

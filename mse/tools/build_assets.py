@@ -106,6 +106,66 @@ def erase_set_code(img):
     img.paste(Image.new("RGBA", region.size, bg), (x0, y0))
 
 
+# The "Edition 1 Custom" set symbol sits on the tab at the lower right of every frame. It is an editable
+# image field in MSE, so it is painted out of the frame images too. SYMBOL_AREA is the part of the tab that
+# holds the symbol: the tab's slanted left edge and the card margin are outside it, and the tab's right edge
+# runs along x = 705. Only pixels that differ from the tab color and are NOT connected to the area's border
+# are erased, so the tab outline can never be touched. The default symbol image is cut from the black frame,
+# where the white symbol has the most contrast.
+SYMBOL_AREA = (612, 884, 705, 962)
+SYMBOL_SIZE = 80          # the editable symbol box is a square this big, centred on the original symbol
+
+
+def _symbol_pixels(img):
+    """Return (tab color, set of (x, y) that belong to the symbol) for a frame image."""
+    x0, y0, x1, y1 = SYMBOL_AREA
+    region = img.crop((x0, y0, x1, y1))
+    counts = {}
+    for p in region.getdata():
+        counts[p] = counts.get(p, 0) + 1
+    bg = max(counts, key=counts.get)
+    w, h = region.size
+    px = region.load()
+    diff = {(x, y) for y in range(h) for x in range(w)
+            if sum(abs(a - b) for a, b in zip(px[x, y], bg)) > 3}
+    # everything connected to the border of the area is the tab outline or the card margin
+    stack = [d for d in diff if d[0] in (0, w - 1) or d[1] in (0, h - 1)]
+    outside = set(stack)
+    while stack:
+        x, y = stack.pop()
+        for dx in (-1, 0, 1):
+            for dy in (-1, 0, 1):
+                n = (x + dx, y + dy)
+                if n in diff and n not in outside:
+                    outside.add(n)
+                    stack.append(n)
+    return bg, {(x + x0, y + y0) for (x, y) in diff - outside}
+
+
+def erase_set_symbol(img):
+    bg, pixels = _symbol_pixels(img)
+    for xy in pixels:
+        img.putpixel(xy, bg)
+    return pixels
+
+
+def extract_set_symbol(img, pixels):
+    """Cut the symbol out of a frame as a white image with transparency, padded to a square."""
+    bg = img.getpixel((SYMBOL_AREA[0] + 40, SYMBOL_AREA[1] + 4))   # a tab pixel above the symbol
+    white = (255, 253, 252)
+    xs = [x for x, _ in pixels]
+    ys = [y for _, y in pixels]
+    bx0, bx1, by0, by1 = min(xs), max(xs) + 1, min(ys), max(ys) + 1
+    cx, cy = (bx0 + bx1) / 2, (by0 + by1) / 2
+    left, top = round(cx - SYMBOL_SIZE / 2), round(cy - SYMBOL_SIZE / 2)
+    out = Image.new("RGBA", (SYMBOL_SIZE, SYMBOL_SIZE), (255, 253, 252, 0))
+    chan = max(range(3), key=lambda i: abs(white[i] - bg[i]))
+    for x, y in pixels:
+        a = (img.getpixel((x, y))[chan] - bg[chan]) / (white[chan] - bg[chan])
+        out.putpixel((x - left, y - top), (*white, round(255 * max(0.0, min(1.0, a)))))
+    return out, {"left": left, "top": top, "width": SYMBOL_SIZE, "height": SYMBOL_SIZE}
+
+
 def main():
     for tool in ("rsvg-convert",):
         if shutil.which(tool) is None:
@@ -120,9 +180,15 @@ def main():
     # The slices are 744 x 1039. The Unity client needs sizes that are a multiple of 4, so each base gets one
     # extra row at the bottom (a copy of the last row, which is the white margin around the card). Every
     # overlay is positioned from the top left, so nothing else moves.
+    original_b = Image.open(os.path.join(SLICED, "base-b.png")).convert("RGBA")
+    symbol, symbol_box = extract_set_symbol(original_b, _symbol_pixels(original_b)[1])
+    symbol.save(os.path.join(STYLE_IMG, "set-symbol.png"))
+    layout["set-symbol"] = symbol_box
+    print("set-symbol", symbol_box)
     for c in "wubrg":
         base = Image.open(os.path.join(SLICED, f"base-{c}.png")).convert("RGBA")
         erase_set_code(base)
+        erase_set_symbol(base)
         w, h = base.size
         padded = Image.new("RGBA", (w, CARD_HEIGHT), (0, 0, 0, 0))
         padded.paste(base, (0, 0))

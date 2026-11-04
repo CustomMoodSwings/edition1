@@ -55,3 +55,17 @@ card:
 		<b>After playing this mood</b> — You may put two of your other moods into the discard pile. If you do, this mood's value becomes 9.
 	collector number: 0000
 	artist: Nobody
+card:
+	name: FOMO
+	frame color: red
+	top die: 7
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>To play this card</b> — Discard a card from your hand. <i>(If you can't do that, you can't play this card.)</i> <b>While in play</b> — At the start of each of your turns, you may discard a card from your hand. If you don't, put this mood into the discard pile.
+	collector number: 0001
+	artist: Nobody
+	designed by: Designed by Jane Doe

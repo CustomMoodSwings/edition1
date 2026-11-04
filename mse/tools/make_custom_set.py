@@ -23,7 +23,8 @@ mse/examples/emotional-baggage.mse-set/set by default. Mapping of the card field
   rules text                 the timing labels (To play this card, After playing this mood, While in play) in bold,
                              parenthetical reminder text in italics, and the alternate value written in the text as dice
   designed by                "Designed by X" when the card file names a designer
-  collector number           provisional: by color (white, blue, black, red, green, colorless), rarity, then slot
+  collector number           provisional and unofficial, so the first digit is an X: X001 to X133, by color (white, blue,
+                             black, red, green, colorless), rarity, then slot
   art, artist                left empty
 
 The set is rebuilt from scratch each time, so edit the card files (not the set file) to change a card.
@@ -86,7 +87,7 @@ def card_block(c, number):
              "\trarity: " + c["rarity"],
              "\trules text:",
              "\t\t" + markup(text, alt),
-             "\tcollector number: %04d" % number]
+             "\tcollector number: X%03d" % number]
     if c.get("designer"):
         lines.append("\tdesigned by: Designed by " + c["designer"])
     return "\n".join(lines)

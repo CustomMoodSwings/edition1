@@ -2,8 +2,6 @@
 
 This zip has everything needed to type card data into [Magic Set Editor 2](https://github.com/twanvl/MagicSetEditor2) (MSE) and export finished Mood Swings cards (744 x 1040 pixels, 300 dpi).
 
-> Status: not yet tried in MSE itself by the author. If a text line sits a few pixels off, or a font size looks wrong, see "Tuning" at the end and report what you see.
-
 ## What is in the zip
 
 | Item | What it is |

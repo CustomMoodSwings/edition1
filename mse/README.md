@@ -2,8 +2,6 @@
 
 A [Magic Set Editor 2](https://github.com/twanvl/MagicSetEditor2) (MSE) version of the Edition 1 card frames, built from the Inkscape templates in [`src/`](../src/) and the images in [`sliced/`](../sliced/). It lets you type card data into MSE and export finished cards, instead of editing layers by hand in Inkscape.
 
-> **Status: not yet tried in MSE itself.** It was written from the MSE documentation and checked by compositing the layers and masks with a script, not by opening it in the program. Expect to tune a few numbers (see "Things to check first").
-
 ## What is in this folder
 
 | Package | What it is |
@@ -63,7 +61,7 @@ The color word (for example "Black"), the brush icon and the copyright line are 
 
 ## Things to check first
 
-I could not run MSE, so these are the likeliest places to need a small fix:
+These are the likeliest places to need a small fix:
 
 1. **Font sizes and vertical placement** of the name, set code, collector number and artist boxes. They are positioned from the SVG's text baselines. If a line sits a few pixels off, change `top` or `height` in `mood-swings-edition1.mse-style/style` (or in `tools/write_files.py`).
 2. **Inline dice scale.** The dice glyphs are drawn at about 30 px tall (symbol font `size: 28` over `image font size: 90`). Change `size` in the stylesheet's `symbol font` block to make them larger or smaller.

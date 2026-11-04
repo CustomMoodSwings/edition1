@@ -580,7 +580,7 @@ card:
 	lower die color: white
 	rarity: uncommon
 	rules text:
-		<b>After playing this mood</b> — You may play up to two additional moods this turn. If you do, you can't play moods during your next turn.
+		<b>After playing this mood</b> — You may play up to two additional moods this turn. If you do, you can't play moods during your <b>next</b> turn.
 	collector number: X047
 card:
 	name: Panic
@@ -842,7 +842,7 @@ card:
 	lower die color: white
 	rarity: mythic
 	rules text:
-		<b>After playing this mood</b> — You may discard any number of cards from your hand. If you do, you may play that many additional moods from the discard pile on your next turn.
+		<b>After playing this mood</b> — You may discard any number of cards from your hand. If you do, you may play that many additional moods from the discard pile on your <b>next</b> turn.
 	collector number: X068
 	designed by: Designed by Dr Potato
 card:

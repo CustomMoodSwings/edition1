@@ -39,7 +39,7 @@ def box(name, z, extra=""):
 
 
 # --------------------------------------------------------------------------- game
-frame_choices = "\n".join(f"  choice: {c}" for c in ("white", "blue", "black", "red", "green"))
+frame_choices = "\n".join(f"  choice: {c}" for c in ("white", "blue", "black", "red", "green", "colorless"))
 die_choices = "\n".join(f"  choice: {n}" for n in range(0, 13))
 lower_choices = "  choice: none\n" + "\n".join(f"  choice: {n}" for n in range(1, 13))
 
@@ -90,6 +90,7 @@ card field:
     black: rgb(150,140,160)
     red: rgb(235,170,160)
     green: rgb(165,215,170)
+    colorless: rgb(150,158,170)
 card field:
   type: choice
   name: top die
@@ -210,7 +211,7 @@ NAME_WIDTH = two_dice(NAME_RIGHT - NAME_LEFT, DOUBLE_LEFT - REMINDER_GAP - 5 - N
 
 def art_prop(key):
     """A scripted style value that depends on the frame color (each opening sits in a different place)."""
-    colors = ("white", "blue", "black", "red", "green")
+    colors = ("white", "blue", "black", "red", "green", "colorless")
     boxes = LAYOUT["art"]["boxes"]
     cases = ", ".join(f"{c}: {boxes[c][key]}" for c in colors)
     return "{ case card.frame_color of " + cases + ", else: " + str(boxes["white"][key]) + " }"
@@ -252,6 +253,7 @@ card style:
       black: img/base-b.png
       red: img/base-r.png
       green: img/base-g.png
+      colorless: img/base-c.png
   art:
 {ART_BLOCK}
   top die:

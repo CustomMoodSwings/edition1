@@ -185,7 +185,7 @@ def main():
     symbol.save(os.path.join(STYLE_IMG, "set-symbol.png"))
     layout["set-symbol"] = symbol_box
     print("set-symbol", symbol_box)
-    for c in "wubrg":
+    for c in "wubrgc":
         base = Image.open(os.path.join(SLICED, f"base-{c}.png")).convert("RGBA")
         erase_set_code(base)
         erase_set_symbol(base)
@@ -268,6 +268,8 @@ def main():
         cy = sum(i // w * v for i, v in enumerate(data)) / total
         openings[color] = {"mask": mask, "bbox": bbox, "cx": cx, "cy": cy}
         print("art opening for", color, bbox, "centre (%.1f, %.1f)" % (cx, cy), "border colour", dark)
+    # The colorless frame (make_colorless_frame.py) is the white frame recolored, so it has white's art opening.
+    openings["colorless"] = openings["white"]
     ART_W = max(o["bbox"][2] - o["bbox"][0] for o in openings.values())
     ART_H = max(o["bbox"][3] - o["bbox"][1] for o in openings.values())
     layout["art"] = {"width": ART_W, "height": ART_H, "boxes": {}}

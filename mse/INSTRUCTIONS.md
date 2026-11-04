@@ -12,7 +12,7 @@ This zip has everything needed to type card data into [Magic Set Editor 2](https
 | `mood-swings-edition1.mse-style/` | The stylesheet: where each field goes on the card, plus the frame images. |
 | `mood-swings-dice.mse-symbol-font/` | A symbol font for the six dice used inside rules text. |
 | `examples/edition1-sample.mse-set/` | A small sample set (Pacifism, Fear, Determination, a two-dice card and FOMO). |
-| `examples/emotional-baggage.mse-set/` | The whole custom set, Emotional Baggage (code XEMB): the 133 slotted cards of the community design (backup candidates are left out until they are chosen for play testing). There is no art or artist yet, the 8 colorless cards use the white frame as a placeholder (there is no colorless frame yet, so the color word on them is wrong), and the collector numbers are provisional and start with an X (X001 to X133, by color in the order white, blue, black, red, green, colorless, then alphabetically by name) to mark them as unofficial. |
+| `examples/emotional-baggage.mse-set/` | The whole custom set, Emotional Baggage (code XEMB): the 133 slotted cards of the community design (backup candidates are left out until they are chosen for play testing). There is no art or artist yet, and the collector numbers are provisional and start with an X (X001 to X133, by color in the order colorless, white, blue, black, red, green, then alphabetically by name) to mark them as unofficial. |
 
 ## 1. Install
 
@@ -33,7 +33,7 @@ Click a card in the list, then edit its fields in the panel next to the card. Cl
 | Field | What it does |
 |---|---|
 | name | Card name. It shrinks if it is long. |
-| frame color | White, blue, black, red or green. |
+| frame color | White, blue, black, red, green or colorless (a darker slate frame). |
 | top die | The value at the top right. 0 shows a numeral, 1 to 6 show pips on one die, and **7 to 12 show two dice** (a 6 plus the rest); two dice push the name and the "!" icon to the left. |
 | top die color | White or black. Use **black** for a value that applies while in play (for example Determination), and **white** for a value that changes after playing and for ordinary cards. |
 | reminder icon | Ticks on the "!" icon next to the top die. |

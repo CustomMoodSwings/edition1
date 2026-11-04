@@ -38,6 +38,7 @@ card field:
 	choice: black
 	choice: red
 	choice: green
+	choice: colorless
 	initial: white
 	card list visible: true
 	card list column: 2
@@ -48,6 +49,7 @@ card field:
 		black: rgb(150,140,160)
 		red: rgb(235,170,160)
 		green: rgb(165,215,170)
+		colorless: rgb(150,158,170)
 card field:
 	type: choice
 	name: top die

@@ -11,8 +11,8 @@ mse/examples/emotional-baggage.mse-set/set by default. Mapping of the card field
                              for play testing; the slotted one is the primary
   name, rarity               as written, except that a variant label in parentheses ("Entitlement (restricted)") is
                              dropped, because only the primary version is in the set
-  frame color                the card color. There is no colorless frame yet, so colorless cards use the white
-                             frame as a placeholder (the "White" word baked into that frame is wrong for them)
+  frame color                the card color (colorless cards use the colorless frame, a darker slate version of
+                             the white frame made by make_colorless_frame.py)
   top die                    base_value (0 to 12; 7 to 12 show two dice)
   lower die                  alt_value, or none
   top/lower die color        black when the alternate value applies while in play ("While in play - This mood's value
@@ -23,8 +23,8 @@ mse/examples/emotional-baggage.mse-set/set by default. Mapping of the card field
   rules text                 the timing labels (To play this card, After playing this mood, While in play) in bold,
                              parenthetical reminder text in italics, and the alternate value written in the text as dice
   designed by                "Designed by X" when the card file names a designer
-  collector number           provisional and unofficial, so the first digit is an X: X001 to X133, by color (white, blue,
-                             black, red, green, then colorless) and alphabetically by name within each color
+  collector number           provisional and unofficial, so the first digit is an X: X001 to X133, by color (colorless, white, blue,
+                             black, red, green) and alphabetically by name within each color
   art, artist                left empty
 
 The set is rebuilt from scratch each time, so edit the card files (not the set file) to change a card.
@@ -39,7 +39,7 @@ import yaml
 HERE = os.path.dirname(os.path.abspath(__file__))
 MSE = os.path.dirname(HERE)
 DEFAULT_OUT = os.path.join(MSE, "examples", "emotional-baggage.mse-set")
-COLORS = ["white", "blue", "black", "red", "green", "colorless"]
+COLORS = ["colorless", "white", "blue", "black", "red", "green"]
 
 
 def dice(n):
@@ -79,7 +79,7 @@ def card_block(c, number):
     text = " ".join(c["rules_text"].split())
     in_play_alt = alt is not None and re.search(r"While in play — This mood's value is", text) is not None
     die_color = "black" if in_play_alt else "white"
-    frame = "white" if c["color"] == "colorless" else c["color"]
+    frame = c["color"]
     lines = ["card:",
              "\tname: " + display_name(c),
              "\tframe color: " + frame,

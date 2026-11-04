@@ -22,7 +22,7 @@ This zip has everything needed to type card data into [Magic Set Editor 2](https
    - Keep each folder as it is; do not put them inside another folder.
 3. Install the fonts below. They are not included, so you have to get them yourself:
    - **Beleren Small Caps Bold**: card name and artist name
-   - **Plantin MT Pro**: rules text and the "designed by" line
+   - **MPlantin** and **MPlantin-Italic**: rules text and the "designed by" line (the italic font is used for reminder text; bold uses MPlantin's bold)
    - **Gotham**: collector number and set code
 4. Start MSE. Choose **File > Open** and open `examples/edition1-sample.mse-set`, or choose **File > New** and pick **Mood Swings**.
 

@@ -297,7 +297,8 @@ card style:
     z index: 40
     alignment: middle center
     font:
-      name: Plantin MT Pro
+      name: MPlantin
+      italic name: MPlantin-Italic
       size: 21
       color: rgb(45,45,45)
       scale down to: 14
@@ -315,7 +316,8 @@ card style:
     z index: 40
     alignment: middle center
     font:
-      name: Plantin MT Pro
+      name: MPlantin
+      italic name: MPlantin-Italic
       size: 15
       style: italic
       color: rgb(45,45,45)

@@ -30,7 +30,7 @@ A ready-made zip with a short user guide ([`INSTRUCTIONS.md`](INSTRUCTIONS.md)) 
 Same fonts as the Inkscape templates, except two that are no longer needed because they are already part of the base images:
 
 - Beleren Small Caps Bold: card name and artist name
-- Plantin MT Pro: rules text
+- MPlantin and MPlantin-Italic: rules text and the "designed by" line (regular and italic; bold uses MPlantin's bold)
 - Gotham: collector number
 
 Gilroy (rarity word) and Francisco Serial (copyright) are baked into the images, so you don't need them. Obtaining fonts is left to you, as in the main README.
@@ -54,7 +54,7 @@ Each card has these fields:
 | set symbol | The symbol on the tab at the lower right. Empty shows the default symbol, a cracked heart behind a padlock for the Emotional Baggage set (`tools/assets/set-symbol-xemb.png`); the original "Edition 1 Custom" symbol is kept as `img/set-symbol-edition1.png`. Click the box to choose your own image. It is drawn into a **80 x 80** square box (at left 622, top 886), so use a square image; the image is stretched to that size. The tab is the frame color, so a white symbol on a transparent background suits every frame (the default is one). Set per card, like the art. |
 | set code | The set code at the bottom left (default `XEMB`, the working set code of the custom set Emotional Baggage; change it in Set Info). Set it once in **Set Info** and every card follows it; type a different value on a card to override it. |
 | collector number | Bottom left, for example `0020`. |
-| designed by | Optional. A small italic line at the bottom of the rules text box, centered between the lower dice and the set symbol. Type the whole line, for example `Designed by Jane Doe`; leave it empty for none. When it is filled in the rules text keeps 24 px clear above it (`padding bottom`). Plantin italic 15 (shrinks to 10 if long). |
+| designed by | Optional. A small italic line at the bottom of the rules text box, centered between the lower dice and the set symbol. Type the whole line, for example `Designed by Jane Doe`; leave it empty for none. When it is filled in the rules text keeps 24 px clear above it (`padding bottom`). MPlantin-Italic 15 (shrinks to 10 if long). |
 | artist | Bottom left, after the brush icon. |
 
 ### Not editable (baked into the images)

@@ -12,7 +12,7 @@ This zip has everything needed to type card data into [Magic Set Editor 2](https
 | `mood-swings-edition1.mse-style/` | The stylesheet: where each field goes on the card, plus the frame images. |
 | `mood-swings-dice.mse-symbol-font/` | A symbol font for the six dice used inside rules text. |
 | `examples/edition1-sample.mse-set/` | A small sample set (Pacifism, Fear, Determination, a two-dice card and FOMO). |
-| `examples/emotional-baggage.mse-set/` | The whole custom set, Emotional Baggage (code XEMB): all 134 cards of the community design. There is no art or artist yet, the 8 colorless cards use the white frame as a placeholder (there is no colorless frame yet, so the color word on them is wrong), and the collector numbers are provisional. |
+| `examples/emotional-baggage.mse-set/` | The whole custom set, Emotional Baggage (code XEMB): the 133 slotted cards of the community design (backup candidates are left out until they are chosen for play testing). There is no art or artist yet, the 8 colorless cards use the white frame as a placeholder (there is no colorless frame yet, so the color word on them is wrong), and the collector numbers are provisional. |
 
 ## 1. Install
 

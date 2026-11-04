@@ -6,7 +6,11 @@
 It reads cards/*.yaml and design/skeleton.yaml from the mood-swings-custom repository (needs PyYAML) and writes
 mse/examples/emotional-baggage.mse-set/set by default. Mapping of the card fields:
 
-  name, rarity               as written
+  which cards                only cards that claim a slot of the skeleton. A card file without a slot is a backup
+                             candidate (for example the unrestricted Entitlement) and is left out until it is chosen
+                             for play testing; the slotted one is the primary
+  name, rarity               as written, except that a variant label in parentheses ("Entitlement (restricted)") is
+                             dropped, because only the primary version is in the set
   frame color                the card color. There is no colorless frame yet, so colorless cards use the white
                              frame as a placeholder (the "White" word baked into that frame is wrong for them)
   top die                    base_value (0 to 12; 7 to 12 show two dice)
@@ -72,7 +76,7 @@ def card_block(c, number):
     die_color = "black" if in_play_alt else "white"
     frame = "white" if c["color"] == "colorless" else c["color"]
     lines = ["card:",
-             "\tname: " + c["name"],
+             "\tname: " + re.sub(r"\s*\([^)]*\)$", "", c["name"]),
              "\tframe color: " + frame,
              "\ttop die: %d" % c["base_value"],
              "\ttop die color: " + die_color,
@@ -93,7 +97,11 @@ def main():
         sys.exit(__doc__)
     repo = sys.argv[1]
     out = sys.argv[2] if len(sys.argv) > 2 else DEFAULT_OUT
-    cards = [yaml.safe_load(open(f, encoding="utf8")) for f in sorted(glob.glob(os.path.join(repo, "cards", "*.yaml")))]
+    all_cards = [yaml.safe_load(open(f, encoding="utf8")) for f in sorted(glob.glob(os.path.join(repo, "cards", "*.yaml")))]
+    cards = [c for c in all_cards if c.get("slot")]
+    for c in all_cards:
+        if not c.get("slot"):
+            print("left out (no slot, backup candidate):", c["name"])
     skeleton = yaml.safe_load(open(os.path.join(repo, "design", "skeleton.yaml"), encoding="utf8"))
     code = skeleton["set"].get("code", "XEMB")
 

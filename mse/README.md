@@ -18,6 +18,8 @@ MSE finds a stylesheet by its package name: the game is `mood-swings`, so the st
 
 ## Install
 
+A ready-made zip with a short user guide ([`INSTRUCTIONS.md`](INSTRUCTIONS.md)) is attached to each [release](../../../releases). Pushing a tag like `v0.1.0` builds it (`tools/make_release.py`, `.github/workflows/release.yml`). The steps below are for working from a clone.
+
 1. Copy the three package folders (`mood-swings.mse-game`, `mood-swings-edition1.mse-style`, `mood-swings-dice.mse-symbol-font`) into MSE's `data` folder. On Windows that is usually `C:\Program Files\Magic Set Editor 2\data`, or `%APPDATA%\Magic Set Editor\data` if you can't write there.
 2. Or run `python3 mse/tools/make_packages.py` to get zipped versions in `mse/dist/` (a package can be a folder or a zip) and copy those instead.
 3. Install the fonts below, then start MSE and open `examples/edition1-sample.mse-set` (or choose New set > Mood Swings).

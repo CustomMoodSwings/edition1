@@ -24,7 +24,7 @@ mse/examples/emotional-baggage.mse-set/set by default. Mapping of the card field
                              parenthetical reminder text in italics, and the alternate value written in the text as dice
   designed by                "Designed by X" when the card file names a designer
   collector number           provisional and unofficial, so the first digit is an X: X001 to X133, by color (white, blue,
-                             black, red, green, colorless), rarity, then slot
+                             black, red, green, then colorless) and alphabetically by name within each color
   art, artist                left empty
 
 The set is rebuilt from scratch each time, so edit the card files (not the set file) to change a card.
@@ -40,7 +40,6 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 MSE = os.path.dirname(HERE)
 DEFAULT_OUT = os.path.join(MSE, "examples", "emotional-baggage.mse-set")
 COLORS = ["white", "blue", "black", "red", "green", "colorless"]
-RARITIES = ["common", "uncommon", "rare", "mythic"]
 
 
 def dice(n):
@@ -70,6 +69,11 @@ def markup(text, alt):
     return t
 
 
+def display_name(c):
+    """The name on the card: a variant label in parentheses is dropped."""
+    return re.sub(r"\s*\([^)]*\)$", "", c["name"])
+
+
 def card_block(c, number):
     alt = c.get("alt_value")
     text = " ".join(c["rules_text"].split())
@@ -77,7 +81,7 @@ def card_block(c, number):
     die_color = "black" if in_play_alt else "white"
     frame = "white" if c["color"] == "colorless" else c["color"]
     lines = ["card:",
-             "\tname: " + re.sub(r"\s*\([^)]*\)$", "", c["name"]),
+             "\tname: " + display_name(c),
              "\tframe color: " + frame,
              "\ttop die: %d" % c["base_value"],
              "\ttop die color: " + die_color,
@@ -107,7 +111,7 @@ def main():
     code = skeleton["set"].get("code", "XEMB")
 
     def order(c):
-        return (COLORS.index(c["color"]), RARITIES.index(c["rarity"]), c.get("slot") or "~", c["name"])
+        return (COLORS.index(c["color"]), display_name(c).lower())
 
     cards.sort(key=order)
     blocks = [card_block(c, i + 1) for i, c in enumerate(cards)]

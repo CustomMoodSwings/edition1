@@ -272,8 +272,9 @@ def main():
         cy = sum(i // w * v for i, v in enumerate(data)) / total
         openings[color] = {"mask": mask, "bbox": bbox, "cx": cx, "cy": cy}
         print("art opening for", color, bbox, "centre (%.1f, %.1f)" % (cx, cy), "border colour", dark)
-    # The colorless frame (make_colorless_frame.py) is the white frame recolored, so it has white's art opening.
-    openings["colorless"] = openings["white"]
+    # The colorless frame (make_colorless_frame.py) mixes parts of the colored frames. Its art box is the one of
+    # the frame it takes the art box from (green), so it uses that opening, mask and position.
+    openings["colorless"] = openings["green"]
     ART_W = max(o["bbox"][2] - o["bbox"][0] for o in openings.values())
     ART_H = max(o["bbox"][3] - o["bbox"][1] for o in openings.values())
     layout["art"] = {"width": ART_W, "height": ART_H, "boxes": {}}

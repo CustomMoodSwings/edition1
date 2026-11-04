@@ -827,7 +827,7 @@ card:
 	lower die color: white
 	rarity: common
 	rules text:
-		<b>After playing this mood</b> — You may put any mood on the bottom of the deck. If you do, draw a card. <i>(Moods are cards in play.)</i>
+		<b>After playing this mood</b> — You may put <b>any</b> mood on the bottom of the deck. If you do, draw a card. <i>(Moods are cards in play.)</i>
 	collector number: X067
 	art: art-hate.png
 	artist: Karl Kopinski
@@ -1416,7 +1416,7 @@ card:
 	lower die color: white
 	rarity: common
 	rules text:
-		<b>After playing this mood</b> — You may play an additional mood on your next turn.
+		<b>After playing this mood</b> — You may play an additional mood on your <b>next</b> turn.
 	collector number: X114
 	art: art-joy.png
 	artist: Rhonda Libbey

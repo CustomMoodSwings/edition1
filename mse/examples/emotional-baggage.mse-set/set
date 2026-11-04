@@ -37,7 +37,7 @@ card:
 	lower die color: white
 	rarity: uncommon
 	rules text:
-		<b>While in play</b> — This mood's value increases by 1 for each color among all moods. <i>(Colorless moods have no color.)</i>
+		<b>While in play</b> — This mood's value increases by <sym>1</sym> for each color among all moods. <i>(Colorless moods have no color.)</i>
 	collector number: X003
 	designed by: Designed by Dr Potato
 card:
@@ -62,7 +62,7 @@ card:
 	lower die color: white
 	rarity: uncommon
 	rules text:
-		<b>While in play</b> — This mood's value increases by 2 for each other mood with no color. <i>(Moods are cards in play.)</i>
+		<b>While in play</b> — This mood's value increases by <sym>2</sym> for each other mood with no color. <i>(Moods are cards in play.)</i>
 	collector number: X005
 card:
 	name: Resentment
@@ -147,7 +147,7 @@ card:
 	lower die color: white
 	rarity: uncommon
 	rules text:
-		<b>After playing this mood</b> — You may play an additional mood this turn if it has a 4, 5, or 6 in its top right corner.
+		<b>After playing this mood</b> — You may play an additional mood this turn if it has a <sym>4</sym>, <sym>5</sym>, or <sym>6</sym> in its top right corner.
 	collector number: X012
 card:
 	name: Discernment
@@ -159,7 +159,7 @@ card:
 	lower die color: white
 	rarity: uncommon
 	rules text:
-		<b>After playing this mood</b> — Choose odd or even. You may reveal any number of cards from your hand with a number of the chosen type in their top right corners and put them on the bottom of the deck, then draw that many cards. <i>(0 is even.)</i>
+		<b>After playing this mood</b> — Choose odd or even. You may reveal any number of cards from your hand with a number of the chosen type in their top right corners and put them on the bottom of the deck, then draw that many cards. <i>(<sym>0</sym> is even.)</i>
 	collector number: X013
 card:
 	name: Equanimity
@@ -171,7 +171,7 @@ card:
 	lower die color: black
 	rarity: uncommon
 	rules text:
-		<b>While in play</b> — This mood's value is <sym>6</sym> if there are four or more moods with even numbers in their top right corners. <i>(0 is even.)</i>
+		<b>While in play</b> — This mood's value is <sym>6</sym> if there are four or more moods with even numbers in their top right corners. <i>(<sym>0</sym> is even.)</i>
 	collector number: X014
 card:
 	name: Fairness
@@ -233,7 +233,7 @@ card:
 	lower die color: white
 	rarity: uncommon
 	rules text:
-		<b>While in play</b> — Each of your moods with a 0, 1, or 2 in its top right corner has its value increased by 1.
+		<b>While in play</b> — Each of your moods with a <sym>0</sym>, <sym>1</sym>, or <sym>2</sym> in its top right corner has its value increased by <sym>1</sym>.
 	collector number: X019
 card:
 	name: Impartiality
@@ -245,7 +245,7 @@ card:
 	lower die color: white
 	rarity: uncommon
 	rules text:
-		<b>After playing this mood</b> — Choose odd or even. Suppress all other moods with a number of the chosen type in their top right corners until the end of this round. <i>(0 is even.)</i>
+		<b>After playing this mood</b> — Choose odd or even. Suppress all other moods with a number of the chosen type in their top right corners until the end of this round. <i>(<sym>0</sym> is even.)</i>
 	collector number: X020
 card:
 	name: Largesse
@@ -269,7 +269,7 @@ card:
 	lower die color: white
 	rarity: rare
 	rules text:
-		<b>After playing this mood</b> — This round, each mood scores 2 instead of its value.
+		<b>After playing this mood</b> — This round, each mood scores <sym>2</sym> instead of its value.
 	collector number: X022
 card:
 	name: Levity
@@ -294,7 +294,7 @@ card:
 	lower die color: white
 	rarity: uncommon
 	rules text:
-		<b>After playing this mood</b> — You may play an additional mood this turn if it has a 0, 1, 2, or 3 in its top right corner.
+		<b>After playing this mood</b> — You may play an additional mood this turn if it has a <sym>0</sym>, <sym>1</sym>, <sym>2</sym>, or <sym>3</sym> in its top right corner.
 	collector number: X024
 card:
 	name: Orderliness
@@ -306,7 +306,7 @@ card:
 	lower die color: white
 	rarity: mythic
 	rules text:
-		<b>After playing this mood</b> — Choose odd numbers or even numbers. <b>While in play</b> — Each of your other moods with a number of the chosen type in its top right corner has its value increased by 1. <i>(0 is even.)</i>
+		<b>After playing this mood</b> — Choose odd numbers or even numbers. <b>While in play</b> — Each of your other moods with a number of the chosen type in its top right corner has its value increased by <sym>1</sym>. <i>(<sym>0</sym> is even.)</i>
 	collector number: X025
 card:
 	name: Pacifism
@@ -318,11 +318,11 @@ card:
 	lower die color: white
 	rarity: common
 	rules text:
-		<b>After playing this mood</b> — Choose up to two players. For each chosen player, suppress one of their moods. It remains suppressed for as long as you have this mood. <i>(While suppressed, that mood has a value of 0. Turn it sideways to keep track.)</i>
+		<b>After playing this mood</b> — Choose up to two players. For each chosen player, suppress one of their moods. It remains suppressed for as long as you have this mood. <i>(While suppressed, that mood has a value of <sym>0</sym>. Turn it sideways to keep track.)</i>
 	collector number: X026
 	art: art-pacifism.png
 	artist: Jesper Ejsing
-	designed by: Designed by Maro
+	designed by: Original WOTC Design
 card:
 	name: Reassurance
 	frame color: white
@@ -333,7 +333,7 @@ card:
 	lower die color: white
 	rarity: uncommon
 	rules text:
-		<b>While in play</b> — Your opponents can't choose your moods with a value of 2 or less.
+		<b>While in play</b> — Your opponents can't choose your moods with a value of <sym>2</sym> or less.
 	collector number: X027
 card:
 	name: Restraint
@@ -382,7 +382,7 @@ card:
 	lower die color: white
 	rarity: uncommon
 	rules text:
-		<b>While in play</b> — This mood's value increases by 1 for each other mood with a 2 in its top right corner.
+		<b>While in play</b> — This mood's value increases by <sym>1</sym> for each other mood with a <sym>2</sym> in its top right corner.
 	collector number: X031
 card:
 	name: Temperance
@@ -454,7 +454,7 @@ card:
 	lower die color: white
 	rarity: uncommon
 	rules text:
-		<b>After playing this mood</b> — You may put all other moods with a value of 4 or more into their players' hands.
+		<b>After playing this mood</b> — You may put all other moods with a value of <sym>4</sym> or more into their players' hands.
 	collector number: X037
 card:
 	name: Defensiveness
@@ -530,7 +530,7 @@ card:
 	collector number: X043
 	art: art-fear.png
 	artist: Jesper Ejsing
-	designed by: Designed by Maro
+	designed by: Original WOTC Design
 card:
 	name: Grievance
 	frame color: blue
@@ -593,7 +593,7 @@ card:
 	collector number: X048
 	art: art-panic.png
 	artist: Jesper Ejsing
-	designed by: Designed by Maro
+	designed by: Original WOTC Design
 card:
 	name: Premonition
 	frame color: blue
@@ -714,7 +714,7 @@ card:
 	lower die color: white
 	rarity: uncommon
 	rules text:
-		<b>After playing this mood</b> — Choose odd or even and choose a player. That player reveals their hand, puts each card from it with a number of the chosen type in its top right corner on the bottom of the deck, then draws that many cards. <i>(0 is even.)</i>
+		<b>After playing this mood</b> — Choose odd or even and choose a player. That player reveals their hand, puts each card from it with a number of the chosen type in its top right corner on the bottom of the deck, then draws that many cards. <i>(<sym>0</sym> is even.)</i>
 	collector number: X058
 card:
 	name: Atonement
@@ -827,7 +827,7 @@ card:
 	collector number: X067
 	art: art-hate.png
 	artist: Karl Kopinski
-	designed by: Designed by Maro
+	designed by: Original WOTC Design
 card:
 	name: Haunting
 	frame color: black
@@ -887,7 +887,7 @@ card:
 	lower die color: white
 	rarity: common
 	rules text:
-		<b>After playing this mood</b> — Choose odd or even. Choose up to two players. For each chosen player, put one of their moods with a number of the chosen type in its top right corner into the discard pile. <i>(0 is even.)</i>
+		<b>After playing this mood</b> — Choose odd or even. Choose up to two players. For each chosen player, put one of their moods with a number of the chosen type in its top right corner into the discard pile. <i>(<sym>0</sym> is even.)</i>
 	collector number: X072
 card:
 	name: Martyrdom
@@ -1000,7 +1000,7 @@ card:
 	collector number: X081
 	art: art-suspicion.png
 	artist: Matt Stewart
-	designed by: Designed by Maro
+	designed by: Original WOTC Design
 card:
 	name: Vengeance
 	frame color: black
@@ -1059,7 +1059,7 @@ card:
 	lower die color: white
 	rarity: uncommon
 	rules text:
-		<b>After playing this mood</b> — You may put all of your opponents' moods with a value of 2 or less into the discard pile.
+		<b>After playing this mood</b> — You may put all of your opponents' moods with a value of <sym>2</sym> or less into the discard pile.
 	collector number: X086
 card:
 	name: Competitiveness
@@ -1071,7 +1071,7 @@ card:
 	lower die color: white
 	rarity: mythic
 	rules text:
-		<b>While in play</b> — This mood's value is 1 more than the highest value among your opponents' moods.
+		<b>While in play</b> — This mood's value is <sym>1</sym> more than the highest value among your opponents' moods.
 	collector number: X087
 card:
 	name: Compulsion
@@ -1087,7 +1087,7 @@ card:
 	collector number: X088
 	art: art-compulsion.png
 	artist: Jesper Ejsing
-	designed by: Designed by Maro
+	designed by: Original WOTC Design
 card:
 	name: Covetousness
 	frame color: red
@@ -1098,7 +1098,7 @@ card:
 	lower die color: white
 	rarity: rare
 	rules text:
-		<b>While in play</b> — At the start of each of your turns, you may choose one of your opponents' moods with a value of 1 or less. It becomes yours.
+		<b>While in play</b> — At the start of each of your turns, you may choose one of your opponents' moods with a value of <sym>1</sym> or less. It becomes yours.
 	collector number: X089
 card:
 	name: Dominance
@@ -1185,7 +1185,7 @@ card:
 	lower die color: white
 	rarity: common
 	rules text:
-		<b>After playing this mood</b> — If there are two or more white and/or blue moods, you may put one of them with a value of 4 or less into the discard pile.
+		<b>After playing this mood</b> — If there are two or more white and/or blue moods, you may put one of them with a value of <sym>4</sym> or less into the discard pile.
 	collector number: X096
 card:
 	name: Intuition
@@ -1209,7 +1209,7 @@ card:
 	lower die color: white
 	rarity: uncommon
 	rules text:
-		<b>While in play</b> — Each time an opponent's effect puts one or more of your other moods into the discard pile <i>(moods are cards in play)</i>, a random one of that player's moods with a value of 3 or less is put into the discard pile.
+		<b>While in play</b> — Each time an opponent's effect puts one or more of your other moods into the discard pile <i>(moods are cards in play)</i>, a random one of that player's moods with a value of <sym>3</sym> or less is put into the discard pile.
 	collector number: X098
 card:
 	name: Rashness
@@ -1221,7 +1221,7 @@ card:
 	lower die color: white
 	rarity: common
 	rules text:
-		<b>After playing this mood</b> — You may put one of your opponents' moods with a value of 1 or less into the discard pile. You may play an additional mood this turn.
+		<b>After playing this mood</b> — You may put one of your opponents' moods with a value of <sym>1</sym> or less into the discard pile. You may play an additional mood this turn.
 	collector number: X099
 card:
 	name: Reckoning
@@ -1269,11 +1269,11 @@ card:
 	lower die color: white
 	rarity: common
 	rules text:
-		<b>After playing this mood</b> — Choose up to two players. For each chosen player, put one of their moods with a value of 3 or less into the discard pile.
+		<b>After playing this mood</b> — Choose up to two players. For each chosen player, put one of their moods with a value of <sym>3</sym> or less into the discard pile.
 	collector number: X103
 	art: art-shock.png
 	artist: Jon Foster
-	designed by: Designed by Maro
+	designed by: Original WOTC Design
 card:
 	name: Verve
 	frame color: red
@@ -1284,7 +1284,7 @@ card:
 	lower die color: white
 	rarity: rare
 	rules text:
-		<b>While in play</b> — Each of your red moods that you played this round has its value increased by 2.
+		<b>While in play</b> — Each of your red moods that you played this round has its value increased by <sym>2</sym>.
 	collector number: X104
 card:
 	name: Vindictiveness
@@ -1308,7 +1308,7 @@ card:
 	lower die color: white
 	rarity: rare
 	rules text:
-		<b>While in play</b> — At the start of each of your turns, a random mood with a value of 1 or less is put into the discard pile.
+		<b>While in play</b> — At the start of each of your turns, a random mood with a value of <sym>1</sym> or less is put into the discard pile.
 	collector number: X106
 card:
 	name: Whimsy
@@ -1337,7 +1337,7 @@ card:
 	collector number: X108
 	art: art-zeal.png
 	artist: Volkan Baga
-	designed by: Designed by Maro
+	designed by: Original WOTC Design
 card:
 	name: Carelessness
 	frame color: green
@@ -1364,7 +1364,7 @@ card:
 	collector number: X110
 	art: art-determination.png
 	artist: Arif Wijaya
-	designed by: Designed by Maro
+	designed by: Original WOTC Design
 card:
 	name: Fulfillment
 	frame color: green
@@ -1375,7 +1375,7 @@ card:
 	lower die color: white
 	rarity: mythic
 	rules text:
-		<b>While in play</b> — While scoring, score each of your moods with a value of 6 or more an extra time.
+		<b>While in play</b> — While scoring, score each of your moods with a value of <sym>6</sym> or more an extra time.
 	collector number: X111
 card:
 	name: Gratitude
@@ -1387,7 +1387,7 @@ card:
 	lower die color: white
 	rarity: uncommon
 	rules text:
-		<b>While in play</b> — While scoring, score each of your moods with a value of 2 or less an extra time.
+		<b>While in play</b> — While scoring, score each of your moods with a value of <sym>2</sym> or less an extra time.
 	collector number: X112
 card:
 	name: Honesty
@@ -1415,7 +1415,7 @@ card:
 	collector number: X114
 	art: art-joy.png
 	artist: Rhonda Libbey
-	designed by: Designed by Maro
+	designed by: Original WOTC Design
 card:
 	name: Kinship
 	frame color: green
@@ -1426,7 +1426,7 @@ card:
 	lower die color: white
 	rarity: rare
 	rules text:
-		<b>While in play</b> — Each of your moods that shares a color with another of your moods has its value increased by 1.
+		<b>While in play</b> — Each of your moods that shares a color with another of your moods has its value increased by <sym>1</sym>.
 	collector number: X115
 card:
 	name: Maturity
@@ -1438,7 +1438,7 @@ card:
 	lower die color: white
 	rarity: rare
 	rules text:
-		<b>While in play</b> — At the start of each of your turns, this mood's value permanently increases by 2.
+		<b>While in play</b> — At the start of each of your turns, this mood's value permanently increases by <sym>2</sym>.
 	collector number: X116
 card:
 	name: Nostalgia
@@ -1454,7 +1454,7 @@ card:
 	collector number: X117
 	art: art-nostalgia.png
 	artist: Zoltan Boros & Gabor Szikszai
-	designed by: Designed by Maro
+	designed by: Original WOTC Design
 card:
 	name: Obstinacy
 	frame color: green
@@ -1489,7 +1489,7 @@ card:
 	lower die color: white
 	rarity: uncommon
 	rules text:
-		<b>While in play</b> — After scoring, if you have won fewer rounds than each other player, this mood's value permanently increases by 2.
+		<b>While in play</b> — After scoring, if you have won fewer rounds than each other player, this mood's value permanently increases by <sym>2</sym>.
 	collector number: X120
 card:
 	name: Possessiveness
@@ -1526,7 +1526,7 @@ card:
 	lower die color: white
 	rarity: rare
 	rules text:
-		<b>While in play</b> — During each of your turns <i>(including the turn you play this mood)</i>, you may play an additional mood from the discard pile if it has a 0, 1, 2, or 3 in its top right corner.
+		<b>While in play</b> — During each of your turns <i>(including the turn you play this mood)</i>, you may play an additional mood from the discard pile if it has a <sym>0</sym>, <sym>1</sym>, <sym>2</sym>, or <sym>3</sym> in its top right corner.
 	collector number: X123
 card:
 	name: Resolve
@@ -1550,7 +1550,7 @@ card:
 	lower die color: white
 	rarity: uncommon
 	rules text:
-		<b>While in play</b> — This mood's value is 6 if there are three or more different values among your moods. <i>(Moods are cards in play.)</i>
+		<b>While in play</b> — This mood's value is <sym>6</sym> if there are three or more different values among your moods. <i>(Moods are cards in play.)</i>
 	collector number: X125
 card:
 	name: Thrift
@@ -1562,7 +1562,7 @@ card:
 	lower die color: white
 	rarity: uncommon
 	rules text:
-		<b>After playing this mood</b> — You may play an additional mood this turn from the discard pile if it has a 0, 1, 2, or 3 in its top right corner.
+		<b>After playing this mood</b> — You may play an additional mood this turn from the discard pile if it has a <sym>0</sym>, <sym>1</sym>, <sym>2</sym>, or <sym>3</sym> in its top right corner.
 	collector number: X126
 card:
 	name: Urgency
@@ -1574,7 +1574,7 @@ card:
 	lower die color: white
 	rarity: uncommon
 	rules text:
-		<b>While in play</b> — This mood's value is 6 if you played two or more moods this round.
+		<b>While in play</b> — This mood's value is <sym>6</sym> if you played two or more moods this round.
 	collector number: X127
 card:
 	name: Vindication
@@ -1586,7 +1586,7 @@ card:
 	lower die color: white
 	rarity: rare
 	rules text:
-		<b>While in play</b> — This mood's value increases by 2 for each round you have won.
+		<b>While in play</b> — This mood's value increases by <sym>2</sym> for each round you have won.
 	collector number: X128
 card:
 	name: Vitality
@@ -1598,7 +1598,7 @@ card:
 	lower die color: white
 	rarity: rare
 	rules text:
-		<b>While in play</b> — At the start of each of your turns, choose a color. Until the end of this round, each of your moods of that color has its value increased by 2.
+		<b>While in play</b> — At the start of each of your turns, choose a color. Until the end of this round, each of your moods of that color has its value increased by <sym>2</sym>.
 	collector number: X129
 card:
 	name: Wariness

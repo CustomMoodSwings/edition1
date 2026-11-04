@@ -10,7 +10,7 @@ This zip has everything needed to type card data into [Magic Set Editor 2](https
 |---|---|
 | `mood-swings.mse-game/` | The game: the fields of a card. |
 | `mood-swings-edition1.mse-style/` | The stylesheet: where each field goes on the card, plus the frame images. |
-| `mood-swings-dice.mse-symbol-font/` | A symbol font for the six dice used inside rules text. |
+| `mood-swings-dice.mse-symbol-font/` | A symbol font for the dice used inside rules text (0 to 6). |
 | `examples/edition1-sample.mse-set/` | A small sample set (Pacifism, Fear, Determination, a two-dice card and FOMO). |
 | `examples/emotional-baggage.mse-set/` | The whole custom set, Emotional Baggage (code XEMB): the 133 slotted cards of the community design (backup candidates are left out until they are chosen for play testing). Only the 11 reprints (Pacifism, Panic, Fear, Hate, Suspicion, Shock, Zeal, Compulsion, Joy, Nostalgia, Determination) have their original art and artist; the new cards have none yet. The collector numbers are provisional and start with an X (X001 to X133, by color in the order colorless, white, blue, black, red, green, then alphabetically by name) to mark them as unofficial. |
 
@@ -40,7 +40,7 @@ Click a card in the list, then edit its fields in the panel next to the card. Cl
 | lower die | The alternate value at the lower left: 1 to 6 is one die, 7 to 12 is two dice, or none. The rules text flows around the dice. |
 | lower die color | White or black. Use the same color as the top die. |
 | rarity | Common, uncommon, rare or mythic. |
-| rules text | Centered. Use bold for the ability timing ("After playing this mood") and italic for reminder text. To put a die inside the text, use the **Insert Symbol** menu and pick a die. |
+| rules text | Centered. Use bold for the ability timing ("After playing this mood") and italic for reminder text. To put a die inside the text, use the **Insert Symbol** menu and pick a die (0 to 6; for 7 to 12 use two dice, a 6 and the rest). The printed cards write every number in the rules text as a die, including values such as "a value of 3 or less" and "increases by 2". |
 | designed by | Optional. A small italic line at the bottom of the rules text box. Type the whole line, for example `Designed by Jane Doe`. Leave it empty for none. |
 | art | Click the art box and choose an image. It is clipped to the slanted frame. The art box is **585 x 452** for every color, so make art at that size. A few pixels at the corners are cut off by the opening on the more tilted frames (red and green most). |
 | set symbol | The symbol on the tab at the lower right. Empty shows the default symbol, a cracked heart behind a padlock (the Emotional Baggage set symbol). To use your own, click the box and choose an image: use a **square** image (it is drawn into an 80 x 80 box and stretched to fit), ideally white on a transparent background so it shows on every frame color. |

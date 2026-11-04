@@ -15,8 +15,10 @@ mse/examples/emotional-baggage.mse-set/set by default. Mapping of the card field
                              the white frame made by make_colorless_frame.py)
   top die                    base_value (0 to 12; 7 to 12 show two dice)
   lower die                  alt_value, or none
-  top/lower die color        black when the alternate value applies while in play ("While in play - This mood's value
-                             is N if ..."), otherwise white (a value that changes after playing, and ordinary cards)
+  top/lower die color        black when the card's own value is set or changed by a "While in play" ability ("This
+                             mood's value is N if ...", "increases by N for each ...", "is N more than ..."), otherwise
+                             white (a value that changes after playing, and ordinary cards). The printed cards of the
+                             original game follow this rule on every card checked
   reminder icon              yes for an ongoing effect that is not only about this mood's own value (extra plays,
                              scoring, choices, effects on other moods), or one that lasts "for as long as". This rule
                              matches the printed icon on all 132 printed cards of the original game that were checked
@@ -89,8 +91,10 @@ def slug(name):
 def card_block(c, number, artists):
     alt = c.get("alt_value")
     text = " ".join(c["rules_text"].split())
-    in_play_alt = alt is not None and re.search(r"While in play — This mood's value is", text) is not None
-    die_color = "black" if in_play_alt else "white"
+    # as on the printed cards: black dice when the card's own value is set or changed by a "While in play" ability
+    # (This mood's value is 6 if ..., increases by 1 for each ..., is 1 more than ...), white for everything else
+    in_play_value = re.search(r"While in play — [^.]*\bthis mood's value", text, re.I) is not None
+    die_color = "black" if in_play_value else "white"
     frame = c["color"]
     lines = ["card:",
              "\tname: " + display_name(c),

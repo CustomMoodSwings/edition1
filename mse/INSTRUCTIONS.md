@@ -33,7 +33,7 @@ Click a card in the list, then edit its fields in the panel next to the card. Cl
 | name | Card name. It shrinks if it is long. |
 | frame color | White, blue, black, red, green or colorless (a dark slate frame with its own mix of shapes, art tilt and grid). |
 | top die | The value at the top right. 0 shows a numeral, 1 to 6 show pips on one die, and **7 to 12 show two dice** (a 6 plus the rest); two dice push the name and the "!" icon to the left. |
-| top die color | White or black. Use **black** for a value that applies while in play (for example Determination), and **white** for a value that changes after playing and for ordinary cards. |
+| top die color | White or black. Use **black** when the card's own value is set or changed by a "While in play" ability (for example Determination, "value is 6 if ...", or Euphoria, "increases by 1 for each ..."), and **white** for a value that changes after playing and for ordinary cards. |
 | reminder icon | Ticks on the "!" icon next to the top die. |
 | lower die | The alternate value at the lower left: 1 to 6 is one die, 7 to 12 is two dice, or none. The rules text flows around the dice. |
 | lower die color | White or black. Use the same color as the top die. |

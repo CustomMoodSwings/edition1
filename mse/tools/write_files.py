@@ -151,6 +151,11 @@ card field:
   description: The card art
   show statistics: false
 card field:
+  type: image
+  name: set symbol
+  description: The set symbol on the tab at the lower right. Leave it empty for the Edition 1 Custom symbol, or choose a square image (a white symbol on a transparent background works on every frame color).
+  show statistics: false
+card field:
   type: text
   name: set code
   description: The set code at the bottom left. It follows the Set Info value unless you type something here.
@@ -234,6 +239,8 @@ card style:
       uncommon: img/rarity-uncommon.png
       rare: img/rarity-rare.png
       mythic: img/rarity-mythic.png
+  set symbol:
+{box('set-symbol', 35)}    default: img/set-symbol.png
   name:
     left: 57
     top: 44

@@ -58,6 +58,12 @@
     "top": 581.95,
     "width": 648
   },
+  "set-symbol": {
+    "height": 80,
+    "left": 622,
+    "top": 886,
+    "width": 80
+  },
   "upper-die": {
     "height": 116,
     "left": 575,

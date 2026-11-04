@@ -48,13 +48,14 @@ Each card has these fields:
 | rarity | Common, uncommon, rare or mythic. |
 | rules text | Centered, vertically centered. Use bold and italic for the ability name and reminder text. For a die inside the text, use the Insert Symbol menu and pick a die. |
 | art | Click the art box and choose an image; the art is clipped to the slanted frame. The art box is the same size for every color, **585 x 452**, so you can make art at one size. The frames are tilted differently (white and blue about the same, black a little, red and green a lot), so the box moves a few pixels with the frame color to stay centered on each opening, and the mask changes with it. A few pixels of the picture, mostly at the corners, are cut off by the opening on the more tilted frames. |
+| set symbol | The symbol on the tab at the lower right. Empty shows the original "Edition 1 Custom" symbol; click the box to choose your own image. It is drawn into a **80 x 80** square box (at left 622, top 886), so use a square image; the image is stretched to that size. The tab is the frame color, so a white symbol on a transparent background suits every frame (the default is one). Set per card, like the art. |
 | set code | The set code at the bottom left (default `MSW`). Set it once in **Set Info** and every card follows it; type a different value on a card to override it. |
 | collector number | Bottom left, for example `0020`. |
 | artist | Bottom left, after the brush icon. |
 
 ### Not editable (baked into the images)
 
-The color word (for example "Black"), the brush icon, the copyright line and the "Edition 1 Custom" set symbol are part of the base image for each color, taken from the slices. If you want a different symbol, edit the SVG, re-slice, and rerun the tools. (The set code used to be in this list; it is now painted out of the base images and drawn from the `set code` field.)
+The color word (for example "Black"), the brush icon and the copyright line are part of the base image for each color, taken from the slices. If you want to change them, edit the SVG, re-slice, and rerun the tools. (The set code and the set symbol used to be in this list; both are now painted out of the base images and drawn from the `set code` and `set symbol` fields. `build_assets.py` cuts the original symbol out of the black frame as `img/set-symbol.png`, a white image with transparency, which is the default.)
 
 ## Things to check first
 

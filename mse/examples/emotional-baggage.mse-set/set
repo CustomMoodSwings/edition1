@@ -220,7 +220,9 @@ card:
 	lower die color: white
 	rarity: mythic
 	rules text:
-		<b>After playing this mood</b> — Choose an opponent. <b>While in play</b> — During each of your turns <i>(including the turn you play this mood)</i>, you may play an additional mood for each round the chosen player has won. <b>While in play</b> — If this mood would leave play, put it on the bottom of the deck instead. <i>(Leaving play includes being put into the discard pile or into a player's hand.)</i>
+		<b>After playing this mood</b> — Choose an opponent.
+		<b>While in play</b> — During each of your turns <i>(including the turn you play this mood)</i>, you may play an additional mood for each round the chosen player has won.
+		<b>While in play</b> — If this mood would leave play, put it on the bottom of the deck instead. <i>(Leaving play includes being put into the discard pile or into a player's hand.)</i>
 	collector number: X018
 	designed by: Designed by Dr Potato
 card:
@@ -306,7 +308,8 @@ card:
 	lower die color: white
 	rarity: mythic
 	rules text:
-		<b>After playing this mood</b> — Choose odd numbers or even numbers. <b>While in play</b> — Each of your other moods with a number of the chosen type in its top right corner has its value increased by <sym>1</sym>. <i>(<sym>0</sym> is even.)</i>
+		<b>After playing this mood</b> — Choose odd numbers or even numbers.
+		<b>While in play</b> — Each of your other moods with a number of the chosen type in its top right corner has its value increased by <sym>1</sym>. <i>(<sym>0</sym> is even.)</i>
 	collector number: X025
 card:
 	name: Pacifism
@@ -677,7 +680,8 @@ card:
 	lower die color: white
 	rarity: mythic
 	rules text:
-		<b>After playing this mood</b> — You may put a card from the discard pile on the bottom of the deck. If you do, draw a card. <b>While in play</b> — Each time you play another mood, you may do this.
+		<b>After playing this mood</b> — You may put a card from the discard pile on the bottom of the deck. If you do, draw a card.
+		<b>While in play</b> — Each time you play another mood, you may do this.
 	collector number: X055
 	designed by: Designed by Dr Potato
 card:
@@ -1147,7 +1151,8 @@ card:
 	lower die color: white
 	rarity: rare
 	rules text:
-		<b>To play this card</b> — Discard a card from your hand. <i>(If you can't do that, you can't play this card.)</i> <b>While in play</b> — At the start of each of your turns, you may discard a card from your hand. If you don't, put this mood into the discard pile.
+		<b>To play this card</b> — Discard a card from your hand. <i>(If you can't do that, you can't play this card.)</i>
+		<b>While in play</b> — At the start of each of your turns, you may discard a card from your hand. If you don't, put this mood into the discard pile.
 	collector number: X093
 	designed by: Designed by jceddy
 card:
@@ -1646,5 +1651,6 @@ card:
 	lower die color: white
 	rarity: mythic
 	rules text:
-		<b>After playing this mood</b> — You may play an additional mood this turn from the discard pile. <b>While in play</b> — Each time you play another mood from the discard pile, you may have that mood's after-playing effect happen an additional time.
+		<b>After playing this mood</b> — You may play an additional mood this turn from the discard pile.
+		<b>While in play</b> — Each time you play another mood from the discard pile, you may have that mood's after-playing effect happen an additional time.
 	collector number: X133

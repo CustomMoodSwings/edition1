@@ -391,12 +391,12 @@ def card(name, frame, top, top_color, reminder, lower, lower_color, rarity, rule
   lower die color: {lower_color}
   rarity: {rarity}
   rules text:
-    {rules}
+    {rules.replace(chr(10), chr(10) + '    ')}
   collector number: {number}
   artist: {artist}{designer}"""
 
 DIE6 = "<sym>6</sym>"
-FOMO = ("<b>To play this card</b> — Discard a card from your hand. <i>(If you can't do that, you can't play this card.)</i> "
+FOMO = ("<b>To play this card</b> — Discard a card from your hand. <i>(If you can't do that, you can't play this card.)</i>\n"
         "<b>While in play</b> — At the start of each of your turns, you may discard a card from your hand. "
         "If you don't, put this mood into the discard pile.")
 cards = [

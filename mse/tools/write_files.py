@@ -213,7 +213,10 @@ def art_prop(key):
     """A scripted style value that depends on the frame color (each opening sits in a different place)."""
     colors = ("white", "blue", "black", "red", "green", "colorless")
     boxes = LAYOUT["art"]["boxes"]
-    cases = ", ".join(f"{c}: {boxes[c][key]}" for c in colors)
+    # the alternatives of a case are expressions, so the colors must be quoted strings: a bare name such as white
+    # is read as a variable that does not exist, the script fails, and the art box is left at its default place
+    # (far off the card), which hides the art field
+    cases = ", ".join(f'"{c}": {boxes[c][key]}' for c in colors)
     return "{ case card.frame_color of " + cases + ", else: " + str(boxes["white"][key]) + " }"
 
 

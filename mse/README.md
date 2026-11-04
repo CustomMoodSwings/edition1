@@ -42,7 +42,7 @@ Each card has these fields:
 | Field | What it does |
 |---|---|
 | name | Card name (Beleren Small Caps Bold, shrinks if it is long). |
-| frame color | White, blue, black, red, green or colorless frame. The colorless frame is a darker slate version of the white frame (frame color RGB 70, 76, 86), made by `tools/make_colorless_frame.py`; it uses white's art opening and mask. |
+| frame color | White, blue, black, red, green or colorless frame. The colorless frame is a dark slate (frame color RGB 70, 76, 86) that mixes parts of the colored frames, made by `tools/make_colorless_frame.py`: the art box and its shadow (and so the art tilt, mask and position) come from the green frame, the shapes behind the art and the text box edge from red, and the grid from blue. |
 | top die | The value die at the top right: 0 shows a numeral, 1 to 6 show pips. **7 to 12 show two dice** (a 6 and the rest), using the same pair artwork as the lower-left dice, right-aligned to where the single die ends. The reminder icon and the end of the name box move left by the extra width, so a long name shrinks sooner. The pair covers a little more of the top right of the art (about 37 px of height over the art opening), and the die is scaled by the same box as the lower dice (194 x 117). |
 | top die color | White or black die (for two dice too). On the printed cards the top and lower dice are always the same color, and the color follows the kind of value: **black** for a value that applies while in play (Determination, Triumph, Serenity), **white** for one that changes after playing (Altruism, Cheer, Infatuation) and for ordinary cards with no lower die (almost all of them). |
 | reminder icon | Ticks on the "!" icon next to the top die. |
@@ -74,7 +74,7 @@ I could not run MSE, so these are the likeliest places to need a small fix:
 
 ## Not included
 
-- The colorless frame is made from the white frame by a script (`tools/make_colorless_frame.py`) and has no Inkscape template; its "Colorless" word is set in Montserrat as a stand-in for the Gilroy used on the other colors.
+- The colorless frame is made by a script (`tools/make_colorless_frame.py`, which needs numpy and scipy) from parts of the green, red and blue frames, and has no Inkscape template; its "Colorless" word is set in Montserrat as a stand-in for the Gilroy used on the other colors. Change `ART_FROM`, `SHAPES_FROM` and `GRID_FROM` in the script to try another mix.
 - No `themed/steampunk` variant.
 - Printing and bleed are not set up. The card size is 744 x 1040 pixels at 300 dpi. The Inkscape template and the slices are 744 x 1039; the frame images here have one extra row at the bottom (a copy of the white margin) so both dimensions are multiples of 4, as the Unity client needs. Nothing else moves, because everything is positioned from the top left.
 

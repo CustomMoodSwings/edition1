@@ -166,6 +166,45 @@ def extract_set_symbol(img, pixels):
     return out, {"left": left, "top": top, "width": SYMBOL_SIZE, "height": SYMBOL_SIZE}
 
 
+ZERO_FONTS = ["/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", "DejaVuSans-Bold.ttf",
+              "/usr/share/fonts/truetype/montserrat/Montserrat-Bold.ttf"]
+
+
+def make_zero_die(src, dst):
+    """The glyph for 0: the die with one pip, the pip painted out and a bold 0 in its place."""
+    import numpy as np
+    from PIL import ImageDraw, ImageFont
+    die = Image.open(src).convert("RGBA")
+    a = np.asarray(die).astype(int)
+    h, w = a.shape[:2]
+    yy, xx = np.mgrid[:h, :w]
+    ys, xs = np.nonzero(a[..., 3] > 128)
+    cx, cy = (xs.min() + xs.max()) / 2, (ys.min() + ys.max()) / 2
+    pip = (a[..., :3].sum(-1) < 300) & (a[..., 3] > 128) & (np.hypot(xx - cx, yy - cy) < 20)
+    py, px = np.nonzero(pip)
+    pcx, pcy, r = px.mean(), py.mean(), (px.max() - px.min() + 1) / 2 + 3
+    ink = tuple(int(v) for v in a[..., :3][a[..., 3] > 200][0]) + (255,)
+    face = (254, 254, 254, 255)
+    ImageDraw.Draw(die).ellipse((pcx - r, pcy - r, pcx + r, pcy + r), fill=face)
+    scale = 8
+    big = Image.new("L", (w * scale, h * scale), 0)
+    font = None
+    for path in ZERO_FONTS:
+        try:
+            font = ImageFont.truetype(path, 56 * scale)
+            break
+        except OSError:
+            continue
+    if font is None:
+        sys.exit("need the DejaVu Sans Bold or Montserrat Bold font for the zero die")
+    ImageDraw.Draw(big).text((pcx * scale, pcy * scale), "0", fill=255, font=font, anchor="mm")
+    mask = big.resize((w, h), Image.LANCZOS)
+    numeral = Image.new("RGBA", (w, h), ink)
+    numeral.putalpha(mask)
+    die.alpha_composite(numeral)
+    die.save(dst)
+
+
 def main():
     for tool in ("rsvg-convert",):
         if shutil.which(tool) is None:
@@ -341,6 +380,9 @@ def main():
         canvas = Image.new("RGBA", (cw, ch), (0, 0, 0, 0))
         canvas.paste(c, ((cw - c.size[0]) // 2, (ch - c.size[1]) // 2), c)
         canvas.save(os.path.join(FONT_DIR, f"die-{n}.png"))
+    # A die for 0 (the printed cards write a 0 in rules text as a die with a 0 on it): the die for 1 with its dot
+    # replaced by a bold numeral.
+    make_zero_die(os.path.join(FONT_DIR, "die-1.png"), os.path.join(FONT_DIR, "die-0.png"))
     print("glyph size", (cw, ch), "(rendered at %dx)" % ZOOM)
     layout["glyph"] = {"width": cw, "height": ch, "zoom": ZOOM}
     with open(os.path.join(HERE, "layout.json"), "w") as f:

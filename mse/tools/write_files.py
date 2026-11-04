@@ -297,7 +297,8 @@ card style:
     z index: 40
     alignment: middle center
     font:
-      name: Plantin MT Pro
+      name: MPlantin
+      italic name: MPlantin-Italic
       size: 21
       color: rgb(45,45,45)
       scale down to: 14
@@ -315,7 +316,8 @@ card style:
     z index: 40
     alignment: middle center
     font:
-      name: Plantin MT Pro
+      name: MPlantin
+      italic name: MPlantin-Italic
       size: 15
       style: italic
       color: rgb(45,45,45)
@@ -358,9 +360,9 @@ card style:
 write(os.path.join(STYLE_DIR, "style"), style)
 
 # --------------------------------------------------------------------------- symbol font
-glyph_symbols = "\n".join(f"symbol:\n  code: {n}\n  image: die-{n}.png" for n in range(1, 7))
-menu_items = "\n".join(f"  item:\n    name: {n}\n    label: Die with {n} pip{'s' if n > 1 else ''}"
-                       for n in range(1, 7))
+glyph_symbols = "\n".join(f"symbol:\n  code: {n}\n  image: die-{n}.png" for n in range(0, 7))
+menu_items = "\n".join(f"  item:\n    name: {n}\n    label: " + ("Die with a 0" if n == 0 else f"Die with {n} pip{'s' if n > 1 else ''}")
+                       for n in range(0, 7))
 font = f"""
 mse version: 2.0.0
 short name: Mood Swings dice

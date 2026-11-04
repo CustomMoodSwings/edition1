@@ -21,8 +21,10 @@ mse/examples/emotional-baggage.mse-set/set by default. Mapping of the card field
                              scoring, choices, effects on other moods), or one that lasts "for as long as". This rule
                              matches the printed icon on all 132 printed cards of the original game that were checked
   rules text                 the timing labels (To play this card, After playing this mood, While in play) in bold,
-                             parenthetical reminder text in italics, and the alternate value written in the text as dice
-  designed by                "Designed by X" when the card file names a designer
+                             parenthetical reminder text in italics, and every number in the text (point values, the
+                             numbers on cards, "0 is even") as dice from the dice symbol font, as on the printed cards
+  designed by                "Designed by X" when the card file names a designer; the original cards (designer Maro) read
+                             "Original WOTC Design"
   collector number           provisional and unofficial, so the first digit is an X: X001 to X133, by color (colorless, white, blue,
                              black, red, green) and alphabetically by name within each color
   art, artist                for the 11 reprints, the art and artist of the printed card (cut out by
@@ -65,12 +67,13 @@ def has_reminder(text):
     return False
 
 
-def markup(text, alt):
+def markup(text):
     t = " ".join(text.split())
+    # every number in the rules text is a point value (or a number on a card), which the printed cards write as dice,
+    # including 0 (a die with a 0 on it) and, for 7 to 12, two dice (a 6 and the rest)
+    t = re.sub(r"(?<![\w<>/])(\d+)(?![\w<>])", lambda m: dice(int(m.group(1))), t)
     t = re.sub(r"(To play this card|After playing this mood|While in play) —", r"<b>\1</b> —", t)
     t = re.sub(r"\(([^()]*)\)", r"<i>(\1)</i>", t)
-    if alt is not None:
-        t = re.sub(r"(value (?:is|becomes) )%d\b" % alt, lambda m: m.group(1) + dice(alt), t)
     return t
 
 
@@ -99,14 +102,15 @@ def card_block(c, number, artists):
              "\tlower die color: " + die_color,
              "\trarity: " + c["rarity"],
              "\trules text:",
-             "\t\t" + markup(text, alt),
+             "\t\t" + markup(text),
              "\tcollector number: X%03d" % number]
     reprint = c.get("reprint_of")
     if reprint in artists and os.path.exists(os.path.join(ART_DIR, slug(reprint) + ".png")):
         lines.append("\tart: art-%s.png" % slug(reprint))
         lines.append("\tartist: " + artists[reprint])
     if c.get("designer"):
-        lines.append("\tdesigned by: Designed by " + c["designer"])
+        credit = "Original WOTC Design" if c["designer"] == "Maro" else "Designed by " + c["designer"]
+        lines.append("\tdesigned by: " + credit)
     return "\n".join(lines)
 
 

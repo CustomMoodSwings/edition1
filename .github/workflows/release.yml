@@ -1,0 +1,26 @@
+name: Release
+
+# Pushing a tag such as v0.1.0 builds the Magic Set Editor zip and publishes a GitHub release with it.
+# The release notes are mse/INSTRUCTIONS.md.
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the zip
+        run: python3 mse/tools/make_release.py mood-swings-mse.zip
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" mood-swings-mse.zip \
+            --title "Magic Set Editor template $GITHUB_REF_NAME" \
+            --notes-file mse/INSTRUCTIONS.md

@@ -1432,10 +1432,10 @@ card:
 	name: Maturity
 	frame color: green
 	top die: 2
-	top die color: black
+	top die color: white
 	reminder icon: yes
 	lower die: none
-	lower die color: black
+	lower die color: white
 	rarity: rare
 	rules text:
 		<b>While in play</b> — At the start of each of your turns, this mood's value permanently increases by <sym>2</sym>.
@@ -1483,10 +1483,10 @@ card:
 	name: Perseverance
 	frame color: green
 	top die: 2
-	top die color: black
+	top die color: white
 	reminder icon: no
 	lower die: none
-	lower die color: black
+	lower die color: white
 	rarity: uncommon
 	rules text:
 		<b>While in play</b> — After scoring, if you have won fewer rounds than each other player, this mood's value permanently increases by <sym>2</sym>.
@@ -1546,7 +1546,7 @@ card:
 	top die: 3
 	top die color: black
 	reminder icon: no
-	lower die: none
+	lower die: 6
 	lower die color: black
 	rarity: uncommon
 	rules text:
@@ -1570,7 +1570,7 @@ card:
 	top die: 3
 	top die color: black
 	reminder icon: no
-	lower die: none
+	lower die: 6
 	lower die color: black
 	rarity: uncommon
 	rules text:

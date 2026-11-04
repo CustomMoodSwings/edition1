@@ -1,0 +1,1641 @@
+mse version: 2.0.0
+game: mood-swings
+stylesheet: edition1
+set info:
+	set code: XEMB
+card:
+	name: Camaraderie
+	frame color: white
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — If there are two or more green and/or blue moods, you may play an additional mood this turn.
+	collector number: 0001
+card:
+	name: Vigilance
+	frame color: white
+	top die: 3
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — If there are two or more black and/or red moods, you may suppress one of them for as long as you have this mood.
+	collector number: 0002
+card:
+	name: Pacifism
+	frame color: white
+	top die: 1
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — Choose up to two players. For each chosen player, suppress one of their moods. It remains suppressed for as long as you have this mood. <i>(While suppressed, that mood has a value of 0. Turn it sideways to keep track.)</i>
+	collector number: 0003
+	designed by: Designed by Maro
+card:
+	name: Familiarity
+	frame color: white
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — You may play an additional mood this turn if it has the same number in its top right corner as one of your moods.
+	collector number: 0004
+card:
+	name: Solace
+	frame color: white
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — Until the end of this round, your opponents can't choose your moods.
+	collector number: 0005
+card:
+	name: Temperance
+	frame color: white
+	top die: 3
+	top die color: black
+	reminder icon: no
+	lower die: 5
+	lower die color: black
+	rarity: common
+	rules text:
+		<b>While in play</b> — This mood's value is <sym>5</sym> if you have fewer cards in hand than each other player.
+	collector number: 0006
+card:
+	name: Levity
+	frame color: white
+	top die: 0
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — You may put this mood on the bottom of the deck. If you do, draw a card. You may play an additional mood this turn. <i>(Moods are cards in play.)</i>
+	collector number: 0007
+	designed by: Designed by Dr Potato
+card:
+	name: Largesse
+	frame color: white
+	top die: 5
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — Each other player draws a card.
+	collector number: 0008
+card:
+	name: Modesty
+	frame color: white
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — You may play an additional mood this turn if it has a 0, 1, 2, or 3 in its top right corner.
+	collector number: 0009
+card:
+	name: Confidence
+	frame color: white
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — You may play an additional mood this turn if it has a 4, 5, or 6 in its top right corner.
+	collector number: 0010
+card:
+	name: Solidarity
+	frame color: white
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>While in play</b> — This mood's value increases by 1 for each other mood with a 2 in its top right corner.
+	collector number: 0011
+card:
+	name: Impartiality
+	frame color: white
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — Choose odd or even. Suppress all other moods with a number of the chosen type in their top right corners until the end of this round. <i>(0 is even.)</i>
+	collector number: 0012
+card:
+	name: Discernment
+	frame color: white
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — Choose odd or even. You may reveal any number of cards from your hand with a number of the chosen type in their top right corners and put them on the bottom of the deck, then draw that many cards. <i>(0 is even.)</i>
+	collector number: 0013
+card:
+	name: Humility
+	frame color: white
+	top die: 3
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>While in play</b> — Each of your moods with a 0, 1, or 2 in its top right corner has its value increased by 1.
+	collector number: 0014
+card:
+	name: Equanimity
+	frame color: white
+	top die: 3
+	top die color: black
+	reminder icon: no
+	lower die: 6
+	lower die color: black
+	rarity: uncommon
+	rules text:
+		<b>While in play</b> — This mood's value is <sym>6</sym> if there are four or more moods with even numbers in their top right corners. <i>(0 is even.)</i>
+	collector number: 0015
+card:
+	name: Reassurance
+	frame color: white
+	top die: 2
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>While in play</b> — Your opponents can't choose your moods with a value of 2 or less.
+	collector number: 0016
+card:
+	name: Levelheadedness
+	frame color: white
+	top die: 1
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>After playing this mood</b> — This round, each mood scores 2 instead of its value.
+	collector number: 0017
+card:
+	name: Affinity
+	frame color: white
+	top die: 1
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>While in play</b> — The first time each turn you play a mood with the same number in its top right corner as another of your moods, you may play an additional mood this turn.
+	collector number: 0018
+card:
+	name: Fairness
+	frame color: white
+	top die: 1
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>While in play</b> — At the start of each of your turns, suppress one of the highest value moods until the end of this round.
+	collector number: 0019
+card:
+	name: Compassion
+	frame color: white
+	top die: 2
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>While in play</b> — The player with the fewest moods goes first each round, regardless of who won the previous round. <i>(If players are tied, the usual order applies.)</i>
+	collector number: 0020
+card:
+	name: Forgetfulness
+	frame color: white
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>After playing this mood</b> — The winner of the previous round loses a round win. This round, no one draws a card at the end of the round.
+	collector number: 0021
+	designed by: Designed by ThatWeirdCat
+card:
+	name: Rudeness
+	frame color: white
+	top die: 1
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>After playing this mood</b> — Each other player can't play additional moods during their next turn, and the after-playing effects of moods they play during that turn don't happen. <i>(This doesn't affect Hurt Feelings.)</i>
+	collector number: 0022
+card:
+	name: Orderliness
+	frame color: white
+	top die: 2
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: mythic
+	rules text:
+		<b>After playing this mood</b> — Choose odd numbers or even numbers. <b>While in play</b> — Each of your other moods with a number of the chosen type in its top right corner has its value increased by 1. <i>(0 is even.)</i>
+	collector number: 0023
+card:
+	name: Restraint
+	frame color: white
+	top die: 4
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: mythic
+	rules text:
+		<b>While in play</b> — Moods can't let any player play additional moods. <i>(This doesn't affect Hurt Feelings.)</i>
+	collector number: 0024
+	designed by: Designed by Dr Potato
+card:
+	name: Grudge
+	frame color: white
+	top die: 0
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: mythic
+	rules text:
+		<b>After playing this mood</b> — Choose an opponent. <b>While in play</b> — During each of your turns <i>(including the turn you play this mood)</i>, you may play an additional mood for each round the chosen player has won. <b>While in play</b> — If this mood would leave play, put it on the bottom of the deck instead. <i>(Leaving play includes being put into the discard pile or into a player's hand.)</i>
+	collector number: 0025
+	designed by: Designed by Dr Potato
+card:
+	name: Rapport
+	frame color: blue
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — You may put a card from your hand on the bottom of the deck. If you do, draw a card. If there are two or more white and/or black moods, you may do this a second time.
+	collector number: 0026
+card:
+	name: Distrust
+	frame color: blue
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — If there are two or more red and/or green moods, you may put one of them into its player's hand.
+	collector number: 0027
+card:
+	name: Panic
+	frame color: blue
+	top die: 1
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — Choose up to two players. For each chosen player, put one of their moods into their hand. You can't put this mood into your hand this way.
+	collector number: 0028
+	designed by: Designed by Maro
+card:
+	name: Fear
+	frame color: blue
+	top die: 0
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — You may put another one of your moods into your hand. You may play an additional mood this turn.
+	collector number: 0029
+	designed by: Designed by Maro
+card:
+	name: Reminiscence
+	frame color: blue
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — You may put a card from the discard pile on the bottom of the deck. If you do, draw a card.
+	collector number: 0030
+card:
+	name: Anticipation
+	frame color: blue
+	top die: 3
+	top die color: black
+	reminder icon: no
+	lower die: 6
+	lower die color: black
+	rarity: common
+	rules text:
+		<b>While in play</b> — This mood's value is <sym>6</sym> if you have four or more cards in your hand.
+	collector number: 0031
+card:
+	name: Prudence
+	frame color: blue
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — Look at the top two cards of the deck. Put any number of them on the bottom of the deck and the rest back on top in any order.
+	collector number: 0032
+card:
+	name: Resignation
+	frame color: blue
+	top die: 6
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>To play this card</b> — Put a card from your hand on the bottom of the deck. <i>(If you can't do that, you can't play this card.)</i>
+	collector number: 0033
+card:
+	name: Deflection
+	frame color: blue
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — Put one of your opponents' moods into its player's hand. That player can't play cards with that name during their next turn.
+	collector number: 0034
+card:
+	name: Chagrin
+	frame color: blue
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — You may put all other moods with a value of 4 or more into their players' hands.
+	collector number: 0035
+card:
+	name: Turmoil
+	frame color: blue
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — Choose odd or even and choose a player. That player reveals their hand, puts each card from it with a number of the chosen type in its top right corner on the bottom of the deck, then draws that many cards. <i>(0 is even.)</i>
+	collector number: 0036
+card:
+	name: Overconfidence
+	frame color: blue
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — You may play up to two additional moods this turn. If you do, you can't play moods during your next turn.
+	collector number: 0037
+card:
+	name: Defensiveness
+	frame color: blue
+	top die: 3
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>While in play</b> — The after-playing effects of additional moods your opponents play don't happen. <i>(This doesn't affect Hurt Feelings.)</i>
+	collector number: 0038
+card:
+	name: Candor
+	frame color: blue
+	top die: 3
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>While in play</b> — Your opponents play with their hands revealed.
+	collector number: 0039
+card:
+	name: Impulse
+	frame color: blue
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — You may play an additional mood this turn. If you do, after scoring, put this mood into your hand if it's still in play.
+	collector number: 0040
+card:
+	name: Desperation
+	frame color: blue
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — You may play an additional mood this turn if you have fewer cards in hand than each other player.
+	collector number: 0041
+card:
+	name: Shrewdness
+	frame color: blue
+	top die: 1
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>After playing this mood</b> — You may choose one of your other moods and one of an opponent's moods with a value less than or equal to that mood's. If you do, you and that opponent swap them.
+	collector number: 0042
+card:
+	name: Admiration
+	frame color: blue
+	top die: 1
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>After playing this mood</b> — You may choose a mood in the discard pile. If you do, that mood's after-playing effect happens as though you had just played it.
+	collector number: 0043
+card:
+	name: Reflection
+	frame color: blue
+	top die: 1
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>While in play</b> — Each time you play another mood, you may discard a card from your hand. If you do, draw a card.
+	collector number: 0044
+card:
+	name: Rumination
+	frame color: blue
+	top die: 1
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>While in play</b> — At the start of each of your turns, you may put one of your moods into your hand.
+	collector number: 0045
+card:
+	name: Grievance
+	frame color: blue
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>After playing this mood</b> — Each opponent with more cards in their hand than you puts a card from their hand on the bottom of the deck.
+	collector number: 0046
+card:
+	name: Elusiveness
+	frame color: blue
+	top die: 1
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>While in play</b> — If an opponent's effect would put one of your moods into the discard pile, put it into your hand instead.
+	collector number: 0047
+card:
+	name: Reverie
+	frame color: blue
+	top die: 2
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: mythic
+	rules text:
+		<b>After playing this mood</b> — You may put a card from the discard pile on the bottom of the deck. If you do, draw a card. <b>While in play</b> — Each time you play another mood, you may do this.
+	collector number: 0048
+	designed by: Designed by Dr Potato
+card:
+	name: Premonition
+	frame color: blue
+	top die: 0
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: mythic
+	rules text:
+		<b>After playing this mood</b> — Draw up to three cards, then put that many cards from your hand on the bottom of the deck. You may play an additional mood this turn.
+	collector number: 0049
+	designed by: Designed by Dr Potato
+card:
+	name: Inspiration
+	frame color: blue
+	top die: 0
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: mythic
+	rules text:
+		<b>After playing this mood</b> — Reveal the top three cards of the deck. Put one of them into your hand and the rest on the bottom of the deck in a random order. You may play that card as an additional mood this turn.
+	collector number: 0050
+card:
+	name: Yearning
+	frame color: black
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — If there are two or more blue and/or red moods, you may discard a card from your hand. If you do, put a card from the discard pile into your hand.
+	collector number: 0051
+card:
+	name: Disdain
+	frame color: black
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — If there are two or more white and/or green moods, you may put one of them into the discard pile.
+	collector number: 0052
+card:
+	name: Malevolence
+	frame color: black
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — Choose odd or even. Choose up to two players. For each chosen player, put one of their moods with a number of the chosen type in its top right corner into the discard pile. <i>(0 is even.)</i>
+	collector number: 0053
+card:
+	name: Remorse
+	frame color: black
+	top die: 0
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — You may put a card from the discard pile on the bottom of the deck. If you do, draw a card. You may play an additional mood this turn.
+	collector number: 0054
+card:
+	name: Hate
+	frame color: black
+	top die: 0
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — You may put any mood on the bottom of the deck. If you do, draw a card. <i>(Moods are cards in play.)</i>
+	collector number: 0055
+	designed by: Designed by Maro
+card:
+	name: Schadenfreude
+	frame color: black
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: 6
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — If another player discarded a card this turn, this mood's value becomes <sym>6</sym>.
+	collector number: 0056
+	designed by: Designed by jceddy
+card:
+	name: Suspicion
+	frame color: black
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — Choose any number of players. Each chosen player discards a card from their hand.
+	collector number: 0057
+	designed by: Designed by Maro
+card:
+	name: Dejection
+	frame color: black
+	top die: 5
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — Each player discards a card from their hand.
+	collector number: 0058
+card:
+	name: Vengeance
+	frame color: black
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — Choose an opponent. That player puts one of their highest value moods into the discard pile.
+	collector number: 0059
+card:
+	name: Heartlessness
+	frame color: black
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — Each player with three or more moods puts one of their moods into the discard pile. <i>(Moods are cards in play.)</i>
+	collector number: 0060
+card:
+	name: Atonement
+	frame color: black
+	top die: 1
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — Choose a color. Put all other moods of the chosen color into the discard pile.
+	collector number: 0061
+card:
+	name: Sentimentality
+	frame color: black
+	top die: 1
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>While in play</b> — Each time one of your other moods is put into the discard pile, you draw a card. <i>(Moods are cards in play.)</i>
+	collector number: 0062
+card:
+	name: Longing
+	frame color: black
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — You may discard a card from your hand. If you do, put up to two cards from the discard pile into your hand.
+	collector number: 0063
+card:
+	name: Composure
+	frame color: black
+	top die: 2
+	top die color: black
+	reminder icon: no
+	lower die: 6
+	lower die color: black
+	rarity: uncommon
+	rules text:
+		<b>While in play</b> — This mood's value is <sym>6</sym> if you have more cards in your hand than each other player.
+	collector number: 0064
+card:
+	name: Nosiness
+	frame color: black
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — Choose an opponent with one or more cards in their hand. That player reveals their hand and discards a card of your choice from it.
+	collector number: 0065
+card:
+	name: Pettiness
+	frame color: black
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — You may discard a card from your hand. If you do, choose a player. That player can't play moods during their next turn.
+	collector number: 0066
+card:
+	name: Brooding
+	frame color: black
+	top die: 1
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>While in play</b> — At the start of each of your turns, you may put a card from the discard pile into your hand. If you do, discard a card from your hand.
+	collector number: 0067
+card:
+	name: Jealousy
+	frame color: black
+	top die: 0
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>While in play</b> — At the start of each of your turns, each opponent with more moods than you puts one of their moods into the discard pile. <i>(Moods are cards in play.)</i>
+	collector number: 0068
+card:
+	name: Martyrdom
+	frame color: black
+	top die: 1
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>While in play</b> — At the start of each of your turns, you may put one of your other moods into the discard pile <i>(moods are cards in play)</i>. If you do, each opponent discards a card from their hand.
+	collector number: 0069
+card:
+	name: Despair
+	frame color: black
+	top die: 2
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>While in play</b> — At the end of each round you lose, you draw an additional card.
+	collector number: 0070
+card:
+	name: Greed
+	frame color: black
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>After playing this mood</b> — Choose an opponent with one or more cards in their hand. That player reveals their hand. Put a card of your choice from it into your hand, then that player draws a card.
+	collector number: 0071
+card:
+	name: Opportunism
+	frame color: black
+	top die: 1
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>While in play</b> — Each time an opponent discards a card from their hand, you put that card into your hand.
+	collector number: 0072
+card:
+	name: Neglect
+	frame color: black
+	top die: 0
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: mythic
+	rules text:
+		<b>While in play</b> — At the start of each of your turns, each opponent with no cards in their hand puts one of their moods into the discard pile.
+	collector number: 0073
+card:
+	name: Entitlement (restricted)
+	frame color: black
+	top die: 0
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: mythic
+	rules text:
+		<b>After playing this mood</b> — Choose an opponent who has one or more cards in their hand and one or more moods. That player may reveal their hand. If they do, choose a card from it and put it into your hand, and you may play it as an additional mood this turn. If they don't, that player chooses one of their highest value moods and puts it into the discard pile.
+	collector number: 0074
+	designed by: Designed by Dr Potato
+card:
+	name: Haunting
+	frame color: black
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: mythic
+	rules text:
+		<b>After playing this mood</b> — You may discard any number of cards from your hand. If you do, you may play that many additional moods from the discard pile on your next turn.
+	collector number: 0075
+	designed by: Designed by Dr Potato
+card:
+	name: Entitlement (unrestricted)
+	frame color: black
+	top die: 0
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: mythic
+	rules text:
+		<b>After playing this mood</b> — Choose an opponent. If that player has one or more cards in their hand, they may reveal their hand. If they do, choose a card from it and put it into your hand, and you may play it as an additional mood this turn. Otherwise, that player chooses one of their highest value moods and puts it into the discard pile.
+	collector number: 0076
+	designed by: Designed by Dr Potato
+card:
+	name: Fervor
+	frame color: red
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — If there are two or more black and/or green moods, you may play an additional mood this turn. If you do, after scoring, put that mood into the discard pile if it's still in play.
+	collector number: 0077
+card:
+	name: Indignation
+	frame color: red
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — If there are two or more white and/or blue moods, you may put one of them with a value of 4 or less into the discard pile.
+	collector number: 0078
+card:
+	name: Shock
+	frame color: red
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — Choose up to two players. For each chosen player, put one of their moods with a value of 3 or less into the discard pile.
+	collector number: 0079
+	designed by: Designed by Maro
+card:
+	name: Rashness
+	frame color: red
+	top die: 0
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — You may put one of your opponents' moods with a value of 1 or less into the discard pile. You may play an additional mood this turn.
+	collector number: 0080
+card:
+	name: Zeal
+	frame color: red
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — You may put a card from your hand on the bottom of the deck. If you do, draw a card.
+	collector number: 0081
+	designed by: Designed by Maro
+card:
+	name: Exuberance
+	frame color: red
+	top die: 3
+	top die color: black
+	reminder icon: no
+	lower die: 6
+	lower die color: black
+	rarity: common
+	rules text:
+		<b>While in play</b> — This mood's value is <sym>6</sym> if you have two or more other red moods.
+	collector number: 0082
+card:
+	name: Compulsion
+	frame color: red
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — Choose another player. That player chooses a card from their hand and gives it to you.
+	collector number: 0083
+	designed by: Designed by Maro
+card:
+	name: Frenzy
+	frame color: red
+	top die: 6
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — After scoring this round, put this mood into the discard pile.
+	collector number: 0084
+card:
+	name: Belligerence
+	frame color: red
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — You may put all of your opponents' moods with a value of 2 or less into the discard pile.
+	collector number: 0085
+card:
+	name: Intuition
+	frame color: red
+	top die: 1
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — Choose a number. Put all other moods with the chosen number in their top right corners into the discard pile.
+	collector number: 0086
+card:
+	name: Righteousness
+	frame color: red
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — Each player with the highest total value among their moods puts one of their highest value moods into the discard pile.
+	collector number: 0087
+card:
+	name: Rancor
+	frame color: red
+	top die: 2
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>While in play</b> — Each time an opponent's effect puts one or more of your other moods into the discard pile <i>(moods are cards in play)</i>, a random one of that player's moods with a value of 3 or less is put into the discard pile.
+	collector number: 0088
+card:
+	name: Whimsy
+	frame color: red
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — Reveal a random card from your hand. You may play it as an additional mood this turn.
+	collector number: 0089
+	designed by: Designed by ThatWeirdCat
+card:
+	name: Vindictiveness
+	frame color: red
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — You may put one of your other moods into the discard pile <i>(moods are cards in play)</i>. If you do, you may put a mood with a lower value than that mood's into the discard pile.
+	collector number: 0090
+card:
+	name: Ruthlessness
+	frame color: red
+	top die: 3
+	top die color: black
+	reminder icon: no
+	lower die: 5
+	lower die color: black
+	rarity: uncommon
+	rules text:
+		<b>While in play</b> — This mood's value is <sym>5</sym> if any opponent has no cards in their hand.
+	collector number: 0091
+card:
+	name: Hellbent
+	frame color: red
+	top die: 2
+	top die color: black
+	reminder icon: no
+	lower die: 7
+	lower die color: black
+	rarity: uncommon
+	rules text:
+		<b>While in play</b> — This mood's value is <sym>6</sym><sym>1</sym> if you have no cards in your hand.
+	collector number: 0092
+	designed by: Designed by Dr Potato
+card:
+	name: Covetousness
+	frame color: red
+	top die: 0
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>While in play</b> — At the start of each of your turns, you may choose one of your opponents' moods with a value of 1 or less. It becomes yours.
+	collector number: 0093
+card:
+	name: Reckoning
+	frame color: red
+	top die: 1
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>After playing this mood</b> — You may have each player choose one of their moods. If you do, put all moods that weren't chosen into the discard pile.
+	collector number: 0094
+card:
+	name: Verve
+	frame color: red
+	top die: 1
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>While in play</b> — Each of your red moods that you played this round has its value increased by 2.
+	collector number: 0095
+card:
+	name: Adrenaline
+	frame color: red
+	top die: 0
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>While in play</b> — The first time you play a red mood each turn, you may play an additional mood this turn.
+	collector number: 0096
+card:
+	name: FOMO
+	frame color: red
+	top die: 7
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>To play this card</b> — Discard a card from your hand. <i>(If you can't do that, you can't play this card.)</i> <b>While in play</b> — At the start of each of your turns, you may discard a card from your hand. If you don't, put this mood into the discard pile.
+	collector number: 0097
+	designed by: Designed by jceddy
+card:
+	name: Volatility
+	frame color: red
+	top die: 2
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>While in play</b> — At the start of each of your turns, a random mood with a value of 1 or less is put into the discard pile.
+	collector number: 0098
+card:
+	name: Dominance
+	frame color: red
+	top die: 2
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: mythic
+	rules text:
+		<b>While in play</b> — Each time you play another red mood, you may put one of your opponents' moods with a value lower than that mood's into the discard pile.
+	collector number: 0099
+	designed by: Designed by Dr Potato
+card:
+	name: Ardor
+	frame color: red
+	top die: 0
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: mythic
+	rules text:
+		<b>While in play</b> — Each of your red moods has its value increased by the number of red moods you have.
+	collector number: 0100
+card:
+	name: Competitiveness
+	frame color: red
+	top die: 0
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: mythic
+	rules text:
+		<b>While in play</b> — This mood's value is 1 more than the highest value among your opponents' moods.
+	collector number: 0101
+card:
+	name: Warmth
+	frame color: green
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — If there are two or more red and/or white moods, you may put a card from the discard pile into your hand.
+	collector number: 0102
+card:
+	name: Wariness
+	frame color: green
+	top die: 4
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — If there are two or more blue and/or black moods, you may give a card from your hand to another player. If you do, you may play an additional mood this turn.
+	collector number: 0103
+card:
+	name: Resolve
+	frame color: green
+	top die: 3
+	top die color: black
+	reminder icon: no
+	lower die: 6
+	lower die color: black
+	rarity: common
+	rules text:
+		<b>While in play</b> — This mood's value is <sym>6</sym> if you have won fewer rounds than each other player.
+	collector number: 0104
+card:
+	name: Joy
+	frame color: green
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — You may play an additional mood on your next turn.
+	collector number: 0105
+	designed by: Designed by Maro
+card:
+	name: Nostalgia
+	frame color: green
+	top die: 0
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — You may put a card from the discard pile into your hand. You may play an additional mood this turn.
+	collector number: 0106
+	designed by: Designed by Maro
+card:
+	name: Determination
+	frame color: green
+	top die: 3
+	top die color: black
+	reminder icon: no
+	lower die: 6
+	lower die color: black
+	rarity: common
+	rules text:
+		<b>While in play</b> — This mood's value is <sym>6</sym> if there are three or more moods that share a color. <i>(Moods are cards in play.)</i>
+	collector number: 0107
+	designed by: Designed by Maro
+card:
+	name: Carelessness
+	frame color: green
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>After playing this mood</b> — Put the top two cards of the deck into the discard pile.
+	collector number: 0108
+card:
+	name: Obstinacy
+	frame color: green
+	top die: 5
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		<b>While in play</b> — You can only play one mood per turn.
+	collector number: 0109
+card:
+	name: Thrift
+	frame color: green
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — You may play an additional mood this turn from the discard pile if it has a 0, 1, 2, or 3 in its top right corner.
+	collector number: 0110
+card:
+	name: Optimism
+	frame color: green
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — You may choose one of your other moods. If you do, that mood's after-playing effect happens an additional time.
+	collector number: 0111
+card:
+	name: Restlessness
+	frame color: green
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>While in play</b> — This mood's value is 6 if there are three or more different values among your moods. <i>(Moods are cards in play.)</i>
+	collector number: 0112
+card:
+	name: Urgency
+	frame color: green
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>While in play</b> — This mood's value is 6 if you played two or more moods this round.
+	collector number: 0113
+card:
+	name: Possessiveness
+	frame color: green
+	top die: 0
+	top die color: black
+	reminder icon: no
+	lower die: 6
+	lower die color: black
+	rarity: uncommon
+	rules text:
+		<b>While in play</b> — This mood's value is <sym>6</sym> if there are five or more cards in the discard pile.
+	collector number: 0114
+card:
+	name: Gratitude
+	frame color: green
+	top die: 0
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>While in play</b> — While scoring, score each of your moods with a value of 2 or less an extra time.
+	collector number: 0115
+card:
+	name: Honesty
+	frame color: green
+	top die: 3
+	top die color: white
+	reminder icon: no
+	lower die: 6
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>After playing this mood</b> — Reveal your hand. If each card in it shares a color with one of your moods, this mood's value becomes <sym>6</sym>.
+	collector number: 0116
+card:
+	name: Perseverance
+	frame color: green
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>While in play</b> — After scoring, if you have won fewer rounds than each other player, this mood's value permanently increases by 2.
+	collector number: 0117
+card:
+	name: Resilience
+	frame color: green
+	top die: 0
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>While in play</b> — During each of your turns <i>(including the turn you play this mood)</i>, you may play an additional mood from the discard pile if it has a 0, 1, 2, or 3 in its top right corner.
+	collector number: 0118
+card:
+	name: Vindication
+	frame color: green
+	top die: 2
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>While in play</b> — This mood's value increases by 2 for each round you have won.
+	collector number: 0119
+card:
+	name: Wastefulness
+	frame color: green
+	top die: 0
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>While in play</b> — At the start of each of your turns, you may put the top card of the deck into the discard pile.
+	collector number: 0120
+card:
+	name: Kinship
+	frame color: green
+	top die: 1
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>While in play</b> — Each of your moods that shares a color with another of your moods has its value increased by 1.
+	collector number: 0121
+card:
+	name: Maturity
+	frame color: green
+	top die: 2
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>While in play</b> — At the start of each of your turns, this mood's value permanently increases by 2.
+	collector number: 0122
+card:
+	name: Vitality
+	frame color: green
+	top die: 1
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: rare
+	rules text:
+		<b>While in play</b> — At the start of each of your turns, choose a color. Until the end of this round, each of your moods of that color has its value increased by 2.
+	collector number: 0123
+card:
+	name: Reinvigoration
+	frame color: green
+	top die: 0
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: mythic
+	rules text:
+		<b>After playing this mood</b> — Put all your other moods into the discard pile <i>(moods are cards in play)</i>. Then you may play up to that many additional moods this turn from the discard pile. You can't play any moods this turn except moods played this way.
+	collector number: 0124
+	designed by: Designed by Dr Potato
+card:
+	name: Wistfulness
+	frame color: green
+	top die: 1
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: mythic
+	rules text:
+		<b>After playing this mood</b> — You may play an additional mood this turn from the discard pile. <b>While in play</b> — Each time you play another mood from the discard pile, you may have that mood's after-playing effect happen an additional time.
+	collector number: 0125
+card:
+	name: Fulfillment
+	frame color: green
+	top die: 1
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: mythic
+	rules text:
+		<b>While in play</b> — While scoring, score each of your moods with a value of 6 or more an extra time.
+	collector number: 0126
+card:
+	name: Reverence
+	frame color: white
+	top die: 5
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		You can only play this card if you have a white mood.
+	collector number: 0127
+card:
+	name: Detachment
+	frame color: white
+	top die: 5
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		You can only play this card if you have a blue mood.
+	collector number: 0128
+card:
+	name: Resentment
+	frame color: white
+	top die: 5
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		You can only play this card if you have a black mood.
+	collector number: 0129
+card:
+	name: Impatience
+	frame color: white
+	top die: 5
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		You can only play this card if you have a red mood.
+	collector number: 0130
+card:
+	name: Contentment
+	frame color: white
+	top die: 5
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: common
+	rules text:
+		You can only play this card if you have a green mood.
+	collector number: 0131
+card:
+	name: Emptiness
+	frame color: white
+	top die: 1
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>While in play</b> — This mood's value increases by 1 for each color among all moods. <i>(Colorless moods have no color.)</i>
+	collector number: 0132
+	designed by: Designed by Dr Potato
+card:
+	name: Neutrality
+	frame color: white
+	top die: 1
+	top die color: white
+	reminder icon: no
+	lower die: none
+	lower die color: white
+	rarity: uncommon
+	rules text:
+		<b>While in play</b> — This mood's value increases by 2 for each other mood with no color. <i>(Moods are cards in play.)</i>
+	collector number: 0133
+card:
+	name: Unity
+	frame color: white
+	top die: 3
+	top die color: white
+	reminder icon: yes
+	lower die: none
+	lower die color: white
+	rarity: mythic
+	rules text:
+		<b>While in play</b> — After scoring, if you have five or more moods that share a color, you win the round. <i>(Moods are cards in play.)</i>
+	collector number: 0134
+	designed by: Designed by Dr Potato

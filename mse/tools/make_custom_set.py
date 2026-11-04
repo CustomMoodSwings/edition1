@@ -23,7 +23,8 @@ mse/examples/emotional-baggage.mse-set/set by default. Mapping of the card field
   reminder icon              yes for an ongoing effect that is not only about this mood's own value (extra plays,
                              scoring, choices, effects on other moods), or one that lasts "for as long as". This rule
                              matches the printed icon on all 132 printed cards of the original game that were checked
-  rules text                 the timing labels (To play this card, After playing this mood, While in play) in bold,
+  rules text                 one paragraph per ability (a line break before each ability label but the first),
+                             the timing labels (To play this card, After playing this mood, While in play) in bold,
                              parenthetical reminder text in italics, and every number in the text (point values, the
                              numbers on cards, "0 is even") as dice from the dice symbol font, as on the printed cards
   designed by                "Designed by X" when the card file names a designer; the original cards (designer Maro) read
@@ -75,6 +76,8 @@ def markup(text):
     # every number in the rules text is a point value (or a number on a card), which the printed cards write as dice,
     # including 0 (a die with a 0 on it) and, for 7 to 12, two dice (a 6 and the rest)
     t = re.sub(r"(?<![\w<>/])(\d+)(?![\w<>])", lambda m: dice(int(m.group(1))), t)
+    # each ability is its own paragraph, as on the printed cards: a line break before every ability label but the first
+    t = re.sub(r"(?<=\S) (?=(?:To play this card|After playing this mood|While in play) —)", "\n", t)
     t = re.sub(r"(To play this card|After playing this mood|While in play) —", r"<b>\1</b> —", t)
     t = re.sub(r"\(([^()]*)\)", r"<i>(\1)</i>", t)
     return t
@@ -109,7 +112,7 @@ def card_block(c, number, artists):
              "\tlower die color: " + die_color,
              "\trarity: " + c["rarity"],
              "\trules text:",
-             "\t\t" + markup(text),
+             markup(text).replace("\n", "\n\t\t").join(["\t\t", ""]),
              "\tcollector number: X%03d" % number]
     reprint = c.get("reprint_of")
     if reprint in artists and os.path.exists(os.path.join(ART_DIR, slug(reprint) + ".png")):

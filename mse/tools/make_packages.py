@@ -12,7 +12,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 MSE = os.path.dirname(HERE)
 DIST = os.path.join(MSE, "dist")
 PACKAGES = ["mood-swings.mse-game", "mood-swings-edition1.mse-style", "mood-swings-dice.mse-symbol-font"]
-SAMPLES = ["examples/edition1-sample.mse-set"]
+SAMPLES = ["examples/edition1-sample.mse-set", "examples/emotional-baggage.mse-set"]
 
 
 def zip_package(rel):

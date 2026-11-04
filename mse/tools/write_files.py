@@ -39,7 +39,7 @@ def box(name, z, extra=""):
 
 
 # --------------------------------------------------------------------------- game
-frame_choices = "\n".join(f"  choice: {c}" for c in ("white", "blue", "black", "red", "green"))
+frame_choices = "\n".join(f"  choice: {c}" for c in ("white", "blue", "black", "red", "green", "colorless"))
 die_choices = "\n".join(f"  choice: {n}" for n in range(0, 13))
 lower_choices = "  choice: none\n" + "\n".join(f"  choice: {n}" for n in range(1, 13))
 
@@ -52,8 +52,8 @@ position hint: 100
 set field:
   type: text
   name: set code
-  description: The set code printed at the bottom left of every card, for example MSW
-  default: "MSW"
+  description: The set code printed at the bottom left of every card, for example XEMB
+  default: "XEMB"
 default set style:
   set code:
     left: 10
@@ -90,6 +90,7 @@ card field:
     black: rgb(150,140,160)
     red: rgb(235,170,160)
     green: rgb(165,215,170)
+    colorless: rgb(150,158,170)
 card field:
   type: choice
   name: top die
@@ -210,7 +211,7 @@ NAME_WIDTH = two_dice(NAME_RIGHT - NAME_LEFT, DOUBLE_LEFT - REMINDER_GAP - 5 - N
 
 def art_prop(key):
     """A scripted style value that depends on the frame color (each opening sits in a different place)."""
-    colors = ("white", "blue", "black", "red", "green")
+    colors = ("white", "blue", "black", "red", "green", "colorless")
     boxes = LAYOUT["art"]["boxes"]
     cases = ", ".join(f"{c}: {boxes[c][key]}" for c in colors)
     return "{ case card.frame_color of " + cases + ", else: " + str(boxes["white"][key]) + " }"
@@ -252,6 +253,7 @@ card style:
       black: img/base-b.png
       red: img/base-r.png
       green: img/base-g.png
+      colorless: img/base-c.png
   art:
 {ART_BLOCK}
   top die:
@@ -412,6 +414,6 @@ cards = [
          "0000", "Nobody"),
     card("FOMO", "red", 7, "white", "no", "none", "white", "rare", FOMO, "0001", "Nobody", "Designed by Jane Doe"),
 ]
-sample = "mse version: 2.0.0\ngame: mood-swings\nstylesheet: edition1\nset info:\n\tset code: MSW\n" + "\n".join(cards) + "\n"
+sample = "mse version: 2.0.0\ngame: mood-swings\nstylesheet: edition1\nset info:\n\tset code: XEMB\n" + "\n".join(cards) + "\n"
 write(os.path.join(SAMPLE_DIR, "set"), sample)
 print("wrote game, style, symbol-font and sample set")

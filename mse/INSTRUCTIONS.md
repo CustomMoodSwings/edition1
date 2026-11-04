@@ -12,6 +12,7 @@ This zip has everything needed to type card data into [Magic Set Editor 2](https
 | `mood-swings-edition1.mse-style/` | The stylesheet: where each field goes on the card, plus the frame images. |
 | `mood-swings-dice.mse-symbol-font/` | A symbol font for the six dice used inside rules text. |
 | `examples/edition1-sample.mse-set/` | A small sample set (Pacifism, Fear, Determination, a two-dice card and FOMO). |
+| `examples/emotional-baggage.mse-set/` | The whole custom set, Emotional Baggage (code XEMB): the 133 slotted cards of the community design (backup candidates are left out until they are chosen for play testing). Only the 11 reprints (Pacifism, Panic, Fear, Hate, Suspicion, Shock, Zeal, Compulsion, Joy, Nostalgia, Determination) have their original art and artist; the new cards have none yet. The collector numbers are provisional and start with an X (X001 to X133, by color in the order colorless, white, blue, black, red, green, then alphabetically by name) to mark them as unofficial. |
 
 ## 1. Install
 
@@ -32,7 +33,7 @@ Click a card in the list, then edit its fields in the panel next to the card. Cl
 | Field | What it does |
 |---|---|
 | name | Card name. It shrinks if it is long. |
-| frame color | White, blue, black, red or green. |
+| frame color | White, blue, black, red, green or colorless (a darker slate frame). |
 | top die | The value at the top right. 0 shows a numeral, 1 to 6 show pips on one die, and **7 to 12 show two dice** (a 6 plus the rest); two dice push the name and the "!" icon to the left. |
 | top die color | White or black. Use **black** for a value that applies while in play (for example Determination), and **white** for a value that changes after playing and for ordinary cards. |
 | reminder icon | Ticks on the "!" icon next to the top die. |
@@ -42,8 +43,8 @@ Click a card in the list, then edit its fields in the panel next to the card. Cl
 | rules text | Centered. Use bold for the ability timing ("After playing this mood") and italic for reminder text. To put a die inside the text, use the **Insert Symbol** menu and pick a die. |
 | designed by | Optional. A small italic line at the bottom of the rules text box. Type the whole line, for example `Designed by Jane Doe`. Leave it empty for none. |
 | art | Click the art box and choose an image. It is clipped to the slanted frame. The art box is **585 x 452** for every color, so make art at that size. A few pixels at the corners are cut off by the opening on the more tilted frames (red and green most). |
-| set symbol | The symbol on the tab at the lower right. Empty shows the "Edition 1 Custom" symbol. To use your own, click the box and choose an image: use a **square** image (it is drawn into an 80 x 80 box and stretched to fit), ideally white on a transparent background so it shows on every frame color. |
-| set code | The code at the bottom left (default `MSW`). Set it once in **Set > Set Info** and every card follows it; type something on a card to override it. |
+| set symbol | The symbol on the tab at the lower right. Empty shows the default symbol, a cracked heart behind a padlock (the Emotional Baggage set symbol). To use your own, click the box and choose an image: use a **square** image (it is drawn into an 80 x 80 box and stretched to fit), ideally white on a transparent background so it shows on every frame color. |
+| set code | The code at the bottom left (default `XEMB`, the working set code of the custom set Emotional Baggage; change it in Set Info). Set it once in **Set > Set Info** and every card follows it; type something on a card to override it. |
 | collector number | Bottom left, for example `0020`. |
 | artist | Bottom left, after the brush icon. |
 

@@ -182,10 +182,14 @@ def main():
     # overlay is positioned from the top left, so nothing else moves.
     original_b = Image.open(os.path.join(SLICED, "base-b.png")).convert("RGBA")
     symbol, symbol_box = extract_set_symbol(original_b, _symbol_pixels(original_b)[1])
-    symbol.save(os.path.join(STYLE_IMG, "set-symbol.png"))
+    # The original "Edition 1 Custom" symbol stays available as img/set-symbol-edition1.png. The default symbol of the
+    # template is the Emotional Baggage one (a cracked heart behind a padlock, white on transparent, square),
+    # kept as an asset in mse/tools/assets/ and drawn into the same 80 x 80 box.
+    symbol.save(os.path.join(STYLE_IMG, "set-symbol-edition1.png"))
+    shutil.copy(os.path.join(HERE, "assets", "set-symbol-xemb.png"), os.path.join(STYLE_IMG, "set-symbol.png"))
     layout["set-symbol"] = symbol_box
     print("set-symbol", symbol_box)
-    for c in "wubrg":
+    for c in "wubrgc":
         base = Image.open(os.path.join(SLICED, f"base-{c}.png")).convert("RGBA")
         erase_set_code(base)
         erase_set_symbol(base)
@@ -268,6 +272,8 @@ def main():
         cy = sum(i // w * v for i, v in enumerate(data)) / total
         openings[color] = {"mask": mask, "bbox": bbox, "cx": cx, "cy": cy}
         print("art opening for", color, bbox, "centre (%.1f, %.1f)" % (cx, cy), "border colour", dark)
+    # The colorless frame (make_colorless_frame.py) is the white frame recolored, so it has white's art opening.
+    openings["colorless"] = openings["white"]
     ART_W = max(o["bbox"][2] - o["bbox"][0] for o in openings.values())
     ART_H = max(o["bbox"][3] - o["bbox"][1] for o in openings.values())
     layout["art"] = {"width": ART_W, "height": ART_H, "boxes": {}}

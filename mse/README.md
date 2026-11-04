@@ -40,8 +40,8 @@ Each card has these fields:
 |---|---|
 | name | Card name (Beleren Small Caps Bold, shrinks if it is long). |
 | frame color | White, blue, black, red or green frame. |
-| top die | The value die at the top right: 0 shows a numeral, 1 to 6 show pips. |
-| top die color | White or black die. On the printed cards the top and lower dice are always the same color, and the color follows the kind of value: **black** for a value that applies while in play (Determination, Triumph, Serenity), **white** for one that changes after playing (Altruism, Cheer, Infatuation) and for ordinary cards with no lower die (almost all of them). |
+| top die | The value die at the top right: 0 shows a numeral, 1 to 6 show pips. **7 to 12 show two dice** (a 6 and the rest), using the same pair artwork as the lower-left dice, right-aligned to where the single die ends. The reminder icon and the end of the name box move left by the extra width, so a long name shrinks sooner. The pair covers a little more of the top right of the art (about 37 px of height over the art opening), and the die is scaled by the same box as the lower dice (194 x 117). |
+| top die color | White or black die (for two dice too). On the printed cards the top and lower dice are always the same color, and the color follows the kind of value: **black** for a value that applies while in play (Determination, Triumph, Serenity), **white** for one that changes after playing (Altruism, Cheer, Infatuation) and for ordinary cards with no lower die (almost all of them). |
 | reminder icon | Ticks on the "!" icon next to the top die. |
 | lower die | The alternate value in the lower left: 1 to 6 is one die, 7 to 12 is two dice (a 6 and the rest), or none. The rules text flows around the dice. |
 | lower die color | White or black dice. Use the same color as the top die. |

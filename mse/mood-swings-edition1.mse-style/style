@@ -30,15 +30,15 @@ card style:
 		z index: 20
 		mask: { "img/art-mask-" + card.frame_color + ".png" }
 	top die:
-		left: 575
+		left: { if to_int(card.top_die) > 6 then 496 else 575 }
 		top: 50
-		width: 115
-		height: 116
+		width: { if to_int(card.top_die) > 6 then 194 else 115 }
+		height: { if to_int(card.top_die) > 6 then 117 else 116 }
 		z index: 30
 		render style: image
-		image: { "img/ud" + (if card.top_die_color == "black" then "b" else "w") + "-" + input + ".png" }
+		image: { if to_int(input) <= 6 then "img/ud" + (if card.top_die_color == "black" then "b" else "w") + "-" + input + ".png" else "img/ld" + (if card.top_die_color == "black" then "b" else "w") + "-" + (if to_int(input) < 10 then "0" else "") + input + ".png" }
 	reminder icon:
-		left: 530
+		left: { if to_int(card.top_die) > 6 then 451 else 530 }
 		top: 39
 		width: 54
 		height: 74
@@ -77,7 +77,7 @@ card style:
 	name:
 		left: 57
 		top: 44
-		width: 468
+		width: { if to_int(card.top_die) > 6 then 389 else 468 }
 		height: 80
 		z index: 40
 		alignment: middle left

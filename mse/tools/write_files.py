@@ -40,7 +40,7 @@ def box(name, z, extra=""):
 
 # --------------------------------------------------------------------------- game
 frame_choices = "\n".join(f"  choice: {c}" for c in ("white", "blue", "black", "red", "green"))
-die_choices = "\n".join(f"  choice: {n}" for n in range(0, 7))
+die_choices = "\n".join(f"  choice: {n}" for n in range(0, 13))
 lower_choices = "  choice: none\n" + "\n".join(f"  choice: {n}" for n in range(1, 13))
 
 game = f"""
@@ -93,7 +93,7 @@ card field:
 card field:
   type: choice
   name: top die
-  description: The die in the top right corner, 0 shows a numeral and 1 to 6 show pips
+  description: The die in the top right corner. 0 shows a numeral, 1 to 6 show pips on one die, and 7 to 12 show two dice (a 6 and the rest), which push the name and the reminder icon to the left
 {die_choices}
   initial: 1
   card list visible: true
@@ -175,10 +175,34 @@ card field:
 write(os.path.join(GAME_DIR, "game"), game)
 
 # --------------------------------------------------------------------------- stylesheet
-TOP_DIE_IMAGE = ('{ "img/ud" + (if card.top_die_color == "black" then "b" else "w") + "-" + input + ".png" }')
+# Values 7 to 12 reuse the lower-left pair images (a 6 plus the rest, with the same white outline as the
+# single top die), so two dice need no new artwork. The style box is scripted to the pair's size, with its
+# right edge where the single die's right edge is.
+TOP_DIE_IMAGE = ('{ if to_int(input) <= 6 then '
+                 '"img/ud" + (if card.top_die_color == "black" then "b" else "w") + "-" + input + ".png" '
+                 'else "img/ld" + (if card.top_die_color == "black" then "b" else "w") + "-" + '
+                 '(if to_int(input) < 10 then "0" else "") + input + ".png" }')
 LOWER_DIE_IMAGE = ('{ if input == "none" then "img/blank.png" else '
                    '"img/ld" + (if card.lower_die_color == "black" then "b" else "w") + "-" + '
                    '(if to_int(input) < 10 then "0" else "") + input + ".png" }')
+def two_dice(single, double):
+    """A style value that changes when the top die shows two dice (7 to 12)."""
+    return "{ if to_int(card.top_die) > 6 then " + str(double) + " else " + str(single) + " }"
+
+
+UP, LOW, REM = LAYOUT["upper-die"], LAYOUT["lower-die"], LAYOUT["reminder"]
+RIGHT = UP["left"] + UP["width"]                    # right edge of the top die, kept for two dice
+DOUBLE_LEFT = RIGHT - LOW["width"]
+REMINDER_GAP = UP["left"] - REM["left"]             # how far the reminder icon sits left of the die
+NAME_LEFT, NAME_RIGHT = 57, REM["left"] - 5         # the name box ends just before the reminder icon
+TOP_DIE_BOX = (f"    left: {two_dice(UP['left'], DOUBLE_LEFT)}\n    top: {UP['top']}\n"
+               f"    width: {two_dice(UP['width'], LOW['width'])}\n"
+               f"    height: {two_dice(UP['height'], LOW['height'])}\n    z index: 30\n")
+REMINDER_BOX = (f"    left: {two_dice(REM['left'], DOUBLE_LEFT - REMINDER_GAP)}\n    top: {REM['top']}\n"
+                f"    width: {REM['width']}\n    height: {REM['height']}\n    z index: 30\n")
+NAME_WIDTH = two_dice(NAME_RIGHT - NAME_LEFT, DOUBLE_LEFT - REMINDER_GAP - 5 - NAME_LEFT)
+
+
 def art_prop(key):
     """A scripted style value that depends on the frame color (each opening sits in a different place)."""
     colors = ("white", "blue", "black", "red", "green")
@@ -222,10 +246,10 @@ card style:
   art:
 {ART_BLOCK}
   top die:
-{box('upper-die', 30)}    render style: image
+{TOP_DIE_BOX}    render style: image
     image: {TOP_DIE_IMAGE}
   reminder icon:
-{box('reminder', 30)}    render style: image
+{REMINDER_BOX}    render style: image
     choice images:
       yes: img/reminder.png
       no: img/blank.png
@@ -242,9 +266,9 @@ card style:
   set symbol:
 {box('set-symbol', 35)}    default: img/set-symbol.png
   name:
-    left: 57
+    left: {NAME_LEFT}
     top: 44
-    width: 468
+    width: {NAME_WIDTH}
     height: 80
     z index: 40
     alignment: middle left
@@ -341,6 +365,9 @@ def card(name, frame, top, top_color, reminder, lower, lower_color, rarity, rule
   artist: {artist}"""
 
 DIE6 = "<sym>6</sym>"
+FOMO = ("<b>To play this card</b> — Discard a card from your hand. <i>(If you can't do that, you can't play this card.)</i> "
+        "<b>While in play</b> — At the start of each of your turns, you may discard a card from your hand. "
+        "If you don't, put this mood into the discard pile.")
 cards = [
     card("Pacifism", "white", 1, "white", "yes", "none", "white", "common",
          "<b>After playing this mood</b> — Choose up to two players. For each chosen player, suppress one of their moods. "
@@ -359,6 +386,7 @@ cards = [
          "<b>After playing this mood</b> — You may put two of your other moods into the discard pile. "
          "If you do, this mood's value becomes 9.",
          "0000", "Nobody"),
+    card("FOMO", "red", 7, "white", "no", "none", "white", "rare", FOMO, "0001", "Nobody"),
 ]
 sample = "mse version: 2.0.0\ngame: mood-swings\nstylesheet: edition1\nset info:\n\tset code: MSW\n" + "\n".join(cards) + "\n"
 write(os.path.join(SAMPLE_DIR, "set"), sample)

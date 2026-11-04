@@ -51,7 +51,7 @@ card field:
 card field:
 	type: choice
 	name: top die
-	description: The die in the top right corner, 0 shows a numeral and 1 to 6 show pips
+	description: The die in the top right corner. 0 shows a numeral, 1 to 6 show pips on one die, and 7 to 12 show two dice (a 6 and the rest), which push the name and the reminder icon to the left
 	choice: 0
 	choice: 1
 	choice: 2
@@ -59,6 +59,12 @@ card field:
 	choice: 4
 	choice: 5
 	choice: 6
+	choice: 7
+	choice: 8
+	choice: 9
+	choice: 10
+	choice: 11
+	choice: 12
 	initial: 1
 	card list visible: true
 	card list column: 3

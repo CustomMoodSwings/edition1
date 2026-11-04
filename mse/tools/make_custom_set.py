@@ -23,6 +23,8 @@ mse/examples/emotional-baggage.mse-set/set by default. Mapping of the card field
   reminder icon              yes for an ongoing effect that is not only about this mood's own value (extra plays,
                              scoring, choices, effects on other moods), or one that lasts "for as long as". This rule
                              matches the printed icon on all 132 printed cards of the original game that were checked
+  emphasis words             words in the card file's emphasis list are bold in the rules text (the printed Hate
+                             has any in bold, the printed Joy has next)
   rules text                 one paragraph per ability (a line break before each ability label but the first),
                              the timing labels (To play this card, After playing this mood, While in play) in bold,
                              parenthetical reminder text in italics, and every number in the text (point values, the
@@ -71,8 +73,11 @@ def has_reminder(text):
     return False
 
 
-def markup(text):
+def markup(text, emphasis=()):
     t = " ".join(text.split())
+    # words the printed card shows in bold (the emphasis list of the card file): the first occurrence of each
+    for word in emphasis or ():
+        t = re.sub(r"\b%s\b" % re.escape(word), lambda m: "<b>%s</b>" % m.group(0), t, count=1)
     # every number in the rules text is a point value (or a number on a card), which the printed cards write as dice,
     # including 0 (a die with a 0 on it) and, for 7 to 12, two dice (a 6 and the rest)
     t = re.sub(r"(?<![\w<>/])(\d+)(?![\w<>])", lambda m: dice(int(m.group(1))), t)
@@ -112,7 +117,7 @@ def card_block(c, number, artists):
              "\tlower die color: " + die_color,
              "\trarity: " + c["rarity"],
              "\trules text:",
-             markup(text).replace("\n", "\n\t\t").join(["\t\t", ""]),
+             markup(text, c.get("emphasis")).replace("\n", "\n\t\t").join(["\t\t", ""]),
              "\tcollector number: X%03d" % number]
     reprint = c.get("reprint_of")
     if reprint in artists and os.path.exists(os.path.join(ART_DIR, slug(reprint) + ".png")):

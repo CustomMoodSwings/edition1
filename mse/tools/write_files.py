@@ -146,6 +146,11 @@ card field:
   multi line: true
   show statistics: false
 card field:
+  type: text
+  name: designed by
+  description: Optional. A small italic line at the bottom of the rules text box, for example "Designed by Jane Doe". Leave it empty for none.
+  show statistics: false
+card field:
   type: image
   name: art
   description: The card art
@@ -217,6 +222,10 @@ ART_BLOCK = (f"    left: {art_prop('left')}\n    top: {art_prop('top')}\n"
 TEXT_MASK = ('{ if card.lower_die == "none" then "img/text-mask-none.png" '
              'else if to_int(card.lower_die) <= 6 then "img/text-mask-single.png" '
              'else "img/text-mask-double.png" }')
+
+# "Designed by" line: the bottom edge of the rules text box, centred between the lower dice (which end at
+# x = 241 for two dice) and the set symbol tab (which starts at x = 612).
+DESIGNER = {"left": 250, "top": 922, "width": 354, "height": 24}
 
 style = f"""
 mse version: 2.0.0
@@ -294,7 +303,21 @@ card style:
       name: mood-swings-dice
       size: 28
       alignment: middle center
+    padding bottom: {{ if card.designed_by == "" then 0 else {DESIGNER['height']} }}
     mask: {TEXT_MASK}
+  designed by:
+    left: {DESIGNER['left']}
+    top: {DESIGNER['top']}
+    width: {DESIGNER['width']}
+    height: {DESIGNER['height']}
+    z index: 40
+    alignment: middle center
+    font:
+      name: Plantin MT Pro
+      size: 15
+      style: italic
+      color: rgb(45,45,45)
+      scale down to: 10
   set code:
     left: 48.4
     top: 989
@@ -349,7 +372,8 @@ insert symbol menu:
 write(os.path.join(FONT_DIR, "symbol-font"), font)
 
 # --------------------------------------------------------------------------- sample set
-def card(name, frame, top, top_color, reminder, lower, lower_color, rarity, rules, number, artist):
+def card(name, frame, top, top_color, reminder, lower, lower_color, rarity, rules, number, artist, designed_by=None):
+    designer = f"\n  designed by: {designed_by}" if designed_by else ""
     return f"""card:
   name: {name}
   frame color: {frame}
@@ -362,7 +386,7 @@ def card(name, frame, top, top_color, reminder, lower, lower_color, rarity, rule
   rules text:
     {rules}
   collector number: {number}
-  artist: {artist}"""
+  artist: {artist}{designer}"""
 
 DIE6 = "<sym>6</sym>"
 FOMO = ("<b>To play this card</b> — Discard a card from your hand. <i>(If you can't do that, you can't play this card.)</i> "
@@ -386,7 +410,7 @@ cards = [
          "<b>After playing this mood</b> — You may put two of your other moods into the discard pile. "
          "If you do, this mood's value becomes 9.",
          "0000", "Nobody"),
-    card("FOMO", "red", 7, "white", "no", "none", "white", "rare", FOMO, "0001", "Nobody"),
+    card("FOMO", "red", 7, "white", "no", "none", "white", "rare", FOMO, "0001", "Nobody", "Designed by Jane Doe"),
 ]
 sample = "mse version: 2.0.0\ngame: mood-swings\nstylesheet: edition1\nset info:\n\tset code: MSW\n" + "\n".join(cards) + "\n"
 write(os.path.join(SAMPLE_DIR, "set"), sample)

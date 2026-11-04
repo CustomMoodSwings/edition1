@@ -103,7 +103,21 @@ card style:
 			name: mood-swings-dice
 			size: 28
 			alignment: middle center
+		padding bottom: { if card.designed_by == "" then 0 else 24 }
 		mask: { if card.lower_die == "none" then "img/text-mask-none.png" else if to_int(card.lower_die) <= 6 then "img/text-mask-single.png" else "img/text-mask-double.png" }
+	designed by:
+		left: 250
+		top: 922
+		width: 354
+		height: 24
+		z index: 40
+		alignment: middle center
+		font:
+			name: Plantin MT Pro
+			size: 15
+			style: italic
+			color: rgb(45,45,45)
+			scale down to: 10
 	set code:
 		left: 48.4
 		top: 989

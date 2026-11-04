@@ -51,6 +51,7 @@ Each card has these fields:
 | set symbol | The symbol on the tab at the lower right. Empty shows the original "Edition 1 Custom" symbol; click the box to choose your own image. It is drawn into a **80 x 80** square box (at left 622, top 886), so use a square image; the image is stretched to that size. The tab is the frame color, so a white symbol on a transparent background suits every frame (the default is one). Set per card, like the art. |
 | set code | The set code at the bottom left (default `MSW`). Set it once in **Set Info** and every card follows it; type a different value on a card to override it. |
 | collector number | Bottom left, for example `0020`. |
+| designed by | Optional. A small italic line at the bottom of the rules text box, centered between the lower dice and the set symbol. Type the whole line, for example `Designed by Jane Doe`; leave it empty for none. When it is filled in the rules text keeps 24 px clear above it (`padding bottom`). Plantin italic 15 (shrinks to 10 if long). |
 | artist | Bottom left, after the brush icon. |
 
 ### Not editable (baked into the images)

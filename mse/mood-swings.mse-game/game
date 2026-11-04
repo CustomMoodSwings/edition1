@@ -128,6 +128,11 @@ card field:
 	multi line: true
 	show statistics: false
 card field:
+	type: text
+	name: designed by
+	description: Optional. A small italic line at the bottom of the rules text box, for example "Designed by Jane Doe". Leave it empty for none.
+	show statistics: false
+card field:
 	type: image
 	name: art
 	description: The card art

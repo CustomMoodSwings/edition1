@@ -25,13 +25,17 @@ mse/examples/emotional-baggage.mse-set/set by default. Mapping of the card field
   designed by                "Designed by X" when the card file names a designer
   collector number           provisional and unofficial, so the first digit is an X: X001 to X133, by color (colorless, white, blue,
                              black, red, green) and alphabetically by name within each color
-  art, artist                left empty
+  art, artist                for the 11 reprints, the art and artist of the printed card (cut out by
+                             extract_reprint_art.py into tools/reprint-art/ and copied into the set folder);
+                             left empty for the new cards
 
 The set is rebuilt from scratch each time, so edit the card files (not the set file) to change a card.
 """
 import glob
+import json
 import os
 import re
+import shutil
 import sys
 
 import yaml
@@ -39,6 +43,7 @@ import yaml
 HERE = os.path.dirname(os.path.abspath(__file__))
 MSE = os.path.dirname(HERE)
 DEFAULT_OUT = os.path.join(MSE, "examples", "emotional-baggage.mse-set")
+ART_DIR = os.path.join(HERE, "reprint-art")
 COLORS = ["colorless", "white", "blue", "black", "red", "green"]
 
 
@@ -74,7 +79,11 @@ def display_name(c):
     return re.sub(r"\s*\([^)]*\)$", "", c["name"])
 
 
-def card_block(c, number):
+def slug(name):
+    return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+
+
+def card_block(c, number, artists):
     alt = c.get("alt_value")
     text = " ".join(c["rules_text"].split())
     in_play_alt = alt is not None and re.search(r"While in play — This mood's value is", text) is not None
@@ -92,6 +101,10 @@ def card_block(c, number):
              "\trules text:",
              "\t\t" + markup(text, alt),
              "\tcollector number: X%03d" % number]
+    reprint = c.get("reprint_of")
+    if reprint in artists and os.path.exists(os.path.join(ART_DIR, slug(reprint) + ".png")):
+        lines.append("\tart: art-%s.png" % slug(reprint))
+        lines.append("\tartist: " + artists[reprint])
     if c.get("designer"):
         lines.append("\tdesigned by: Designed by " + c["designer"])
     return "\n".join(lines)
@@ -114,10 +127,18 @@ def main():
         return (COLORS.index(c["color"]), display_name(c).lower())
 
     cards.sort(key=order)
-    blocks = [card_block(c, i + 1) for i, c in enumerate(cards)]
+    artists_file = os.path.join(ART_DIR, "artists.json")
+    artists = json.load(open(artists_file, encoding="utf8")) if os.path.exists(artists_file) else {}
+    blocks = [card_block(c, i + 1, artists) for i, c in enumerate(cards)]
     text = "mse version: 2.0.0\ngame: mood-swings\nstylesheet: edition1\nset info:\n\tset code: %s\n" % code
     text += "\n".join(blocks) + "\n"
     os.makedirs(out, exist_ok=True)
+    for old in glob.glob(os.path.join(out, "art-*.png")):
+        os.remove(old)
+    for name in artists:
+        src = os.path.join(ART_DIR, slug(name) + ".png")
+        if os.path.exists(src):
+            shutil.copy(src, os.path.join(out, "art-%s.png" % slug(name)))
     with open(os.path.join(out, "set"), "w", encoding="utf8", newline="\n") as f:
         f.write(text)
     print("wrote %d cards to %s" % (len(cards), os.path.relpath(os.path.join(out, "set"), MSE)))

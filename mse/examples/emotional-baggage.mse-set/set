@@ -320,6 +320,8 @@ card:
 	rules text:
 		<b>After playing this mood</b> — Choose up to two players. For each chosen player, suppress one of their moods. It remains suppressed for as long as you have this mood. <i>(While suppressed, that mood has a value of 0. Turn it sideways to keep track.)</i>
 	collector number: X026
+	art: art-pacifism.png
+	artist: Jesper Ejsing
 	designed by: Designed by Maro
 card:
 	name: Reassurance
@@ -526,6 +528,8 @@ card:
 	rules text:
 		<b>After playing this mood</b> — You may put another one of your moods into your hand. You may play an additional mood this turn.
 	collector number: X043
+	art: art-fear.png
+	artist: Jesper Ejsing
 	designed by: Designed by Maro
 card:
 	name: Grievance
@@ -587,6 +591,8 @@ card:
 	rules text:
 		<b>After playing this mood</b> — Choose up to two players. For each chosen player, put one of their moods into their hand. You can't put this mood into your hand this way.
 	collector number: X048
+	art: art-panic.png
+	artist: Jesper Ejsing
 	designed by: Designed by Maro
 card:
 	name: Premonition
@@ -819,6 +825,8 @@ card:
 	rules text:
 		<b>After playing this mood</b> — You may put any mood on the bottom of the deck. If you do, draw a card. <i>(Moods are cards in play.)</i>
 	collector number: X067
+	art: art-hate.png
+	artist: Karl Kopinski
 	designed by: Designed by Maro
 card:
 	name: Haunting
@@ -990,6 +998,8 @@ card:
 	rules text:
 		<b>After playing this mood</b> — Choose any number of players. Each chosen player discards a card from their hand.
 	collector number: X081
+	art: art-suspicion.png
+	artist: Matt Stewart
 	designed by: Designed by Maro
 card:
 	name: Vengeance
@@ -1075,6 +1085,8 @@ card:
 	rules text:
 		<b>After playing this mood</b> — Choose another player. That player chooses a card from their hand and gives it to you.
 	collector number: X088
+	art: art-compulsion.png
+	artist: Jesper Ejsing
 	designed by: Designed by Maro
 card:
 	name: Covetousness
@@ -1259,6 +1271,8 @@ card:
 	rules text:
 		<b>After playing this mood</b> — Choose up to two players. For each chosen player, put one of their moods with a value of 3 or less into the discard pile.
 	collector number: X103
+	art: art-shock.png
+	artist: Jon Foster
 	designed by: Designed by Maro
 card:
 	name: Verve
@@ -1321,6 +1335,8 @@ card:
 	rules text:
 		<b>After playing this mood</b> — You may put a card from your hand on the bottom of the deck. If you do, draw a card.
 	collector number: X108
+	art: art-zeal.png
+	artist: Volkan Baga
 	designed by: Designed by Maro
 card:
 	name: Carelessness
@@ -1346,6 +1362,8 @@ card:
 	rules text:
 		<b>While in play</b> — This mood's value is <sym>6</sym> if there are three or more moods that share a color. <i>(Moods are cards in play.)</i>
 	collector number: X110
+	art: art-determination.png
+	artist: Arif Wijaya
 	designed by: Designed by Maro
 card:
 	name: Fulfillment
@@ -1395,6 +1413,8 @@ card:
 	rules text:
 		<b>After playing this mood</b> — You may play an additional mood on your next turn.
 	collector number: X114
+	art: art-joy.png
+	artist: Rhonda Libbey
 	designed by: Designed by Maro
 card:
 	name: Kinship
@@ -1432,6 +1452,8 @@ card:
 	rules text:
 		<b>After playing this mood</b> — You may put a card from the discard pile into your hand. You may play an additional mood this turn.
 	collector number: X117
+	art: art-nostalgia.png
+	artist: Zoltan Boros & Gabor Szikszai
 	designed by: Designed by Maro
 card:
 	name: Obstinacy

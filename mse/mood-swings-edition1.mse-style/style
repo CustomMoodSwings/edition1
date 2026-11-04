@@ -24,8 +24,8 @@ card style:
 			green: img/base-g.png
 			colorless: img/base-c.png
 	art:
-		left: { case card.frame_color of white: 80, blue: 78, black: 81, red: 78, green: 80, colorless: 80, else: 80 }
-		top: { case card.frame_color of white: 129, blue: 129, black: 135, red: 129, green: 136, colorless: 136, else: 129 }
+		left: { case card.frame_color of "white": 80, "blue": 78, "black": 81, "red": 78, "green": 80, "colorless": 80, else: 80 }
+		top: { case card.frame_color of "white": 129, "blue": 129, "black": 135, "red": 129, "green": 136, "colorless": 136, else: 129 }
 		width: 585
 		height: 452
 		z index: 20

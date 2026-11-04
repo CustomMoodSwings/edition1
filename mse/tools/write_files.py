@@ -52,8 +52,8 @@ position hint: 100
 set field:
   type: text
   name: set code
-  description: The set code printed at the bottom left of every card, for example MSW
-  default: "MSW"
+  description: The set code printed at the bottom left of every card, for example XEMB
+  default: "XEMB"
 default set style:
   set code:
     left: 10
@@ -412,6 +412,6 @@ cards = [
          "0000", "Nobody"),
     card("FOMO", "red", 7, "white", "no", "none", "white", "rare", FOMO, "0001", "Nobody", "Designed by Jane Doe"),
 ]
-sample = "mse version: 2.0.0\ngame: mood-swings\nstylesheet: edition1\nset info:\n\tset code: MSW\n" + "\n".join(cards) + "\n"
+sample = "mse version: 2.0.0\ngame: mood-swings\nstylesheet: edition1\nset info:\n\tset code: XEMB\n" + "\n".join(cards) + "\n"
 write(os.path.join(SAMPLE_DIR, "set"), sample)
 print("wrote game, style, symbol-font and sample set")

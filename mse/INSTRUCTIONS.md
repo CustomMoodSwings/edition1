@@ -43,7 +43,7 @@ Click a card in the list, then edit its fields in the panel next to the card. Cl
 | designed by | Optional. A small italic line at the bottom of the rules text box. Type the whole line, for example `Designed by Jane Doe`. Leave it empty for none. |
 | art | Click the art box and choose an image. It is clipped to the slanted frame. The art box is **585 x 452** for every color, so make art at that size. A few pixels at the corners are cut off by the opening on the more tilted frames (red and green most). |
 | set symbol | The symbol on the tab at the lower right. Empty shows the "Edition 1 Custom" symbol. To use your own, click the box and choose an image: use a **square** image (it is drawn into an 80 x 80 box and stretched to fit), ideally white on a transparent background so it shows on every frame color. |
-| set code | The code at the bottom left (default `MSW`). Set it once in **Set > Set Info** and every card follows it; type something on a card to override it. |
+| set code | The code at the bottom left (default `XEMB`, the working set code of the custom set Emotional Baggage; change it in Set Info). Set it once in **Set > Set Info** and every card follows it; type something on a card to override it. |
 | collector number | Bottom left, for example `0020`. |
 | artist | Bottom left, after the brush icon. |
 

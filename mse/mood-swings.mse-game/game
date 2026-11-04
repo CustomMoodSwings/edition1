@@ -6,8 +6,8 @@ position hint: 100
 set field:
 	type: text
 	name: set code
-	description: The set code printed at the bottom left of every card, for example MSW
-	default: "MSW"
+	description: The set code printed at the bottom left of every card, for example XEMB
+	default: "XEMB"
 default set style:
 	set code:
 		left: 10

@@ -302,7 +302,7 @@ card style:
     font:
       name: MPlantin
       italic name: MPlantin-Italic
-      size: 21
+      size: 24
       color: rgb(45,45,45)
       scale down to: 14
     symbol font:

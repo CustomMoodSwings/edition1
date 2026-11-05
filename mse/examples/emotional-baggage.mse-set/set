@@ -1075,7 +1075,7 @@ card:
 	lower die color: black
 	rarity: mythic
 	rules text:
-		<b>While in play</b> — This mood's value is <sym>1</sym> more than the highest value among your opponents' moods.
+		<b>While in play</b> — This mood's value is <sym>1</sym> more than the highest value among your opponents' moods that don't have this ability. <i>(If there are no such moods, this mood's value is <sym>1</sym>.)</i>
 	collector number: X087
 card:
 	name: Compulsion

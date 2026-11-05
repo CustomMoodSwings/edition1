@@ -975,7 +975,7 @@ card:
 	lower die color: white
 	rarity: common
 	rules text:
-		<b>After playing this mood</b> — If another player discarded a card this turn, this mood's value becomes <sym>6</sym>.
+		<b>After playing this mood</b> — If another player discarded a card or had a mood put into the discard pile this turn, this mood's value becomes <sym>6</sym>.
 	collector number: X079
 	designed by: Designed by jceddy
 card:

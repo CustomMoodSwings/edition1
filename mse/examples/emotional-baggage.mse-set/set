@@ -969,13 +969,13 @@ card:
 	name: Schadenfreude
 	frame color: black
 	top die: 3
-	top die color: white
+	top die color: black
 	reminder icon: no
 	lower die: 6
-	lower die color: white
+	lower die color: black
 	rarity: common
 	rules text:
-		<b>After playing this mood</b> — If another player discarded a card or had a mood put into the discard pile this turn, this mood's value becomes <sym>6</sym>.
+		<b>While in play</b> — This mood's value is <sym>6</sym> if an opponent discarded a card this round.
 	collector number: X079
 	designed by: Designed by jceddy
 card:

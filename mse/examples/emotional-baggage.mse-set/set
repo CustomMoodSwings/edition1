@@ -1555,7 +1555,7 @@ card:
 	lower die color: black
 	rarity: uncommon
 	rules text:
-		<b>While in play</b> — This mood's value is <sym>6</sym> if there are three or more different values among your moods. <i>(Moods are cards in play.)</i>
+		<b>While in play</b> — This mood's value is <sym>6</sym> if there are three or more different values among your moods that don't have this ability. <i>(Moods are cards in play.)</i>
 	collector number: X125
 card:
 	name: Thrift

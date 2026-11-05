@@ -1,0 +1,48 @@
+mse version: 2.0.0
+short name: Mood Swings dice
+full name: Mood Swings inline dice
+image font size: 90
+horizontal space: 1
+symbol:
+	code: 0
+	image: die-0.png
+symbol:
+	code: 1
+	image: die-1.png
+symbol:
+	code: 2
+	image: die-2.png
+symbol:
+	code: 3
+	image: die-3.png
+symbol:
+	code: 4
+	image: die-4.png
+symbol:
+	code: 5
+	image: die-5.png
+symbol:
+	code: 6
+	image: die-6.png
+insert symbol menu:
+	item:
+		name: 0
+		label: Die with a 0
+	item:
+		name: 1
+		label: Die with 1 pip
+	item:
+		name: 2
+		label: Die with 2 pips
+	item:
+		name: 3
+		label: Die with 3 pips
+	item:
+		name: 4
+		label: Die with 4 pips
+	item:
+		name: 5
+		label: Die with 5 pips
+	item:
+		name: 6
+		label: Die with 6 pips

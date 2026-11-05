@@ -1,0 +1,395 @@
+#!/usr/bin/env python3
+"""Build the derived images used by the Magic Set Editor template.
+
+Run from anywhere:  python3 mse/tools/build_assets.py
+Needs: Pillow and rsvg-convert (librsvg).
+
+It reads the Inkscape template (src/00_w_blank.svg) and the sliced PNGs (sliced/) and writes the
+images the MSE stylesheet and symbol font need:
+  * the inline dice glyphs (from the SVG layer "dice-glyphs"),
+  * the art mask (from the SVG path "art-placeholder"),
+  * the three rules-text masks (no lower dice, one die, two dice), from the SVG "spacer" rectangles,
+  * a blank transparent image,
+and copies the base, dice, rarity and reminder slices into the stylesheet.
+"""
+import json
+import os
+import shutil
+import subprocess
+import sys
+import tempfile
+import xml.etree.ElementTree as ET
+
+from PIL import Image, ImageDraw, ImageFilter
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+MSE = os.path.dirname(HERE)
+REPO = os.path.dirname(MSE)
+SVG = os.path.join(REPO, "src", "00_w_blank.svg")
+COLOR_SVGS = {"white": "00_w_blank.svg", "blue": "01_u_blank.svg", "black": "02_b_blank.svg",
+              "red": "03_r_blank.svg", "green": "04_g_blank.svg"}
+SLICED = os.path.join(REPO, "sliced")
+STYLE_IMG = os.path.join(MSE, "mood-swings-edition1.mse-style", "img")
+FONT_DIR = os.path.join(MSE, "mood-swings-dice.mse-symbol-font")
+CARD_WIDTH = 744
+CARD_HEIGHT = 1040   # the SVG and slices are 1039 high; 1040 is a multiple of 4
+
+NS = {
+    "svg": "http://www.w3.org/2000/svg",
+    "inkscape": "http://www.inkscape.org/namespaces/inkscape",
+}
+INK = "{%s}" % NS["inkscape"]
+SVGNS = "{%s}" % NS["svg"]
+for prefix, uri in [("", NS["svg"]), ("inkscape", NS["inkscape"]),
+                    ("sodipodi", "http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"),
+                    ("xlink", "http://www.w3.org/1999/xlink"),
+                    ("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#"),
+                    ("cc", "http://creativecommons.org/ns#"),
+                    ("dc", "http://purl.org/dc/elements/1.1/")]:
+    ET.register_namespace(prefix, uri)
+
+
+def label(e):
+    return e.get(INK + "label") or e.get("id")
+
+
+def set_display(e, shown):
+    style = [s for s in e.get("style", "").split(";") if s and not s.startswith("display:")]
+    style.append("display:inline" if shown else "display:none")
+    e.set("style", ";".join(style))
+
+
+def render(root, path, only_layers=None, show_children=None, zoom=1):
+    """Render the SVG with only the named top-level layers visible. show_children maps a layer
+    name to the set of child group labels to keep visible inside it."""
+    for layer in root:
+        if layer.tag == SVGNS + "g" and layer.get(INK + "groupmode") == "layer":
+            keep = only_layers is not None and label(layer) in only_layers
+            set_display(layer, keep)
+            if keep and show_children and label(layer) in show_children:
+                for child in layer:
+                    if child.tag == SVGNS + "g":
+                        set_display(child, label(child) in show_children[label(layer)])
+    with tempfile.NamedTemporaryFile("wb", suffix=".svg", delete=False) as f:
+        ET.ElementTree(root).write(f, encoding="utf-8", xml_declaration=True)
+        tmp = f.name
+    try:
+        subprocess.run(["rsvg-convert", "-w", str(744 * zoom), "-h", str(1039 * zoom), "-o", path, tmp], check=True)
+    finally:
+        os.unlink(tmp)
+
+
+def load_root(path=None):
+    return ET.parse(path or SVG).getroot()
+
+
+def find(root, name):
+    for e in root.iter():
+        if label(e) == name:
+            return e
+    raise KeyError(name)
+
+
+# The slices have the set code ("MSW") painted into the footer. It is an editable field in MSE, so it is
+# painted out of the frame images: the rectangle below covers just the three letters on the flat footer
+# color, and stays clear of the rounded corner at the left and of the color word and brush icon at the right.
+SET_CODE_BOX = (46, 990, 96, 1007)
+
+
+def erase_set_code(img):
+    x0, y0, x1, y1 = SET_CODE_BOX
+    region = img.crop((x0, y0, x1 + 1, y1 + 1))
+    counts = {}
+    for p in region.getdata():
+        counts[p] = counts.get(p, 0) + 1
+    bg = max(counts, key=counts.get)
+    img.paste(Image.new("RGBA", region.size, bg), (x0, y0))
+
+
+# The "Edition 1 Custom" set symbol sits on the tab at the lower right of every frame. It is an editable
+# image field in MSE, so it is painted out of the frame images too. SYMBOL_AREA is the part of the tab that
+# holds the symbol: the tab's slanted left edge and the card margin are outside it, and the tab's right edge
+# runs along x = 705. Only pixels that differ from the tab color and are NOT connected to the area's border
+# are erased, so the tab outline can never be touched. The default symbol image is cut from the black frame,
+# where the white symbol has the most contrast.
+SYMBOL_AREA = (612, 884, 705, 962)
+SYMBOL_SIZE = 80          # the editable symbol box is a square this big, centred on the original symbol
+
+
+def _symbol_pixels(img):
+    """Return (tab color, set of (x, y) that belong to the symbol) for a frame image."""
+    x0, y0, x1, y1 = SYMBOL_AREA
+    region = img.crop((x0, y0, x1, y1))
+    counts = {}
+    for p in region.getdata():
+        counts[p] = counts.get(p, 0) + 1
+    bg = max(counts, key=counts.get)
+    w, h = region.size
+    px = region.load()
+    diff = {(x, y) for y in range(h) for x in range(w)
+            if sum(abs(a - b) for a, b in zip(px[x, y], bg)) > 3}
+    # everything connected to the border of the area is the tab outline or the card margin
+    stack = [d for d in diff if d[0] in (0, w - 1) or d[1] in (0, h - 1)]
+    outside = set(stack)
+    while stack:
+        x, y = stack.pop()
+        for dx in (-1, 0, 1):
+            for dy in (-1, 0, 1):
+                n = (x + dx, y + dy)
+                if n in diff and n not in outside:
+                    outside.add(n)
+                    stack.append(n)
+    return bg, {(x + x0, y + y0) for (x, y) in diff - outside}
+
+
+def erase_set_symbol(img):
+    bg, pixels = _symbol_pixels(img)
+    for xy in pixels:
+        img.putpixel(xy, bg)
+    return pixels
+
+
+def extract_set_symbol(img, pixels):
+    """Cut the symbol out of a frame as a white image with transparency, padded to a square."""
+    bg = img.getpixel((SYMBOL_AREA[0] + 40, SYMBOL_AREA[1] + 4))   # a tab pixel above the symbol
+    white = (255, 253, 252)
+    xs = [x for x, _ in pixels]
+    ys = [y for _, y in pixels]
+    bx0, bx1, by0, by1 = min(xs), max(xs) + 1, min(ys), max(ys) + 1
+    cx, cy = (bx0 + bx1) / 2, (by0 + by1) / 2
+    left, top = round(cx - SYMBOL_SIZE / 2), round(cy - SYMBOL_SIZE / 2)
+    out = Image.new("RGBA", (SYMBOL_SIZE, SYMBOL_SIZE), (255, 253, 252, 0))
+    chan = max(range(3), key=lambda i: abs(white[i] - bg[i]))
+    for x, y in pixels:
+        a = (img.getpixel((x, y))[chan] - bg[chan]) / (white[chan] - bg[chan])
+        out.putpixel((x - left, y - top), (*white, round(255 * max(0.0, min(1.0, a)))))
+    return out, {"left": left, "top": top, "width": SYMBOL_SIZE, "height": SYMBOL_SIZE}
+
+
+ZERO_FONTS = ["/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", "DejaVuSans-Bold.ttf",
+              "/usr/share/fonts/truetype/montserrat/Montserrat-Bold.ttf"]
+
+
+def make_zero_die(src, dst):
+    """The glyph for 0: the die with one pip, the pip painted out and a bold 0 in its place."""
+    import numpy as np
+    from PIL import ImageDraw, ImageFont
+    die = Image.open(src).convert("RGBA")
+    a = np.asarray(die).astype(int)
+    h, w = a.shape[:2]
+    yy, xx = np.mgrid[:h, :w]
+    ys, xs = np.nonzero(a[..., 3] > 128)
+    cx, cy = (xs.min() + xs.max()) / 2, (ys.min() + ys.max()) / 2
+    pip = (a[..., :3].sum(-1) < 300) & (a[..., 3] > 128) & (np.hypot(xx - cx, yy - cy) < 20)
+    py, px = np.nonzero(pip)
+    pcx, pcy, r = px.mean(), py.mean(), (px.max() - px.min() + 1) / 2 + 3
+    ink = tuple(int(v) for v in a[..., :3][a[..., 3] > 200][0]) + (255,)
+    face = (254, 254, 254, 255)
+    ImageDraw.Draw(die).ellipse((pcx - r, pcy - r, pcx + r, pcy + r), fill=face)
+    scale = 8
+    big = Image.new("L", (w * scale, h * scale), 0)
+    font = None
+    for path in ZERO_FONTS:
+        try:
+            font = ImageFont.truetype(path, 56 * scale)
+            break
+        except OSError:
+            continue
+    if font is None:
+        sys.exit("need the DejaVu Sans Bold or Montserrat Bold font for the zero die")
+    ImageDraw.Draw(big).text((pcx * scale, pcy * scale), "0", fill=255, font=font, anchor="mm")
+    mask = big.resize((w, h), Image.LANCZOS)
+    numeral = Image.new("RGBA", (w, h), ink)
+    numeral.putalpha(mask)
+    die.alpha_composite(numeral)
+    die.save(dst)
+
+
+def main():
+    for tool in ("rsvg-convert",):
+        if shutil.which(tool) is None:
+            sys.exit("missing tool: " + tool)
+    os.makedirs(STYLE_IMG, exist_ok=True)
+    os.makedirs(FONT_DIR, exist_ok=True)
+    tmp = tempfile.mkdtemp()
+
+    # 1. slices -> stylesheet images. The bases stay full-card; the overlays (dice, rarity, reminder)
+    # are cropped to the union of their boxes, so each MSE field only covers its own small area.
+    layout = {"card": {"width": CARD_WIDTH, "height": CARD_HEIGHT}}
+    # The slices are 744 x 1039. The Unity client needs sizes that are a multiple of 4, so each base gets one
+    # extra row at the bottom (a copy of the last row, which is the white margin around the card). Every
+    # overlay is positioned from the top left, so nothing else moves.
+    original_b = Image.open(os.path.join(SLICED, "base-b.png")).convert("RGBA")
+    symbol, symbol_box = extract_set_symbol(original_b, _symbol_pixels(original_b)[1])
+    # The original "Edition 1 Custom" symbol stays available as img/set-symbol-edition1.png. The default symbol of the
+    # template is the Emotional Baggage one (a cracked heart behind a padlock, white on transparent, square),
+    # kept as an asset in mse/tools/assets/ and drawn into the same 80 x 80 box.
+    symbol.save(os.path.join(STYLE_IMG, "set-symbol-edition1.png"))
+    shutil.copy(os.path.join(HERE, "assets", "set-symbol-xemb.png"), os.path.join(STYLE_IMG, "set-symbol.png"))
+    layout["set-symbol"] = symbol_box
+    print("set-symbol", symbol_box)
+    for c in "wubrgc":
+        base = Image.open(os.path.join(SLICED, f"base-{c}.png")).convert("RGBA")
+        erase_set_code(base)
+        erase_set_symbol(base)
+        w, h = base.size
+        padded = Image.new("RGBA", (w, CARD_HEIGHT), (0, 0, 0, 0))
+        padded.paste(base, (0, 0))
+        for extra in range(h, CARD_HEIGHT):
+            padded.paste(base.crop((0, h - 1, w, h)), (0, extra))
+        padded.save(os.path.join(STYLE_IMG, f"base-{c}.png"))
+
+    def crop_group(sources, box_name):
+        """sources: list of (source path, output name). Crop all to the union alpha box."""
+        ims = [(Image.open(src).convert("RGBA"), name) for src, name in sources]
+        boxes = [im.split()[3].getbbox() for im, _ in ims]
+        x0 = min(b[0] for b in boxes); y0 = min(b[1] for b in boxes)
+        x1 = max(b[2] for b in boxes); y1 = max(b[3] for b in boxes)
+        for im, name in ims:
+            im.crop((x0, y0, x1, y1)).save(os.path.join(STYLE_IMG, name))
+        layout[box_name] = {"left": x0, "top": y0, "width": x1 - x0, "height": y1 - y0}
+        print(box_name, layout[box_name])
+
+    upper, lower = [], []
+    for color, d in (("white", "w"), ("black", "b")):
+        for n in range(0, 7):
+            upper.append((os.path.join(SLICED, "upper-dice", color, f"ud{d}-{n}.png"), f"ud{d}-{n}.png"))
+        for n in range(1, 13):
+            lower.append((os.path.join(SLICED, "lower-dice", color, f"ld{d}-{n:02d}.png"), f"ld{d}-{n:02d}.png"))
+    crop_group(upper, "upper-die")
+    crop_group(lower, "lower-die")
+    crop_group([(os.path.join(SLICED, "rarity", f"{r}.png"), f"rarity-{r}.png")
+                for r in ("common", "uncommon", "rare", "mythic")], "rarity")
+    crop_group([(os.path.join(SLICED, "reminder.png"), "reminder.png")], "reminder")
+
+    # 2. blank transparent image
+    Image.new("RGBA", (4, 4), (0, 0, 0, 0)).save(os.path.join(STYLE_IMG, "blank.png"))
+
+    # 3. art masks, one per color. The art frame is tilted differently on the colors (white and blue are
+    # nearly the same, black is tilted a little, red and green a lot). The mask is read from the sliced frame
+    # itself: the art area is the flat gray (#999999) placeholder, and the edge pixels are blended against the
+    # dark border around it, so the art fits the frame image that is used.
+    # All colors share ONE art box size (the largest width and height of the five openings), so art can be
+    # made at a single size. Each color's box is positioned so that the centre of the box is the centre of
+    # that color's opening, and each mask image is the full box size with the opening placed inside it.
+    GRAY = (153, 153, 153)
+    openings = {}
+    for color, code in (("white", "w"), ("blue", "u"), ("black", "b"), ("red", "r"), ("green", "g")):
+        base = Image.open(os.path.join(SLICED, f"base-{code}.png")).convert("RGB")
+        w, h = base.size
+        px = base.load()
+        seed = Image.new("L", (w, h), 0)
+        sp = seed.load()
+        for y in range(h):
+            for x in range(w):
+                if px[x, y] == GRAY:
+                    sp[x, y] = 255
+        zone = seed.filter(ImageFilter.MaxFilter(5))          # the seed grown by 2 px
+        zp = zone.load()
+        ring = {}
+        for y in range(h):
+            for x in range(w):
+                if zp[x, y] and not sp[x, y]:
+                    ring[px[x, y]] = ring.get(px[x, y], 0) + 1
+        dark = max(ring, key=ring.get)                          # the border colour just outside the art
+        vx = [GRAY[i] - dark[i] for i in range(3)]
+        norm = sum(v * v for v in vx)
+        mask = Image.new("L", (w, h), 0)
+        mp = mask.load()
+        for y in range(h):
+            for x in range(w):
+                if sp[x, y]:
+                    mp[x, y] = 255
+                elif zp[x, y]:
+                    t = sum((px[x, y][i] - dark[i]) * vx[i] for i in range(3)) / norm
+                    mp[x, y] = int(round(255 * min(1.0, max(0.0, t))))
+        bbox = mask.point(lambda v: 255 if v > 0 else 0).getbbox()
+        # centre of the opening: the centroid of the mask
+        data = mask.tobytes()
+        total = sum(data)
+        cx = sum(i % w * v for i, v in enumerate(data)) / total
+        cy = sum(i // w * v for i, v in enumerate(data)) / total
+        openings[color] = {"mask": mask, "bbox": bbox, "cx": cx, "cy": cy}
+        print("art opening for", color, bbox, "centre (%.1f, %.1f)" % (cx, cy), "border colour", dark)
+    # The colorless frame (make_colorless_frame.py) mixes parts of the colored frames. Its art box is the one of
+    # the frame it takes the art box from (green), so it uses that opening, mask and position.
+    openings["colorless"] = openings["green"]
+    ART_W = max(o["bbox"][2] - o["bbox"][0] for o in openings.values())
+    ART_H = max(o["bbox"][3] - o["bbox"][1] for o in openings.values())
+    layout["art"] = {"width": ART_W, "height": ART_H, "boxes": {}}
+    for color, o in openings.items():
+        x0, y0, x1, y1 = o["bbox"]
+        # centre the box on the opening, but never let the box cut into the opening
+        left = min(x0, max(x1 - ART_W, round(o["cx"] - ART_W / 2)))
+        top = min(y0, max(y1 - ART_H, round(o["cy"] - ART_H / 2)))
+        canvas = Image.new("L", (ART_W, ART_H), 0)
+        canvas.paste(o["mask"].crop(o["bbox"]), (x0 - left, y0 - top))
+        canvas.save(os.path.join(STYLE_IMG, f"art-mask-{color}.png"))
+        layout["art"]["boxes"][color] = {"left": left, "top": top}
+        print("art box for", color, "left", left, "top", top, "size", (ART_W, ART_H),
+              "opening inside the box at", (x0 - left, y0 - top))
+
+    # 4. rules text masks from the spacer rectangles (relative to textbox-main)
+    root = load_root()
+    main_rect = find(root, "textbox-main")
+    mx, my = float(main_rect.get("x")), float(main_rect.get("y"))
+    mw, mh = float(main_rect.get("width")), float(main_rect.get("height"))
+    def rect(name):
+        r = find(root, name)
+        return (float(r.get("x")) - mx, float(r.get("y")) - my,
+                float(r.get("width")), float(r.get("height")))
+    W, H = round(mw), round(mh)
+    print("rules text box: left %.2f top %.2f width %d height %d" % (mx, my, W, H))
+    layout["rules-text"] = {"left": round(mx, 2), "top": round(my, 2), "width": W, "height": H}
+    spacers = {n: rect(n) for n in ("top-spacer", "left-spacer", "right-spacer", "collation-spacer")}
+    dice_spacer = rect("dice-spacer")
+    # lower dice extents come from the sliced images (alpha bounding boxes)
+    def dice_bbox(n):
+        im = Image.open(os.path.join(SLICED, "lower-dice", "white", f"ldw-{n:02d}.png")).convert("RGBA")
+        return im.split()[3].getbbox()
+    single, double = dice_bbox(1), dice_bbox(7)
+    print("single die bbox", single, "double dice bbox", double)
+
+    def make_mask(dice):
+        im = Image.new("L", (W, H), 255)
+        d = ImageDraw.Draw(im)
+        for x, y, w, h in spacers.values():
+            d.rectangle([x, y, x + w, y + h], fill=0)
+        if dice is not None:
+            x0, y0, x1, y1 = dice
+            # block from the left edge of the box, from just above the dice to the bottom
+            d.rectangle([0, y0 - 8 - my, x1 + 12 - mx, H], fill=0)
+        return im
+    make_mask(None).save(os.path.join(STYLE_IMG, "text-mask-none.png"))
+    make_mask(single).save(os.path.join(STYLE_IMG, "text-mask-single.png"))
+    make_mask(double).save(os.path.join(STYLE_IMG, "text-mask-double.png"))
+
+    # 5. inline dice glyphs from the dice-glyphs layer. Each glyph group sits at its own place in the
+    # SVG, so render it alone at 4x, crop to its own box and centre it on a common canvas.
+    ZOOM = 4
+    crops = []
+    for n in range(1, 7):
+        root = load_root()
+        out = os.path.join(tmp, f"glyph-{n}.png")
+        render(root, out, only_layers={"dice-glyphs"}, show_children={"dice-glyphs": {f"dice-{n}"}}, zoom=ZOOM)
+        im = Image.open(out).convert("RGBA")
+        crops.append(im.crop(im.split()[3].getbbox()))
+    cw = max(c.size[0] for c in crops) + 4
+    ch = max(c.size[1] for c in crops) + 4
+    for n, c in enumerate(crops, start=1):
+        canvas = Image.new("RGBA", (cw, ch), (0, 0, 0, 0))
+        canvas.paste(c, ((cw - c.size[0]) // 2, (ch - c.size[1]) // 2), c)
+        canvas.save(os.path.join(FONT_DIR, f"die-{n}.png"))
+    # A die for 0 (the printed cards write a 0 in rules text as a die with a 0 on it): the die for 1 with its dot
+    # replaced by a bold numeral.
+    make_zero_die(os.path.join(FONT_DIR, "die-1.png"), os.path.join(FONT_DIR, "die-0.png"))
+    print("glyph size", (cw, ch), "(rendered at %dx)" % ZOOM)
+    layout["glyph"] = {"width": cw, "height": ch, "zoom": ZOOM}
+    with open(os.path.join(HERE, "layout.json"), "w") as f:
+        json.dump(layout, f, indent=2, sort_keys=True)
+        f.write("\n")
+    shutil.rmtree(tmp)
+
+
+if __name__ == "__main__":
+    main()

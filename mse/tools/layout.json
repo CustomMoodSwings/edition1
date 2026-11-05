@@ -1,0 +1,77 @@
+{
+  "art": {
+    "boxes": {
+      "black": {
+        "left": 81,
+        "top": 135
+      },
+      "blue": {
+        "left": 78,
+        "top": 129
+      },
+      "colorless": {
+        "left": 80,
+        "top": 136
+      },
+      "green": {
+        "left": 80,
+        "top": 136
+      },
+      "red": {
+        "left": 78,
+        "top": 129
+      },
+      "white": {
+        "left": 80,
+        "top": 129
+      }
+    },
+    "height": 452,
+    "width": 585
+  },
+  "card": {
+    "height": 1040,
+    "width": 744
+  },
+  "glyph": {
+    "height": 95,
+    "width": 91,
+    "zoom": 4
+  },
+  "lower-die": {
+    "height": 117,
+    "left": 47,
+    "top": 844,
+    "width": 194
+  },
+  "rarity": {
+    "height": 18,
+    "left": 536,
+    "top": 967,
+    "width": 157
+  },
+  "reminder": {
+    "height": 74,
+    "left": 530,
+    "top": 39,
+    "width": 54
+  },
+  "rules-text": {
+    "height": 365,
+    "left": 48.65,
+    "top": 581.95,
+    "width": 648
+  },
+  "set-symbol": {
+    "height": 80,
+    "left": 622,
+    "top": 886,
+    "width": 80
+  },
+  "upper-die": {
+    "height": 116,
+    "left": 575,
+    "top": 50,
+    "width": 115
+  }
+}

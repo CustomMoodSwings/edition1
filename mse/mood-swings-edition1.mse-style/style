@@ -1,0 +1,157 @@
+mse version: 2.0.0
+game: mood-swings
+short name: Edition 1
+full name: Mood Swings Edition 1 card frame
+position hint: 1
+card width: 744
+card height: 1040
+card dpi: 300
+card background: rgb(255,255,255)
+
+card style:
+	frame color:
+		left: 0
+		top: 0
+		width: 744
+		height: 1040
+		z index: 10
+		render style: image
+		choice images:
+			white: img/base-w.png
+			blue: img/base-u.png
+			black: img/base-b.png
+			red: img/base-r.png
+			green: img/base-g.png
+			colorless: img/base-c.png
+	art:
+		left: { case card.frame_color of "white": 80, "blue": 78, "black": 81, "red": 78, "green": 80, "colorless": 80, else: 80 }
+		top: { case card.frame_color of "white": 129, "blue": 129, "black": 135, "red": 129, "green": 136, "colorless": 136, else: 129 }
+		width: 585
+		height: 452
+		z index: 20
+		mask: { "img/art-mask-" + card.frame_color + ".png" }
+	top die:
+		left: { if to_int(card.top_die) > 6 then 496 else 575 }
+		top: 50
+		width: { if to_int(card.top_die) > 6 then 194 else 115 }
+		height: { if to_int(card.top_die) > 6 then 117 else 116 }
+		z index: 30
+		render style: image
+		image: { if to_int(input) <= 6 then "img/ud" + (if card.top_die_color == "black" then "b" else "w") + "-" + input + ".png" else "img/ld" + (if card.top_die_color == "black" then "b" else "w") + "-" + (if to_int(input) < 10 then "0" else "") + input + ".png" }
+	reminder icon:
+		left: { if to_int(card.top_die) > 6 then 451 else 530 }
+		top: 39
+		width: 54
+		height: 74
+		z index: 30
+		render style: image
+		choice images:
+			yes: img/reminder.png
+			no: img/blank.png
+	lower die:
+		left: 47
+		top: 844
+		width: 194
+		height: 117
+		z index: 30
+		render style: image
+		image: { if input == "none" then "img/blank.png" else "img/ld" + (if card.lower_die_color == "black" then "b" else "w") + "-" + (if to_int(input) < 10 then "0" else "") + input + ".png" }
+	rarity:
+		left: 536
+		top: 967
+		width: 157
+		height: 18
+		z index: 30
+		render style: image
+		choice images:
+			common: img/rarity-common.png
+			uncommon: img/rarity-uncommon.png
+			rare: img/rarity-rare.png
+			mythic: img/rarity-mythic.png
+	set symbol:
+		left: 622
+		top: 886
+		width: 80
+		height: 80
+		z index: 35
+		default: img/set-symbol.png
+	name:
+		left: 57
+		top: 44
+		width: { if to_int(card.top_die) > 6 then 389 else 468 }
+		height: 80
+		z index: 40
+		alignment: middle left
+		font:
+			name: Beleren Small Caps
+			size: 50
+			weight: bold
+			color: rgb(255,253,252)
+			scale down to: 30
+	rules text:
+		left: 48.65
+		top: 581.95
+		width: 648
+		height: 365
+		z index: 40
+		alignment: middle center
+		font:
+			name: MPlantin
+			italic name: MPlantin-Italic
+			size: 24
+			color: rgb(45,45,45)
+			scale down to: 14
+		symbol font:
+			name: mood-swings-dice
+			size: 28
+			alignment: middle center
+		padding bottom: { if card.designed_by == "" then 0 else 24 }
+		mask: { if card.lower_die == "none" then "img/text-mask-none.png" else if to_int(card.lower_die) <= 6 then "img/text-mask-single.png" else "img/text-mask-double.png" }
+	designed by:
+		left: 250
+		top: 922
+		width: 354
+		height: 24
+		z index: 40
+		alignment: middle center
+		font:
+			name: MPlantin
+			italic name: MPlantin-Italic
+			size: 15
+			style: italic
+			color: rgb(45,45,45)
+			scale down to: 10
+	set code:
+		left: 48.4
+		top: 989
+		width: 90
+		height: 20
+		z index: 40
+		alignment: middle left
+		font:
+			name: Gotham
+			size: 12
+			color: rgb(255,253,252)
+	collector number:
+		left: 47.7
+		top: 968
+		width: 90
+		height: 22
+		z index: 40
+		alignment: middle left
+		font:
+			name: Gotham
+			size: 12
+			color: rgb(255,253,252)
+	artist:
+		left: 164.85
+		top: 985
+		width: 280
+		height: 24
+		z index: 40
+		alignment: middle left
+		font:
+			name: Beleren Small Caps
+			size: 14
+			weight: bold
+			color: rgb(255,253,252)

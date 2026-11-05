@@ -1,0 +1,38 @@
+name: Release
+
+# Builds the Magic Set Editor zip and publishes a GitHub release with it. Two ways to start it:
+#   - push a tag such as v0.1.0 (a tag that is just numbers, like 0.1.0, also works), or
+#   - run it by hand from the Actions tab and type a version: the tag is created on the selected branch.
+# The release notes are mse/INSTRUCTIONS.md.
+on:
+  push:
+    tags:
+      - "v[0-9]*"
+      - "[0-9]*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to release, for example v0.1.0 (the tag is created if it does not exist)"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ inputs.version || github.ref_name }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the zip
+        run: python3 mse/tools/make_release.py mood-swings-mse.zip
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$VERSION" mood-swings-mse.zip \
+            --target "$GITHUB_SHA" \
+            --title "Magic Set Editor template $VERSION" \
+            --notes-file mse/INSTRUCTIONS.md

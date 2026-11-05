@@ -71,6 +71,10 @@ If you don't want to deal with Inkscape and (most of) the font stuff, you can us
 
 You'll still need the Beleran Plantin fonts if you want accurate card names and rules text. These slices are currently produced manually, thus are a lot of effort and likely won't be updated very frequently.
 
+## Alternative: Magic Set Editor
+
+If you'd rather type card data into [Magic Set Editor 2](https://github.com/twanvl/MagicSetEditor2) and export cards from there, see [mse/](mse/). It is a game, a stylesheet and a small symbol font built from these templates. It has not been tested in MSE yet, and [mse/README.md](mse/README.md) lists what to check first.
+
 ## Fan content
 
 These templates iare unofficial Fan Content permitted under the Fan Content Policy. Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. ©Wizards of the Coast LLC.

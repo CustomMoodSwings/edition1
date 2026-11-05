@@ -1603,7 +1603,7 @@ card:
 	lower die color: white
 	rarity: rare
 	rules text:
-		<b>While in play</b> — At the start of each of your turns, choose a color. Until the end of this round, each of your moods of that color, including ones you play later this round, has its value increased by <sym>2</sym>.
+		<b>While in play</b> — At the start of each of your turns, choose a color. Until the end of this round, each of your moods of that color has its value increased by <sym>2</sym>. <i>(This includes moods you play later this round.)</i>
 	collector number: X129
 card:
 	name: Wariness

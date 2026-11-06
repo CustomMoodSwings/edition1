@@ -1608,7 +1608,7 @@ card:
 card:
 	name: Wariness
 	frame color: green
-	top die: 4
+	top die: 3
 	top die color: white
 	reminder icon: no
 	lower die: none

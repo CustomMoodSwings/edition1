@@ -10,7 +10,7 @@ This zip has everything needed to type card data into [Magic Set Editor 2](https
 | `mood-swings-edition1.mse-style/` | The stylesheet: where each field goes on the card, plus the frame images. |
 | `mood-swings-dice.mse-symbol-font/` | A symbol font for the dice used inside rules text (0 to 6). |
 | `examples/edition1-sample.mse-set/` | A small sample set (Pacifism, Fear, Determination, a two-dice card and FOMO). |
-| `examples/emotional-baggage.mse-set/` | The whole custom set, Emotional Baggage (code XEMB): the 133 slotted cards of the community design (backup candidates are left out until they are chosen for play testing). Only the 11 reprints (Pacifism, Panic, Fear, Hate, Suspicion, Shock, Zeal, Compulsion, Joy, Nostalgia, Determination) have their original art and artist; the new cards have none yet. The collector numbers are provisional and start with an X (X001 to X133, by color in the order colorless, white, blue, black, red, green, then alphabetically by name) to mark them as unofficial. |
+| `examples/emotional-baggage.mse-set/` | The whole custom set, Emotional Baggage (code XEMB): the 133 slotted cards of the community design (backup candidates are left out until they are chosen for play testing). Only the 11 reprints (Pacifism, Panic, Fear, Hate, Suspicion, Shock, Zeal, Compulsion, Joy, Nostalgia, Determination) have their original art and artist, and Admiration has its new art; the other new cards have none yet. The collector numbers are provisional and start with an X (X001 to X133, by color in the order colorless, white, blue, black, red, green, then alphabetically by name) to mark them as unofficial. |
 
 ## 1. Install
 

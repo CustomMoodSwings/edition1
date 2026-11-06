@@ -423,6 +423,8 @@ card:
 	rules text:
 		<b>After playing this mood</b> — You may choose a mood in the discard pile. If you do, that mood's after-playing effect happens as though you had just played it.
 	collector number: X034
+	art: art-admiration.png
+	artist: Joseph Eddy
 card:
 	name: Anticipation
 	frame color: blue
@@ -969,13 +971,13 @@ card:
 	name: Schadenfreude
 	frame color: black
 	top die: 3
-	top die color: white
+	top die color: black
 	reminder icon: no
 	lower die: 6
-	lower die color: white
+	lower die color: black
 	rarity: common
 	rules text:
-		<b>After playing this mood</b> — If another player discarded a card this turn, this mood's value becomes <sym>6</sym>.
+		<b>While in play</b> — This mood's value is <sym>6</sym> if an opponent discarded a card this round.
 	collector number: X079
 	designed by: Designed by jceddy
 card:
@@ -1075,7 +1077,7 @@ card:
 	lower die color: black
 	rarity: mythic
 	rules text:
-		<b>While in play</b> — This mood's value is <sym>1</sym> more than the highest value among your opponents' moods.
+		<b>While in play</b> — This mood's value is <sym>1</sym> more than the highest value among your opponents' moods that don't have this ability. <i>(If there are no such moods, this mood's value is <sym>1</sym>.)</i>
 	collector number: X087
 card:
 	name: Compulsion
@@ -1555,7 +1557,7 @@ card:
 	lower die color: black
 	rarity: uncommon
 	rules text:
-		<b>While in play</b> — This mood's value is <sym>6</sym> if there are three or more different values among your moods. <i>(Moods are cards in play.)</i>
+		<b>While in play</b> — This mood's value is <sym>6</sym> if there are three or more different values among your moods that don't have this ability. <i>(Moods are cards in play.)</i>
 	collector number: X125
 card:
 	name: Thrift
@@ -1603,12 +1605,12 @@ card:
 	lower die color: white
 	rarity: rare
 	rules text:
-		<b>While in play</b> — At the start of each of your turns, choose a color. Until the end of this round, each of your moods of that color has its value increased by <sym>2</sym>.
+		<b>While in play</b> — At the start of each of your turns, choose a color. Until the end of this round, each of your moods of that color has its value increased by <sym>2</sym>. <i>(This includes moods you play later this round.)</i>
 	collector number: X129
 card:
 	name: Wariness
 	frame color: green
-	top die: 4
+	top die: 3
 	top die color: white
 	reminder icon: no
 	lower die: none

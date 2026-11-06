@@ -893,7 +893,7 @@ card:
 	lower die color: white
 	rarity: common
 	rules text:
-		<b>After playing this mood</b> — Choose odd or even. Choose up to two players. For each chosen player, put one of their moods with a number of the chosen type in its top right corner into the discard pile. <i>(<sym>0</sym> is even.)</i>
+		<b>After playing this mood</b> — Choose odd or even. Choose up to two players. Each chosen player puts one of their moods with a number of the chosen type in its top right corner into the discard pile. <i>(<sym>0</sym> is even.)</i>
 	collector number: X072
 card:
 	name: Martyrdom

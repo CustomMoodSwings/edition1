@@ -423,6 +423,7 @@ card:
 	rules text:
 		<b>After playing this mood</b> — You may choose a mood in the discard pile. If you do, that mood's after-playing effect happens as though you had just played it.
 	collector number: X034
+	art: art-admiration.png
 card:
 	name: Anticipation
 	frame color: blue
@@ -1608,7 +1609,7 @@ card:
 card:
 	name: Wariness
 	frame color: green
-	top die: 4
+	top die: 3
 	top die color: white
 	reminder icon: no
 	lower die: none

@@ -837,14 +837,14 @@ card:
 card:
 	name: Haunting
 	frame color: black
-	top die: 2
+	top die: 0
 	top die color: white
 	reminder icon: no
 	lower die: none
 	lower die color: white
 	rarity: mythic
 	rules text:
-		<b>After playing this mood</b> — You may discard any number of cards from your hand. If you do, you may play that many additional moods from the discard pile on your <b>next</b> turn.
+		<b>After playing this mood</b> — You may discard any number of cards from your hand. If you do, on your <b>next</b> turn you may play that many additional moods from the discard pile if you still have this mood at the start of that turn.
 	collector number: X068
 	designed by: Designed by Dr Potato
 card:

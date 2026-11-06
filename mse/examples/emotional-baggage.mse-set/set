@@ -424,6 +424,7 @@ card:
 		<b>After playing this mood</b> — You may choose a mood in the discard pile. If you do, that mood's after-playing effect happens as though you had just played it.
 	collector number: X034
 	art: art-admiration.png
+	artist: Joseph Eddy
 card:
 	name: Anticipation
 	frame color: blue

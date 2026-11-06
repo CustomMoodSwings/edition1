@@ -35,7 +35,8 @@ mse/examples/emotional-baggage.mse-set/set by default. Mapping of the card field
                              black, red, green) and alphabetically by name within each color
   art, artist                for the 11 reprints, the art and artist of the printed card (cut out by
                              extract_reprint_art.py into tools/reprint-art/ and copied into the set folder);
-                             left empty for the new cards
+                             for a new card, the image tools/card-art/<card name>.png (585 x 452) if there is one,
+                             with the artist from tools/card-art/artists.json if that names one; otherwise left empty
 
 The set is rebuilt from scratch each time, so edit the card files (not the set file) to change a card.
 """
@@ -52,6 +53,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 MSE = os.path.dirname(HERE)
 DEFAULT_OUT = os.path.join(MSE, "examples", "emotional-baggage.mse-set")
 ART_DIR = os.path.join(HERE, "reprint-art")
+NEW_ART_DIR = os.path.join(HERE, "card-art")
 COLORS = ["colorless", "white", "blue", "black", "red", "green"]
 
 
@@ -97,7 +99,7 @@ def slug(name):
     return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
 
 
-def card_block(c, number, artists):
+def card_block(c, number, artists, new_artists):
     alt = c.get("alt_value")
     text = " ".join(c["rules_text"].split())
     # as on the printed cards: black dice when the card's own value is set or changed by a "While in play" ability
@@ -123,6 +125,10 @@ def card_block(c, number, artists):
     if reprint in artists and os.path.exists(os.path.join(ART_DIR, slug(reprint) + ".png")):
         lines.append("\tart: art-%s.png" % slug(reprint))
         lines.append("\tartist: " + artists[reprint])
+    elif os.path.exists(os.path.join(NEW_ART_DIR, slug(c["name"]) + ".png")):
+        lines.append("\tart: art-%s.png" % slug(c["name"]))
+        if new_artists.get(c["name"]):
+            lines.append("\tartist: " + new_artists[c["name"]])
     if c.get("designer"):
         credit = "Original WOTC Design" if c["designer"] == "Maro" else "Designed by " + c["designer"]
         lines.append("\tdesigned by: " + credit)
@@ -148,7 +154,9 @@ def main():
     cards.sort(key=order)
     artists_file = os.path.join(ART_DIR, "artists.json")
     artists = json.load(open(artists_file, encoding="utf8")) if os.path.exists(artists_file) else {}
-    blocks = [card_block(c, i + 1, artists) for i, c in enumerate(cards)]
+    new_artists_file = os.path.join(NEW_ART_DIR, "artists.json")
+    new_artists = json.load(open(new_artists_file, encoding="utf8")) if os.path.exists(new_artists_file) else {}
+    blocks = [card_block(c, i + 1, artists, new_artists) for i, c in enumerate(cards)]
     text = "mse version: 2.0.0\ngame: mood-swings\nstylesheet: edition1\nset info:\n\tset code: %s\n" % code
     text += "\n".join(blocks) + "\n"
     os.makedirs(out, exist_ok=True)
@@ -158,6 +166,8 @@ def main():
         src = os.path.join(ART_DIR, slug(name) + ".png")
         if os.path.exists(src):
             shutil.copy(src, os.path.join(out, "art-%s.png" % slug(name)))
+    for src in sorted(glob.glob(os.path.join(NEW_ART_DIR, "*.png"))):
+        shutil.copy(src, os.path.join(out, "art-%s" % os.path.basename(src)))
     with open(os.path.join(out, "set"), "w", encoding="utf8", newline="\n") as f:
         f.write(text)
     print("wrote %d cards to %s" % (len(cards), os.path.relpath(os.path.join(out, "set"), MSE)))

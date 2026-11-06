@@ -910,14 +910,14 @@ card:
 card:
 	name: Neglect
 	frame color: black
-	top die: 0
+	top die: 2
 	top die color: white
 	reminder icon: yes
 	lower die: none
 	lower die color: white
 	rarity: mythic
 	rules text:
-		<b>While in play</b> — At the start of each of your turns, each opponent with no cards in their hand puts one of their moods into the discard pile.
+		<b>While in play</b> — Before scoring, each opponent with no cards in their hand puts one of their highest value moods into the discard pile.
 	collector number: X074
 card:
 	name: Nosiness
